@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Module {
+  id      Int      @id @default(autoincrement())
+  title   String
+  slug    String   @default("")
+  courses Course[]
+}
+
+model Course {
+  id       Int       @id @default(autoincrement())
+  title    String
+  slug     String    @unique @default("")
+  order    Int       @default(0)
+  moduleId Int
+  chapters Chapter[]
+  module   Module    @relation(fields: [moduleId], references: [id])
+  tags     Tag[]     @relation("CourseTags")
+}
+
+model Chapter {
+  id       Int      @id @default(autoincrement())
+  title    String
+  slug     String   @default("")
+  order    Int      @default(0)
+  courseId Int
+  course   Course   @relation(fields: [courseId], references: [id])
+  lessons  Lesson[]
+}
+
+model Lesson {
+  id        Int     @id @default(autoincrement())
+  title     String
+  slug      String  @default("")
+  order     Int     @default(0)
+  chapterId Int
+  chapter   Chapter @relation(fields: [chapterId], references: [id])
+  steps     Step[]
+}
+
+model Step {
+  id          Int        @id @default(autoincrement())
+  title       String
+  slug        String     @default("")
+  order       Int        @default(0)
+  hasTest     Boolean    @default(false)
+  lessonId    Int
+  challengeId Int
+  solutionId  Int
+  challenge   Challenge  @relation(fields: [challengeId], references: [id])
+  lesson      Lesson     @relation(fields: [lessonId], references: [id])
+  solution    Solution   @relation(fields: [solutionId], references: [id])
+  userSteps   UserSteps[]
+}
+
+model Challenge {
+  id        Int    @id @default(autoincrement())
+  strapi_id Int
+  steps     Step[]
+}
+
+model Solution {
+  id        Int    @id @default(autoincrement())
+  strapi_id Int
+  steps     Step[]
+}
+
+model Tag {
+  id      Int      @id @default(autoincrement())
+  title   String   @unique
+  courses Course[] @relation("CourseTags")
+}
+
+model User {
+  id          String  @id @default(uuid())
+  full_name   String?
+  avatar_url  String?
+  userSteps   UserSteps[]
+}
+
+model UserSteps {
+  userId          String
+  stepId          Int
+  markAsCompleted Boolean @default(false)
+  testHash        Int     @default(0)
+  user            User    @relation(fields: [userId], references: [id])
+  step            Step    @relation(fields: [stepId], references: [id])
+  @@id([userId, stepId])
+}

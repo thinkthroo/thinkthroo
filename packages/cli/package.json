@@ -1,0 +1,55 @@
+{
+  "name": "cli",
+  "version": "0.0.1",
+  "description": "Add tests to your app.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Ramu Narasinga",
+    "url": "https://github.com/Ramu-Narasinga"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ramu-Narasinga/test-mono.git",
+    "directory": "packages/cli"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "tthroo",
+    "test",
+    "step",
+    "challenge",
+    "lesson",
+    "course",
+    "solution"
+  ],
+  "type": "module",
+  "exports": "./dist/index.js",
+  "bin": "./dist/index.js",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:3001 node dist/index.js",
+    "start": "node dist/index.js",
+    "test": "vitest run"
+  },
+  "packageManager": "pnpm@8.15.6",
+  "dependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.14.10",
+    "tsup": "^8.1.0",
+    "type-fest": "^4.21.0",
+    "typescript": "^5.5.3"
+  }
+}
