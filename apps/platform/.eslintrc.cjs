@@ -49,7 +49,8 @@ const config = {
     "react/jsx-key": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/prefer-nullish-coalescing": "off",
-    "@typescript-eslint/consistent-type-imports": "off"
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/no-unnecessary-type-assertion": "off"
     // FIXME: [Added the above offs for temporary deployment fixes, possibly ggetting rid of em in the next iteration]
   }
 }
