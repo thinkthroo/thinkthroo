@@ -2,7 +2,7 @@ import { db } from "../../"; // FIXME: make it @/
 import { Prisma } from "@prisma/client";
 
 // Type for Course model
-export type Chapter = Prisma.ChapterGetPayload<{}>;
+// export type Chapter = Prisma.ChapterGetPayload<{}>;
 
 async function getChaptersBySlug(slug: string): Promise<any[] | null> {
   try {

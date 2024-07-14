@@ -2,14 +2,14 @@ import { db } from "../../"; // FIXME: make it @/
 import { Prisma } from "@prisma/client";
 
 // Type for Course model
-export type Course = Prisma.CourseGetPayload<{
-  select: {
-    title: true,
-  }
-  include: {
-    module: true
-  }
-}>;
+// export type Course = Prisma.CourseGetPayload<{
+//   select: {
+//     title: true,
+//   }
+//   include: {
+//     module: true
+//   }
+// }>;
 
 async function getCourseBySlugForBreadCrumbs(
   slug: string,
