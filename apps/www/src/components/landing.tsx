@@ -16,7 +16,14 @@ export function Landing() {
     <div className="relative w-full min-h-[80vh] flex flex-col justify-center items-center bg-white">
       <header className="absolute top-0 left-0 w-full py-4 px-6 md:px-10 flex items-center justify-between">
         <Link href="#" className="flex items-center gap-2" prefetch={false}>
-          <MountainIcon className="h-6 w-6 text-primary" />
+          {/* <MountainIcon className="h-6 w-6 text-primary" /> */}
+          <Image
+              src="/logo.svg"
+              alt="Hero"
+              className="h-6 w-6 text-primary"
+              width={120}
+              height={120}
+          />
           <span className="text-primary font-semibold text-lg">TThroo</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
@@ -28,28 +35,28 @@ export function Landing() {
             Home
           </Link>
           <Link
-            href="#"
+            href="#modules"
             className="text-gray-800 hover:underline"
             prefetch={false}
           >
             Modules
           </Link>
           <Link
-            href="#"
+            href="#features"
             className="text-gray-800 hover:underline"
             prefetch={false}
           >
             Features
           </Link>
           <Link
-            href="#"
+            href="#pricing"
             className="text-gray-800 hover:underline"
             prefetch={false}
           >
             Pricing
           </Link>
           <Link
-            href="#"
+            href="#contact"
             className="text-gray-800 hover:underline"
             prefetch={false}
           >
@@ -89,13 +96,15 @@ export function Landing() {
             </div>
             <Image
               src="/placeholder.svg"
+              width={500}
+              height={500}
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
             />
           </div>
         </div>
       </section>
-      <section className="container px-4 md:px-6 py-12 md:py-20">
+      <section id="modules" className="container px-4 md:px-6 py-12 md:py-20">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
           Modules
         </h2>
@@ -106,6 +115,8 @@ export function Landing() {
           <div className="bg-white rounded-lg border border-muted p-8">
             <Image
               src="/placeholder.svg"
+              width={500}
+              height={500}
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
             />
@@ -121,7 +132,7 @@ export function Landing() {
               shadow DOM to avoid potential CSS breaks.
             </p>
             <Link
-              href="#"
+              href="https://app.tthroo.com/best-practices"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -131,6 +142,8 @@ export function Landing() {
           <div className="bg-white rounded-lg border border-muted p-8">
             <Image
               src="/placeholder.svg"
+              width={500}
+              height={500}
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
             />
@@ -146,7 +159,7 @@ export function Landing() {
               be used as a foundation to expand your knowledge.
             </p>
             <Link
-              href="#"
+              href="https://app.tthroo.com/build-from-scratch"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -156,6 +169,8 @@ export function Landing() {
           <div className="bg-white rounded-lg border border-muted p-8">
             <Image
               src="/placeholder.svg"
+              width={500}
+              height={500}
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
             />
@@ -171,7 +186,7 @@ export function Landing() {
               code that is production-grade.
             </p>
             <Link
-              href="#"
+              href="https://app.tthroo.com/production-grade-projects"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -180,7 +195,7 @@ export function Landing() {
           </div>
         </div>
       </section>
-      <section className="container px-4 md:px-6 py-12 md:py-20">
+      <section id="features" className="container px-4 md:px-6 py-12 md:py-20">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
           Key Features
         </h2>
@@ -191,6 +206,8 @@ export function Landing() {
           <div className="bg-white rounded-lg border border-muted p-8">
             <Image
               src="/placeholder.svg"
+              width={500}
+              height={500}
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
             />
@@ -215,6 +232,8 @@ export function Landing() {
           <div className="bg-white rounded-lg border border-muted p-8">
             <Image
               src="/placeholder.svg"
+              width={500}
+              height={500}
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
             />
@@ -240,6 +259,8 @@ export function Landing() {
           <div className="bg-white rounded-lg border border-muted p-8">
             <Image
               src="/placeholder.svg"
+              width={500}
+              height={500}
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
             />
@@ -263,6 +284,8 @@ export function Landing() {
           <div className="bg-white rounded-lg border border-muted p-8">
             <Image
               src="/placeholder.svg"
+              width={500}
+              height={500}
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
             />
@@ -288,6 +311,8 @@ export function Landing() {
           <div className="bg-white rounded-lg border border-muted p-8">
             <Image
               src="/placeholder.svg"
+              width={500}
+              height={500}
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
             />
@@ -312,8 +337,10 @@ export function Landing() {
         </div>
       </section>
 
-      <Pricing />
-      <section className="container px-4 md:px-6 py-12 md:py-20">
+      <section id="pricing" className="container px-4 md:px-6 py-12 md:py-20">
+        <Pricing />
+      </section>
+      <section id="faq" className="container px-4 md:px-6 py-12 md:py-20">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
           Frequently Asked Questions
         </h2>
@@ -361,6 +388,9 @@ export function Landing() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+      </section>
+      <section id="contact" className="container px-4 md:px-6 py-12 md:py-20">
+        Contact us
       </section>
       <footer className="w-full bg-muted py-8 px-4 md:px-6">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">

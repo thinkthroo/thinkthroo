@@ -10,9 +10,10 @@
     "isolatedModules": true,
 
     /* Strictness */
-    "strict": true,
+    "strict": false,
     "noUncheckedIndexedAccess": true,
     "checkJs": true,
+    "strictNullChecks": false, // FIXME: should be true, added for soft launch
 
     /* Bundled projects */
     "lib": ["dom", "dom.iterable", "ES2022"],

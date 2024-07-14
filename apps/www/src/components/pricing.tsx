@@ -71,7 +71,7 @@ export function Pricing() {
   return (
     <div className="w-full max-w-6xl mx-auto py-12 md:py-16 lg:py-20">
       <div className="grid gap-8 md:gap-12">
-        {/* <div className="text-center">
+        <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold">Pricing</h2>
           <p className="text-muted-foreground mt-2 max-w-md mx-auto">
             Choose the plan that fits your needs. Switch between monthly and
@@ -81,7 +81,7 @@ export function Pricing() {
         <div className="flex items-center justify-center gap-4">
           <span className="text-sm font-medium">Monthly</span>
           <RadioGroup
-            value={isAnnual}
+            value=""
             onValueChange={(value) => setIsAnnual(value)}
             className="flex items-center gap-2"
           >
@@ -94,7 +94,7 @@ export function Pricing() {
             </Label>
             <span className="text-sm font-medium">Annual</span>
           </RadioGroup>
-        </div> */}
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {pricing.map((tier, index) => (
             <Card className="p-6 border-2 border-muted rounded-lg" key={index}>
