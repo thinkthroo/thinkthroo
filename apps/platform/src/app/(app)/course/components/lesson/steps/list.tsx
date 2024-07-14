@@ -28,7 +28,7 @@ export default async function LessonSteps(props: {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const steps = await api.course.getStepsByLessonSlug({
+  const steps: any[] = await api.course.getStepsByLessonSlug({
     slug: props.slugs.lessonSlug,
     userId: user?.id
   })

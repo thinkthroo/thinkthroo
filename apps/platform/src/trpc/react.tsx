@@ -49,6 +49,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
             (op.direction === "down" && op.result instanceof Error),
         }),
         unstable_httpBatchStreamLink({
+          // @ts-ignore // FIXME: Hacky, why should this be ignored? Need to research
           transformer: SuperJSON,
           url: getBaseUrl() + "/api/trpc",
           headers: () => {
