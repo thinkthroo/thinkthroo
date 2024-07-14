@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "echo $DATABASE_URL; next build",
-    "dev": "next dev",
+    "dev": "echo $DATABASE_URL; next dev",
     "lint": "next lint",
     "start": "next start"
   },
