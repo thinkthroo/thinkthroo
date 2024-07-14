@@ -1,5 +1,4 @@
 import { db } from "../../"; // FIXME: make it @/
-import { Prisma, Step } from "@prisma/client";
 
 // TODO: Fix type
 async function getStepBySlug(slug: string): Promise<any | null> {

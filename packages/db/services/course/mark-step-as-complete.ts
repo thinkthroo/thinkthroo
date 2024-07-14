@@ -1,5 +1,4 @@
 import { db } from "../../"; // FIXME: make it @/
-import { Prisma, Step, UserSteps } from "@prisma/client";
 
 async function markStepAsComplete(userId: string, stepId: number): Promise<any | null> {
     try {

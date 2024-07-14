@@ -1,5 +1,4 @@
 import { db } from "../../"; // FIXME: make it @/
-import { Prisma, Step } from "@prisma/client";
 
 async function getStepsByLessonSlug(
   slug: string,

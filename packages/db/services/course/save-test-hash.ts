@@ -1,5 +1,4 @@
 import { db } from "../../"; // FIXME: make it @/
-import { Prisma, Step, UserSteps } from "@prisma/client";
 
 async function saveTestHash(userId: string, stepId: number, testHash: number, markAsCompleted: boolean): Promise<any | null> {
     try {
