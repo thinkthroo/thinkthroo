@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "echo $DATABASE_URL; next build",
-    "dev": "echo $DATABASE_URL; next dev",
+    "build": "next build",
+    "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
   },
