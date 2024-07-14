@@ -87,7 +87,7 @@ export function Landing() {
                 </Link>
               </div>
             </div>
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
@@ -104,7 +104,7 @@ export function Landing() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white rounded-lg border border-muted p-8">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
@@ -129,7 +129,7 @@ export function Landing() {
             </Link>
           </div>
           <div className="bg-white rounded-lg border border-muted p-8">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
@@ -154,7 +154,7 @@ export function Landing() {
             </Link>
           </div>
           <div className="bg-white rounded-lg border border-muted p-8">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
@@ -189,7 +189,7 @@ export function Landing() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white rounded-lg border border-muted p-8">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
@@ -213,7 +213,7 @@ export function Landing() {
             </Link>
           </div>
           <div className="bg-white rounded-lg border border-muted p-8">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
@@ -238,7 +238,7 @@ export function Landing() {
             </Link>
           </div>
           <div className="bg-white rounded-lg border border-muted p-8">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
@@ -251,8 +251,6 @@ export function Landing() {
             </div>
             <p className="text-gray-700 mt-4">
               If a challenge is too difficult, there is a solution available.
-              Don't feel bad for looking at solution, your goal is to learn and
-              improve your skills.
             </p>
             <Link
               href="#"
@@ -263,7 +261,7 @@ export function Landing() {
             </Link>
           </div>
           <div className="bg-white rounded-lg border border-muted p-8">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
@@ -288,7 +286,7 @@ export function Landing() {
             </Link>
           </div>
           <div className="bg-white rounded-lg border border-muted p-8">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Hero"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
