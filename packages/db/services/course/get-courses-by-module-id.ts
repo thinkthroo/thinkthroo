@@ -32,7 +32,7 @@ interface CourseWithCounts extends Course {
 
 async function getCoursesByModuleId(
   moduleId: number,
-): Promise<CourseWithCounts[] | null> {
+): Promise<any[] | null> {
   try {
     // Fetch courses along with nested relations
     const courses = await db.course.findMany({

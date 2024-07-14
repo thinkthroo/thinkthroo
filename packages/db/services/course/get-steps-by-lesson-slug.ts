@@ -4,7 +4,7 @@ import { Prisma, Step } from "@prisma/client";
 async function getStepsByLessonSlug(
   slug: string,
   userId: string,
-): Promise<Step[] | null> {
+): Promise<any[] | null> {
   try {
     const steps = await db.step.findMany({
       where: {
