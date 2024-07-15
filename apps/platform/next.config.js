@@ -4,8 +4,17 @@
  */
 await import("./src/env.js");
 
+import { PrismaPlugin } from '@prisma/nextjs-monorepo-workaround-plugin'
+
 /** @type {import("next").NextConfig} */
-const config = {
+const nextConfig = {
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.plugins = [...config.plugins, new PrismaPlugin()]
+    }
+
+    return config
+  },
     async redirects() {
         return [
           {
@@ -17,4 +26,4 @@ const config = {
       },
 };
 
-export default config;
+export default nextConfig;
