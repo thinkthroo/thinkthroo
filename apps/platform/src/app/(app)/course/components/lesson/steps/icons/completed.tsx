@@ -1,13 +1,13 @@
 export default function CompletedIcon() {
     return (
-      <span class="lx oi yz">
-        <span class="ab eg lx og sj yz ze ads ajp bqj">
+      <span className="lx oi yz">
+        <span className="ab eg lx og sj yz ze ads ajp bqj">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
-            class="nz sb bag"
+            className="nz sb bag"
           >
             <path
               fill-rule="evenodd"

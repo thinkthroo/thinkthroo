@@ -20,13 +20,13 @@ export function ExecuteTest(props: any) {
 
   const router = useRouter()
 
-  const [stepId, setStepId] = useState("");
+  const [stepId, setStepId] = useState(0);
 
   // https://github.com/trpc/trpc/discussions/2067#discussioncomment-4900056
   // enabled flag is important to avoid trigger until stepId is set via a click
   // Hacky? not sure. I am inclined make this and mark-as-completed server rendered. 
   // Not sure if its possible, needs more research
-  let query = api.course.generateOrGetTestHash.useQuery({userId: props.user.id, stepId}, {enabled: !!stepId, refetchInterval: 2000});
+  let query = api.course.generateOrGetTestHash.useQuery({userId: props?.user?.id, stepId}, {enabled: !!stepId, refetchInterval: 2000});
 
   const handleDialog = async () => {
 

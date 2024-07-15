@@ -1,7 +1,6 @@
 import { db } from "../../"; // FIXME: make it @/
-import { Prisma, Step, UserSteps } from "@prisma/client";
 
-async function markStepAsComplete(userId: string, stepId: number): Promise<UserSteps | null> {
+async function markStepAsComplete(userId: string, stepId: number): Promise<any | null> {
     try {
         return await db.userSteps.upsert({
             where: {

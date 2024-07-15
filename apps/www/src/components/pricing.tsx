@@ -74,15 +74,14 @@ export function Pricing() {
         <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold">Pricing</h2>
           <p className="text-muted-foreground mt-2 max-w-md mx-auto">
-            Choose the plan that fits your needs. Switch between monthly and
-            annual billing.
+            Choose the plan that fits your needs.
           </p>
         </div>
-        <div className="flex items-center justify-center gap-4">
+        {/* <div className="flex items-center justify-center gap-4">
           <span className="text-sm font-medium">Monthly</span>
           <RadioGroup
-            value={isAnnual}
-            onValueChange={(value) => setIsAnnual(value)}
+            value=""
+            onValueChange={(value) => setIsAnnual(0)}
             className="flex items-center gap-2"
           >
             <RadioGroupItem id="annual" value className="peer sr-only" />
@@ -94,10 +93,10 @@ export function Pricing() {
             </Label>
             <span className="text-sm font-medium">Annual</span>
           </RadioGroup>
-        </div>
+        </div> */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pricing.map((tier) => (
-            <Card className="p-6 border-2 border-muted rounded-lg">
+          {pricing.map((tier, index) => (
+            <Card className="p-6 border-2 border-muted rounded-lg" key={index}>
               <CardHeader>
                 <CardTitle>{tier?.title}</CardTitle>
               </CardHeader>

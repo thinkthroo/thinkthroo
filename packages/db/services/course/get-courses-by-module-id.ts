@@ -2,37 +2,37 @@ import { db } from "../../";
 import { Prisma } from "@prisma/client";
 
 // Type for Course model
-export type Course = Prisma.CourseGetPayload<{
-  include: {
-    module: true;
-    tags: true;
-    chapters: {
-      select: {
-        slug: true;
-        lessons: {
-          select: {
-            slug: true;
-            steps: {
-              select: {
-                slug: true;
-              };
-            };
-          };
-        };
-      };
-    };
-  };
-}>;
+// export type Course = Prisma.CourseGetPayload<{
+//   include: {
+//     module: true;
+//     tags: true;
+//     chapters: {
+//       select: {
+//         slug: true;
+//         lessons: {
+//           select: {
+//             slug: true;
+//             steps: {
+//               select: {
+//                 slug: true;
+//               };
+//             };
+//           };
+//         };
+//       };
+//     };
+//   };
+// }>;
 
-interface CourseWithCounts extends Course {
-  chapterCount: number;
-  lessonCount: number;
-  stepCount: number;
-}
+// interface CourseWithCounts extends Course {
+//   chapterCount: number;
+//   lessonCount: number;
+//   stepCount: number;
+// }
 
 async function getCoursesByModuleId(
   moduleId: number,
-): Promise<CourseWithCounts[] | null> {
+): Promise<any[] | null> {
   try {
     // Fetch courses along with nested relations
     const courses = await db.course.findMany({

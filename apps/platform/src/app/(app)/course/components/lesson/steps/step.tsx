@@ -13,7 +13,7 @@ interface Step {
 }
 
 interface StepProps {
-  courseStep: Step;
+  courseStep: any; // FIXME: fix types
   link: string;
   index: number;
   user: any;

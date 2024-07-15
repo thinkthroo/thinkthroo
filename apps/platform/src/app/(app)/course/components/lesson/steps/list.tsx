@@ -5,7 +5,6 @@ import { getLessonSlug } from "@/lib/get-lesson-slug";
 import { usePathname } from "next/navigation";
 import { getChapterSlug } from "@/lib/get-chapter-slug";
 import { getCourseSlug } from "@/lib/get-course-slug";
-import StepsSkeleton from "./skeleton";
 import { useSteps } from "./use-steps";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -29,7 +28,7 @@ export default async function LessonSteps(props: {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const steps = await api.course.getStepsByLessonSlug({
+  const steps: any[] = await api.course.getStepsByLessonSlug({
     slug: props.slugs.lessonSlug,
     userId: user?.id
   })
