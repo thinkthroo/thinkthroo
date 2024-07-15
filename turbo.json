@@ -28,10 +28,26 @@
       "persistent": true
     },
     "db:generate": {
-      "cache": false
+      "cache": false,
+      "env": [
+        "DATABASE_URL", 
+        "DIRECT_URL", 
+        "NEXT_PUBLIC_SUPABASE_URL", 
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET"
+      ]
     },
     "db:push": {
-      "cache": false
+      "cache": false,
+      "env": [
+        "DATABASE_URL", 
+        "DIRECT_URL", 
+        "NEXT_PUBLIC_SUPABASE_URL", 
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET"
+      ]
     }
   }
 }
