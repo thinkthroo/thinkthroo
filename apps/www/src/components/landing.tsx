@@ -8,6 +8,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { Pricing } from "./pricing";
+import ContactUs from "./contact";
 
 // https://v0.dev/t/QlTvtpCYgcG
 // https://v0.dev/r/n1nJtdj8LqD
@@ -15,8 +16,7 @@ export function Landing() {
   return (
     <div className="relative w-full min-h-[80vh] flex flex-col justify-center items-center bg-white">
       <header className="absolute top-0 left-0 w-full py-4 px-6 md:px-10 flex items-center justify-between">
-        <Link href="#" className="flex items-center gap-2" prefetch={false}>
-          {/* <MountainIcon className="h-6 w-6 text-primary" /> */}
+        <Link href="/" className="flex items-center gap-2" prefetch={false}>
           <Image
               src="/logo.svg"
               alt="Hero"
@@ -48,13 +48,13 @@ export function Landing() {
           >
             Features
           </Link>
-          <Link
+          {/* <Link
             href="#pricing"
             className="text-gray-800 hover:underline"
             prefetch={false}
           >
             Pricing
-          </Link>
+          </Link> */}
           <Link
             href="#contact"
             className="text-gray-800 hover:underline"
@@ -64,10 +64,14 @@ export function Landing() {
           </Link>
         </nav>
         <div className="flex items-center gap-2">
-          <Button variant="outline" className="text-gray-800">
-            Sign In
-          </Button>
-          <Button className="bg-primary text-white">Try now</Button>
+          <Link href="https://app.tthroo.com/">
+            <Button variant="outline" className="text-gray-800">
+              Sign In
+            </Button>
+          </Link>
+          <Link href="https://app.tthroo.com/">
+            <Button className="bg-primary text-white">Try now</Button>
+          </Link>
         </div>
       </header>
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
@@ -86,7 +90,7 @@ export function Landing() {
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Link
-                  href="#"
+                  href="https://app.tthroo.com/"
                   className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                   prefetch={false}
                 >
@@ -222,7 +226,7 @@ export function Landing() {
               steps. These steps provide clear instructions to follow along.
             </p>
             <Link
-              href="#"
+              href="https://app.tthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -249,7 +253,7 @@ export function Landing() {
               a challenge
             </p>
             <Link
-              href="#"
+              href="https://app.tthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -274,7 +278,7 @@ export function Landing() {
               If a challenge is too difficult, there is a solution available.
             </p>
             <Link
-              href="#"
+              href="https://app.tthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -301,7 +305,7 @@ export function Landing() {
               to move on to next lesson.
             </p>
             <Link
-              href="#"
+              href="https://app.tthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -327,7 +331,7 @@ export function Landing() {
               expected via our Github integration.
             </p>
             <Link
-              href="#"
+              href="https://app.tthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -337,9 +341,9 @@ export function Landing() {
         </div>
       </section>
 
-      <section id="pricing" className="container px-4 md:px-6 py-12 md:py-20">
+      {/* <section id="pricing" className="container px-4 md:px-6 py-12 md:py-20">
         <Pricing />
-      </section>
+      </section> */}
       <section id="faq" className="container px-4 md:px-6 py-12 md:py-20">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
           Frequently Asked Questions
@@ -351,9 +355,7 @@ export function Landing() {
             </AccordionTrigger>
             <AccordionContent>
               <p className="text-gray-700">
-                TThroo is a platform that helps you learn and practice the best
-                practices used in open source and build confidence in the code
-                you write.
+              TThroo is a platform that enables you to learn the best practices used in open source, build popular OSS projects from scratch and production-grade projects.
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -372,7 +374,7 @@ export function Landing() {
               </p>
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="pricing">
+          {/* <AccordionItem value="pricing">
             <AccordionTrigger className="text-lg font-medium">
               How much does your service cost?
             </AccordionTrigger>
@@ -386,11 +388,14 @@ export function Landing() {
                 programming skills. Check out the pricing page.
               </p>
             </AccordionContent>
-          </AccordionItem>
+          </AccordionItem> */}
         </Accordion>
       </section>
       <section id="contact" className="container px-4 md:px-6 py-12 md:py-20">
-        Contact us
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
+          Contact us
+        </h2>
+        <ContactUs />
       </section>
       <footer className="w-full bg-muted py-8 px-4 md:px-6">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">

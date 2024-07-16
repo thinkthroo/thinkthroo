@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils";
 import { BookIcon } from "../icons";
 import { BoxIcon } from "../icons/box";
+import Image from "next/image";
+import SiteNameAndLogo from "./name-and-logo";
 
 export default function SiteSidebar() {
 
@@ -14,10 +16,7 @@ export default function SiteSidebar() {
     <div className="hidden h-full border-r bg-muted/40 md:block md:w-72">
       <div className="flex h-full flex-col gap-4 p-4">
         <div className="flex h-[60px] items-center">
-          <Link href="#" className="flex items-center gap-2 font-semibold" prefetch={false}>
-            <BookIcon className="h-6 w-6" />
-            <span className="text-lg">Test</span>
-          </Link>
+          <SiteNameAndLogo />
         </div>
         <nav className="flex-1 space-y-2">
           <div className="space-y-1">

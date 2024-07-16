@@ -1,20 +1,14 @@
 import { CourseList } from "@/components/course/list";
-import { EmptyCourse } from "@/components/empty-course";
-import { api } from "@/trpc/server";
+import { CourseListSkeleton } from "@/components/course/list-skeleton";
+import { Suspense } from 'react';
 
 export default async function ProductionGradeProjects() {
 
-    const courses = await api.course.getCoursesByModuleId({ id: 3 })
-
-    if (courses?.length == 0) {
-        return <EmptyCourse />
-    }
-
     return (
-        <>
-            <CourseList 
-                courses={courses}
-            />
-        </>
+        <Suspense fallback={<CourseListSkeleton />}>
+          <CourseList 
+            id={process.env.NEXT_PUBLIC_MODULE_PRODUCTION_GRADE_PROJECTS}
+          />
+        </Suspense>
     )
 }

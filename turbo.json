@@ -17,7 +17,16 @@
         "NEXT_PUBLIC_SUPABASE_URL", 
         "NEXT_PUBLIC_SUPABASE_ANON_KEY",
         "GITHUB_CLIENT_ID",
-        "GITHUB_CLIENT_SECRET"
+        "GITHUB_CLIENT_SECRET",
+        "NEXT_PUBLIC_MICROSOFT_CLARITY"
+      ]
+    },
+    "www#build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": [
+        "NEXT_PUBLIC_MICROSOFT_CLARITY"
       ]
     },
     "lint": {
@@ -35,7 +44,8 @@
         "NEXT_PUBLIC_SUPABASE_URL", 
         "NEXT_PUBLIC_SUPABASE_ANON_KEY",
         "GITHUB_CLIENT_ID",
-        "GITHUB_CLIENT_SECRET"
+        "GITHUB_CLIENT_SECRET",
+        "NEXT_PUBLIC_MICROSOFT_CLARITY"
       ]
     },
     "db:push": {
@@ -46,7 +56,8 @@
         "NEXT_PUBLIC_SUPABASE_URL", 
         "NEXT_PUBLIC_SUPABASE_ANON_KEY",
         "GITHUB_CLIENT_ID",
-        "GITHUB_CLIENT_SECRET"
+        "GITHUB_CLIENT_SECRET",
+        "NEXT_PUBLIC_MICROSOFT_CLARITY"
       ]
     }
   }

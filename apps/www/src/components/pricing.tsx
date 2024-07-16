@@ -30,6 +30,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -114,9 +115,11 @@ export function Pricing() {
                     Coming soon
                   </Button>
                 ) : (
-                  <Button variant="default" className="w-full mt-4">
-                    Get Started
-                  </Button>
+                  <Link href="https://app.tthroo.com/">
+                    <Button variant="default" className="w-full mt-4">
+                      Get Started
+                    </Button>
+                  </Link>
                 )}
                 {tier?.modules.map((module) => (
                   <>
