@@ -7,7 +7,7 @@ export default async function ProductionGradeProjects() {
     return (
         <Suspense fallback={<CourseListSkeleton />}>
           <CourseList 
-            id={process.env.NEXT_PUBLIC_MODULE_PRODUCTION_GRADE_PROJECTS}
+            id={process.env.MODULE_PRODUCTION_GRADE_PROJECTS}
           />
         </Suspense>
     )

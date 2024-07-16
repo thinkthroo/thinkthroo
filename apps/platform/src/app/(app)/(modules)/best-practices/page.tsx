@@ -7,7 +7,7 @@ export default async function BestPractices() {
     return (
       <Suspense fallback={<CourseListSkeleton />}>
         <CourseList 
-          id={process.env.NEXT_PUBLIC_MODULE_BEST_PRACTICES}
+          id={process.env.MODULE_BEST_PRACTICES}
         />
       </Suspense>
     )
