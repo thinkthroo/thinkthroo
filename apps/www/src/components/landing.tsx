@@ -9,71 +9,17 @@ import {
 } from "@/components/ui/accordion";
 import { Pricing } from "./pricing";
 import ContactUs from "./contact";
+import { Header } from "./site/header";
+import { Footer } from "./site/footer";
 
 // https://v0.dev/t/QlTvtpCYgcG
 // https://v0.dev/r/n1nJtdj8LqD
 export function Landing() {
   return (
     <div className="relative w-full min-h-[80vh] flex flex-col justify-center items-center bg-white">
-      <header className="absolute top-0 left-0 w-full py-4 px-6 md:px-10 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2" prefetch={false}>
-          <Image
-              src="/logo.svg"
-              alt="Hero"
-              className="h-6 w-6 text-primary"
-              width={120}
-              height={120}
-          />
-          <span className="text-primary font-semibold text-lg">TThroo</span>
-        </Link>
-        <nav className="hidden md:flex items-center gap-6">
-          <Link
-            href="#"
-            className="text-gray-800 hover:underline"
-            prefetch={false}
-          >
-            Home
-          </Link>
-          <Link
-            href="#modules"
-            className="text-gray-800 hover:underline"
-            prefetch={false}
-          >
-            Modules
-          </Link>
-          <Link
-            href="#features"
-            className="text-gray-800 hover:underline"
-            prefetch={false}
-          >
-            Features
-          </Link>
-          {/* <Link
-            href="#pricing"
-            className="text-gray-800 hover:underline"
-            prefetch={false}
-          >
-            Pricing
-          </Link> */}
-          <Link
-            href="#contact"
-            className="text-gray-800 hover:underline"
-            prefetch={false}
-          >
-            Contact
-          </Link>
-        </nav>
-        <div className="flex items-center gap-2">
-          <Link href="https://app.tthroo.com/">
-            <Button variant="outline" className="text-gray-800">
-              Sign In
-            </Button>
-          </Link>
-          <Link href="https://app.tthroo.com/">
-            <Button className="bg-primary text-white">Try now</Button>
-          </Link>
-        </div>
-      </header>
+      
+      <Header />
+
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
@@ -397,73 +343,8 @@ export function Landing() {
         </h2>
         <ContactUs />
       </section>
-      <footer className="w-full bg-muted py-8 px-4 md:px-6">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="space-y-2">
-            <h4 className="text-lg font-semibold">TThroo</h4>
-            <ul className="space-y-1">
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Changelog
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-2">
-            <h4 className="text-lg font-semibold">Modules</h4>
-            <ul className="space-y-1">
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Best practices
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Build from scratch
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Production-grade projects
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-2">
-            <h4 className="text-lg font-semibold">Community</h4>
-            <ul className="space-y-1">
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Github
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Discord
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Contact us
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="container mx-auto mt-8 text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} TThroo. All rights reserved.
-        </div>
-      </footer>
+      
+      <Footer />
     </div>
   );
 }

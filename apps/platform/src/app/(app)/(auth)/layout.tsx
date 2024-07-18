@@ -1,7 +1,7 @@
 import SiteHeader from "@/components/site/header";
 import SiteSidebar from "@/components/site/sidebar";
 
-export default function AppLayout({
+export default function AuthLayout({
     children,
   }: {
     children: React.ReactNode;

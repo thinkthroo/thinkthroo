@@ -1,7 +1,7 @@
 import SiteHeader from "@/components/site/header";
 import SiteSidebar from "@/components/site/sidebar";
 
-export default function AppLayout({
+export default function ModuleLayout({
     children,
   }: {
     children: React.ReactNode;
@@ -11,7 +11,7 @@ export default function AppLayout({
             <SiteSidebar />
             <div className="flex-1">
                 <SiteHeader />
-                <main className="p-4 md:p-6">
+                <main className="p-4 md:p-6 h-full">
                     {children}
                 </main>
             </div>
