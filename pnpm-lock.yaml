@@ -171,6 +171,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.1.0
         version: 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -267,9 +270,6 @@ importers:
         specifier: ^3.23.3
         version: 3.23.8
     devDependencies:
-      '@prisma/nextjs-monorepo-workaround-plugin':
-        specifier: ^5.16.2
-        version: 5.16.2
       '@types/node':
         specifier: ^20.14.10
         version: 20.14.10

@@ -50,6 +50,23 @@ export default function SigninPage({
         return redirect(searchParams.redirectTo ?? "/best-practices");
       };
 
+    async function signInWithGithub() {
+      "use server";
+
+      const supabase = createClient();
+
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+          redirectTo: '/auth/callback',
+        },
+      })
+
+      if (data.url) {
+        redirect(data.url) // use the redirect API for your server framework
+      }
+    }
+
   return (
     <div className="mx-auto w-96 space-y-6">
       <div className="space-y-2 text-center">
@@ -83,18 +100,20 @@ export default function SigninPage({
           </Link>
         </div>
         <Separator className="my-8" />
+      </form>
+      <form>
         <div className="space-y-4">
-          <Button variant="outline" className="w-full">
-            <GithubIcon className="mr-2 h-5 w-5" />
-            Sign in with GitHub
-          </Button>
-          <div className="flex items-center justify-center gap-1">
-            Don't have an account?
-            <Link href="/signup" className="underline" prefetch={false}>
-                Sign up
-            </Link>
+            <Button variant="outline" className="w-full" formAction={signInWithGithub}>
+              <GithubIcon className="mr-2 h-5 w-5" />
+              Sign in with GitHub
+            </Button>
+            <div className="flex items-center justify-center gap-1">
+              Don't have an account?
+              <Link href="/signup" className="underline" prefetch={false}>
+                  Sign up
+              </Link>
+            </div>
           </div>
-        </div>
       </form>
     </div>
   )
