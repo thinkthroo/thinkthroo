@@ -1,7 +1,5 @@
 import Course from "@/app/(app)/course/components/course";
 import CourseHeader from "@/app/(app)/course/components/course-header";
-import LessonMdx from "@/app/(app)/course/components/lesson/mdx";
-import LessonSteps from "@/app/(app)/course/components/lesson/steps/list";
 import { Suspense } from "react";
 
 export default async function Challenge({ params }: {
@@ -15,8 +13,9 @@ export default async function Challenge({ params }: {
 }) {
 
   return (
-  <Suspense fallback={<div>loading skeleton</div>}>
-    <Course params={params} />
-  </Suspense>
+    <div className="h-full flex-1 overflow-scroll">
+      <CourseHeader slugs={params} />
+      <Course params={params} />
+    </div>
   );
 }

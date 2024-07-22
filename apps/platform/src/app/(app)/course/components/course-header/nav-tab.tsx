@@ -1,38 +1,45 @@
-"use client";
-
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-export function NavTab() {
+export function NavTab(props: { 
+  slugs: {
+    courseSlug: string
+    chapterSlug: string
+    lessonSlug: string
+    stepSlug: string 
+    challengeOrSolutionSlug: string
+  }
+}) {
 
-    const params = useParams<{ id: string }>();
-  const pathname = usePathname();
-  let pathNames = pathname.split("/");
-  let pathNamesLength = pathname.split("/").length;
-  // use basePathNames to pop challenge or solution from the end of the url
-  let basePathNames = [...pathNames];
-  basePathNames.pop();
+  const {
+    courseSlug,
+    chapterSlug,
+    lessonSlug,
+    stepSlug,
+    challengeOrSolutionSlug
+  } = props.slugs;
+
+  let baseUrl = `/course/${courseSlug}/${chapterSlug}/${lessonSlug}/${stepSlug}`;
 
   return (
     <div className="flex h-14 items-center gap-4 border-b px-6 lg:h-[60px]">
       <Link
-        href={`${basePathNames.join("/")}/challenge`}
+        href={`${baseUrl}/challenge`}
         className={
             cn(
                 "inline-flex h-[inherit] items-center justify-center px-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                {"border-b-2 border-primary" :  pathNames[pathNamesLength - 1] == "challenge"}            
+                {"border-b-2 border-primary" : challengeOrSolutionSlug == "challenge"}            
             )}
         prefetch={false}
       >
         Challenge
       </Link>
       <Link
-        href={`${basePathNames.join("/")}/solution`}
+        href={`${baseUrl}/solution`}
         className={
             cn(
                 "inline-flex h-[inherit] items-center justify-center px-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                {"border-b-2 border-primary" :  pathNames[pathNamesLength - 1] == "solution"}            
+                {"border-b-2 border-primary" : challengeOrSolutionSlug == "solution"}            
             )}
         prefetch={false}
       >

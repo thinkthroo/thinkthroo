@@ -3,12 +3,18 @@ import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbS
 import { NavTab } from "./nav-tab"
 import { api } from "@/trpc/server";
 
-export default async function CourseHeader(props: {
+export default async function CourseHeader(props: { 
+  slugs: {
     courseSlug: string
+    chapterSlug: string
+    lessonSlug: string
+    stepSlug: string 
+    challengeOrSolutionSlug: string
+  }
 }) {
 
     const course = await api.course.getCourseBySlugForBreadCrumbs({
-      slug: props.courseSlug,
+      slug: props?.slugs?.courseSlug,
     })
 
     return (
@@ -31,7 +37,7 @@ export default async function CourseHeader(props: {
             </Breadcrumb>
             <AuthHeaderButton />
           </header>
-          <NavTab />
+          <NavTab slugs={props.slugs} />
     </div>
     )
 }

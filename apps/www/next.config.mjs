@@ -7,6 +7,11 @@ const nextConfig = {
         destination: "https://app.tthroo.com/best-practices",
         permanent: true,
       },
+      {
+        source: "/build-from-scratch",
+        destination: "https://app.tthroo.com/build-from-scratch",
+        permanent: true,
+      },
     ];
   },
 };

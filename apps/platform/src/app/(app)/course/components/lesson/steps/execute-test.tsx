@@ -41,7 +41,7 @@ export function ExecuteTest(props: any) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" onClick={handleDialog}>Execute test</Button>
+        <Button variant="default" onClick={handleDialog}>Execute test</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

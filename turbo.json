@@ -14,11 +14,12 @@
       "env": [
         "DATABASE_URL", 
         "DIRECT_URL", 
-        "NEXT_PUBLIC_SUPABASE_URL", 
+        "NEXT_PUBLIC_SUPABASE_URL",
         "NEXT_PUBLIC_SUPABASE_ANON_KEY",
         "GITHUB_CLIENT_ID",
         "GITHUB_CLIENT_SECRET",
-        "NEXT_PUBLIC_MICROSOFT_CLARITY"
+        "NEXT_PUBLIC_MICROSOFT_CLARITY",
+        "STRAPI_ENDPOINT"
       ]
     },
     "www#build": {
@@ -45,7 +46,8 @@
         "NEXT_PUBLIC_SUPABASE_ANON_KEY",
         "GITHUB_CLIENT_ID",
         "GITHUB_CLIENT_SECRET",
-        "NEXT_PUBLIC_MICROSOFT_CLARITY"
+        "NEXT_PUBLIC_MICROSOFT_CLARITY",
+        "STRAPI_ENDPOINT"
       ]
     },
     "db:push": {
@@ -57,7 +59,8 @@
         "NEXT_PUBLIC_SUPABASE_ANON_KEY",
         "GITHUB_CLIENT_ID",
         "GITHUB_CLIENT_SECRET",
-        "NEXT_PUBLIC_MICROSOFT_CLARITY"
+        "NEXT_PUBLIC_MICROSOFT_CLARITY",
+        "STRAPI_ENDPOINT"
       ]
     }
   }

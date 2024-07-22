@@ -87,26 +87,30 @@ export const courseRouter = createTRPCRouter({
     .input(
       z.object({
         slug: z.string(),
+        type: z.string()
       }),
     )
     .query(async (opts) => {
       try {
         let step = await getStepBySlug(opts.input.slug);
 
-        // FIXME: remove the magical api url string
-        const challengeRes = await fetch(
-          `https://strapi-8c8i.onrender.com/api/readmes/${step.challenge.strapi_id}`,
-        );
-        const challengeMd = await challengeRes.json();
+        let stepContentMd = null;
 
-        const solutionRes = await fetch(
-          `https://strapi-8c8i.onrender.com/api/readmes/${step.solution.strapi_id}`,
-        );
-        const solutionMd = await solutionRes.json();
+        // FIXME: remove the magical api url string
+        if (opts.input.type == "challenge") {
+          let stepContentMdRes = await fetch(
+            `${process.env.STRAPI_ENDPOINT}/${step.challenge.strapi_id}`,
+          );
+          stepContentMd = await stepContentMdRes.json();
+        } else if (opts.input.type == "solution") {
+          let stepContentMdRes = await fetch(
+            `${process.env.STRAPI_ENDPOINT}/${step.solution.strapi_id}`,
+          );
+          stepContentMd = await stepContentMdRes.json();
+        }
 
         return {
-          challengeMd: challengeMd?.data?.attributes?.description,
-          solutionMd: solutionMd?.data?.attributes?.description,
+          stepContentMd: stepContentMd?.data?.attributes?.description,
           lessonOrder: step.lesson.order,
         };
       } catch (error) {
