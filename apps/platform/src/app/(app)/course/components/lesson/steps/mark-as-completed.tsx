@@ -21,7 +21,7 @@ export function MarkAsCompleted(props: any) {
     }
 
     return (
-        <Button variant="default" size="sm" onClick={handleMarkAsCompleted}>
+        <Button variant={props.variant} size="sm" onClick={handleMarkAsCompleted}>
             Mark as Completed
         </Button>
     )

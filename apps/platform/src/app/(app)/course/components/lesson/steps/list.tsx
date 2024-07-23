@@ -51,7 +51,7 @@ export default async function LessonSteps(props: {
               key={courseStep.id}
               link={`/course/${props.slugs.courseSlug}/${props.slugs.chapterSlug}/${props.slugs.lessonSlug}/${courseStep.slug}/challenge`}
               courseStep={courseStep}
-              stepSlug={courseStep.slug}
+              stepSlug={props.slugs.stepSlug}
               index={index}
               user={user}
             />

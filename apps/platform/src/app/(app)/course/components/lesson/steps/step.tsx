@@ -53,7 +53,7 @@ export default async function Step(props: StepProps) {
                 {
                   courseStep?.markAsCompleted ?
                   <Button variant="default"><CheckIcon /> Completed</Button> :
-                  <MarkAsCompleted user={props.user} stepId={courseStep?.id} />
+                  <MarkAsCompleted user={props.user} stepId={courseStep?.id} variant={props.stepSlug == courseStep?.slug ? "default": "outline"} />
                 }
               </div>
         </div>
