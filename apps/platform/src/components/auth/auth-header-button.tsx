@@ -15,8 +15,6 @@ export default async function AuthHeaderButton() {
       data: { user },
     } = await supabase.auth.getUser();
 
-    console.log("user fetched after loggin in", user);
-
     const signOut = async () => {
         "use server";
     

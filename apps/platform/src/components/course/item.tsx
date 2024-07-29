@@ -12,10 +12,9 @@ export default function CourseItem(props : any) {
     } = props;
 
     const courseSlug = course.slug;
-    const chapterSlug = course.chapters[0]?.slug;
-    const lessonSlug = course.chapters[0]?.lessons[0]?.slug;
-    const stepSlug = course.chapters[0]?.lessons[0]?.steps[0]?.slug;
-  
+    const chapterSlug = "introduction";
+    const lessonSlug = "index";
+    const stepSlug = "index";
 
     return (
         <div className="bg-background rounded-lg shadow-sm overflow-hidden">
@@ -43,21 +42,25 @@ export default function CourseItem(props : any) {
               <Badge variant="outline">Tailwind</Badge>
               <Badge variant="outline">tRPC</Badge>
             </div>
-            <div className="flex items-center text-muted-foreground text-sm mb-4">
-              <BookIcon className="w-4 h-4 mr-2" />
-              <span>{course?.chapterCount} Chapters</span>
-              <Separator orientation="vertical" className="mx-2" />
-              <PlayIcon className="w-4 h-4 mr-2" />
-              <span>{course?.lessonCount} Lessons</span>
-              <Separator orientation="vertical" className="mx-2" />
-              <StepBackIcon className="w-4 h-4 mr-2" />
-              <span>{course?.stepCount} Steps</span>
-              <Separator orientation="vertical" className="mx-2" />
-              <TestTubesIcon className="w-4 h-4 mr-2" />
-              <span>0 Tests</span>
+            <div className="mb-4 flex items-center justify-between text-sm text-muted-foreground">
+              <div className="flex">
+                <span>{course?.chapterCount} Chapters</span>
+              </div>
+              <Separator orientation="vertical" className="mx-2 h-4" />
+              <div className="flex">
+                <span>{course?.lessonCount} Lessons</span>
+              </div>
+              <Separator orientation="vertical" className="mx-2 h-4" />
+              <div className="flex">
+                <span>{course?.stepCount} Steps</span>
+              </div>
+              <Separator orientation="vertical" className="h-4 mx-2" />
+              <div className="flex">
+                <span>0 Tests</span>
+              </div>
             </div>
             <Button variant="outline" size="sm">
-              Enroll Now
+              Start
             </Button>
           </div>
         </div>
