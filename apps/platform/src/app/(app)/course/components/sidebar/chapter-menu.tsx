@@ -44,7 +44,7 @@ export function ChapterMenu(props: {
                 <CollapsibleContent className="grid gap-1">
                   {
                     chapter?.lessons?.map((lesson, index: number) => <Link
-                      href={`/course/${props.slugs.courseSlug}/${props.slugs.chapterSlug}/${lesson.slug}/${lesson?.steps[0]?.slug}/challenge`}
+                      href={`/course/${props.slugs.courseSlug}/${chapter.slug}/${lesson.slug}?stepSlug=${lesson?.steps[0]?.slug}&type=${lesson?.slug == "index" ? "index": 'challenge'}`}
                       className={cn(
                         "pl-5 flex items-center gap-3 rounded-md pr-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
                         {

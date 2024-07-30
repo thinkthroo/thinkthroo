@@ -2,20 +2,19 @@ import Course from "@/app/(app)/course/components/course";
 import CourseHeader from "@/app/(app)/course/components/course-header";
 import { Suspense } from "react";
 
-export default async function Challenge({ params }: {
+export default async function Challenge({ params, searchParams }: {
   params: {  
     courseSlug: string
     chapterSlug: string
     lessonSlug: string
-    stepSlug: string,
-    challengeOrSolutionSlug: string
-  }
+  },
+  searchParams: { type: string, stepSlug: string };
 }) {
 
   return (
     <div className="h-full flex-1 overflow-scroll">
-      <CourseHeader slugs={params} />
-      <Course params={params} />
+      <CourseHeader slugs={params} type={searchParams.type} stepSlug={searchParams.stepSlug} />
+      <Course params={params} type={searchParams.type} stepSlug={searchParams.stepSlug} />
     </div>
   );
 }

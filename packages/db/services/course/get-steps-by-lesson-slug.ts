@@ -11,9 +11,12 @@ async function getStepsByLessonSlug(
           slug,
         },
       },
+      orderBy: {
+        order: "asc"
+      },
       include: {
-        challenge: true,
-        solution: true,
+        // challenge: true,
+        // solution: true,
         ...(userId && {
           userSteps: {
             where: {
@@ -32,8 +35,6 @@ async function getStepsByLessonSlug(
         step?.userSteps?.length > 0
           ? step.userSteps[0]
           : { markAsCompleted: false };
-
-      console.log(step);
 
       return {
         ...step,

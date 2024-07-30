@@ -23,7 +23,6 @@ export const courseRouter = createTRPCRouter({
     )
     .query(async ({ input }) => {
       try {
-        // console.log("input inside query", input);
         let courses = await getCoursesByModuleId(input.id);
         return courses;
       } catch (error) {
@@ -53,12 +52,6 @@ export const courseRouter = createTRPCRouter({
     .query(async (opts) => {
       try {
         let chapters = await getChaptersBySlug(opts.input.slug);
-        // console.log(
-        //   "input slug",
-        //   opts.input.slug,
-        //   "chapters fetched in trpc",
-        //   chapters,
-        // );
         return chapters;
       } catch (error) {
         console.log(error);
@@ -94,23 +87,8 @@ export const courseRouter = createTRPCRouter({
       try {
         let step = await getStepBySlug(opts.input.slug);
 
-        let stepContentMd = null;
-
-        // FIXME: remove the magical api url string
-        if (opts.input.type == "challenge") {
-          let stepContentMdRes = await fetch(
-            `${process.env.STRAPI_ENDPOINT}/${step.challenge.strapi_id}`,
-          );
-          stepContentMd = await stepContentMdRes.json();
-        } else if (opts.input.type == "solution") {
-          let stepContentMdRes = await fetch(
-            `${process.env.STRAPI_ENDPOINT}/${step.solution.strapi_id}`,
-          );
-          stepContentMd = await stepContentMdRes.json();
-        }
-
         return {
-          stepContentMd: stepContentMd?.data?.attributes?.description,
+          ...step,
           lessonOrder: step.lesson.order,
         };
       } catch (error) {

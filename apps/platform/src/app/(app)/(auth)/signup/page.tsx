@@ -25,8 +25,6 @@ export default function Signup({
   const signUp = async (formData: FormData) => {
     "use server";
 
-    console.log("inside signUp function");
-
     const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -44,8 +42,6 @@ export default function Signup({
 
     const supabase = createClient();
 
-    console.log("about to send to supabase auth signup", email, password);
-
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -56,8 +52,6 @@ export default function Signup({
         },
       },
     });
-
-    console.log("error", error);
 
     if (error) {
       return redirect("/signup?message=Could not authenticate user");

@@ -12,7 +12,7 @@ return (
         width={120}
         height={120}
     />
-    <span className="text-primary font-semibold text-lg">TThroo</span>
+    <span className="text-primary font-semibold text-lg">Think Throo</span>
 </Link>
 )
 }

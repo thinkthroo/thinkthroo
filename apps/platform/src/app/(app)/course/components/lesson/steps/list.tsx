@@ -18,8 +18,8 @@ export default async function LessonSteps(props: {
     courseSlug: string
     chapterSlug: string
     lessonSlug: string
-    stepSlug: string 
-  }
+  },
+  stepSlug: string
 }) {
 
   const supabase = createClient();
@@ -49,9 +49,9 @@ export default async function LessonSteps(props: {
           {steps?.map((courseStep, index) => (
             <Step
               key={courseStep.id}
-              link={`/course/${props.slugs.courseSlug}/${props.slugs.chapterSlug}/${props.slugs.lessonSlug}/${courseStep.slug}/challenge`}
+              link={`/course/${props.slugs.courseSlug}/${props.slugs.chapterSlug}/${props.slugs.lessonSlug}?stepSlug=${courseStep.slug}&type=challenge`}
               courseStep={courseStep}
-              stepSlug={props.slugs.stepSlug}
+              stepSlug={props.stepSlug}
               index={index}
               user={user}
             />

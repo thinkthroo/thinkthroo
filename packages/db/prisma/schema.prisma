@@ -63,13 +63,13 @@ model Step {
 
 model Challenge {
   id        Int    @id @default(autoincrement())
-  strapi_id Int
+  markdown  String @default("")
   steps     Step[]
 }
 
 model Solution {
   id        Int    @id @default(autoincrement())
-  strapi_id Int
+  markdown  String @default("")
   steps     Step[]
 }
 

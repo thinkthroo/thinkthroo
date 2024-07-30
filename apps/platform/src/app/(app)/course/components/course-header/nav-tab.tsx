@@ -6,40 +6,56 @@ export function NavTab(props: {
     courseSlug: string
     chapterSlug: string
     lessonSlug: string
-    stepSlug: string 
-    challengeOrSolutionSlug: string
-  }
+  },
+  type: string,
+  stepSlug: string
 }) {
 
   const {
     courseSlug,
     chapterSlug,
     lessonSlug,
-    stepSlug,
-    challengeOrSolutionSlug
   } = props.slugs;
 
-  let baseUrl = `/course/${courseSlug}/${chapterSlug}/${lessonSlug}/${stepSlug}`;
+  let baseUrl = `/course/${courseSlug}/${chapterSlug}/${lessonSlug}?stepSlug=${props.stepSlug}`;
+
+  if (props.type == "index") {
+    return (
+      <div className="flex h-14 items-center gap-4 border-b px-6 lg:h-[60px]">
+        <Link
+          href={`${baseUrl}&type=index`}
+          className={
+              cn(
+                  "inline-flex h-[inherit] items-center justify-center px-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
+                  {"border-b-2 border-primary" : props.type == "index"}            
+              )}
+          prefetch={false}
+        >
+          Index
+        </Link>
+      </div>
+    )
+  }
 
   return (
     <div className="flex h-14 items-center gap-4 border-b px-6 lg:h-[60px]">
       <Link
-        href={`${baseUrl}/challenge`}
+        href={`${baseUrl}&type=challenge`}
         className={
             cn(
                 "inline-flex h-[inherit] items-center justify-center px-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                {"border-b-2 border-primary" : challengeOrSolutionSlug == "challenge"}            
+                {"border-b-2 border-primary" : props.type == "challenge"}            
             )}
         prefetch={false}
       >
         Challenge
       </Link>
       <Link
-        href={`${baseUrl}/solution`}
+        href={`${baseUrl}&type=solution`}
         className={
             cn(
                 "inline-flex h-[inherit] items-center justify-center px-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                {"border-b-2 border-primary" : challengeOrSolutionSlug == "solution"}            
+                {"border-b-2 border-primary" : props.type == "solution"}            
             )}
         prefetch={false}
       >

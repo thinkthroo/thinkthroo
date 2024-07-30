@@ -8,9 +8,9 @@ export default async function CourseHeader(props: {
     courseSlug: string
     chapterSlug: string
     lessonSlug: string
-    stepSlug: string 
-    challengeOrSolutionSlug: string
-  }
+  },
+  type: string,
+  stepSlug: string
 }) {
 
     const course = await api.course.getCourseBySlugForBreadCrumbs({
@@ -37,7 +37,7 @@ export default async function CourseHeader(props: {
             </Breadcrumb>
             <AuthHeaderButton />
           </header>
-          <NavTab slugs={props.slugs} />
+          <NavTab slugs={props.slugs} type={props.type} stepSlug={props.stepSlug} />
     </div>
     )
 }

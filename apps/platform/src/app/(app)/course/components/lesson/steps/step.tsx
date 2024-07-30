@@ -37,6 +37,7 @@ export default async function Step(props: StepProps) {
             }>
               {props.index+1}
             </div>
+            
             <div className="flex-1">
               <div className="flex items-center justify-between">
                 <h4 className={cn({"font-medium": props.stepSlug == courseStep?.slug})}>{courseStep.title}</h4>

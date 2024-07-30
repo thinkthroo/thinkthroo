@@ -22,14 +22,14 @@ export default async function SiteHeader() {
                   <ZapIcon className="h-4 w-4" />
                   Upgrade to Pro
                 </Button> */}
-                <Button
+                {/* <Button
                   variant="outline"
                   size="sm"
                   className="flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
                 >
                   <ZapIcon className="h-4 w-4" />
                   Upgrade
-                </Button>
+                </Button> */}
                 <AuthHeaderButton />
               </div>
             </div>

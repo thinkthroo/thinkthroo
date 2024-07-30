@@ -33,7 +33,7 @@ export default function CourseItem(props : any) {
           </Link> */}
           <div className="p-6">
             <h3 className="text-lg font-semibold mb-2">
-              <Link href={`/course/${courseSlug}/${chapterSlug}/${lessonSlug}/${stepSlug}/challenge`} className="hover:underline" prefetch={false}>
+              <Link href={`/course/${courseSlug}/${chapterSlug}/${lessonSlug}?stepSlug=${stepSlug}&type=index`} className="hover:underline" prefetch={false}>
                 {course?.title}
               </Link>
             </h3>
