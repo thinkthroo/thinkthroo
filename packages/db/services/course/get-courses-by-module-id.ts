@@ -39,45 +39,27 @@ async function getCoursesByModuleId(moduleId: number): Promise<any[] | null> {
       c.title,
       c.slug,
       c.order,
-      COUNT(DISTINCT ch.id)::int AS chaptersCount,
-      COUNT(DISTINCT l.id)::int AS lessonsCount,
-      COUNT(DISTINCT s.id)::int AS stepsCount
+      COUNT(DISTINCT ch.id)::int AS "chaptersCount",
+      COUNT(DISTINCT l.id)::int AS "lessonsCount",
+      COUNT(DISTINCT s.id)::int AS "stepsCount",
+      COALESCE(string_agg(DISTINCT t.title, ', '), '') AS tags
     FROM
       "Course" c
       LEFT JOIN "Chapter" ch ON ch."courseId" = c.id
       LEFT JOIN "Lesson" l ON l."chapterId" = ch.id
       LEFT JOIN "Step" s ON s."lessonId" = l.id
+      LEFT JOIN "_CourseTags" ct ON ct."B" = c.id
+      LEFT JOIN "Tag" t ON t.id = ct."A"
     WHERE
       c."moduleId" = ${moduleId}
     GROUP BY
       c.id
+    ORDER BY
+      c.id;
+
   `;
 
-    const courseIds = result.map((course) => course.id);
-
-    const coursesWithTagsAndModule = await db.course.findMany({
-      where: {
-        id: { in: courseIds },
-      },
-      include: {
-        tags: true,
-      },
-    });
-
-    const coursesMap = Object.fromEntries(
-      coursesWithTagsAndModule.map((course) => [course.id, course])
-    );
-
-    const coursesWithCounts = result.map((course) => {
-      return {
-        ...coursesMap[course.id],
-        chapterCount: course.chapterscount,
-        lessonCount: course.lessonscount,
-        stepCount: course.stepscount,
-      };
-    });
-
-    return coursesWithCounts;
+    return result
   } catch (error) {
     console.error("Failed to fetch courses:", error);
     throw new Error("Failed to fetch courses.");

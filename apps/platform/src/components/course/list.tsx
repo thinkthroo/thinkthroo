@@ -22,4 +22,4 @@ export async function CourseList({id}: {id: string}) {
       }
     </section>
   )
-  }
+}

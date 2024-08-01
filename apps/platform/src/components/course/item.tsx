@@ -2,7 +2,7 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
-import { BookIcon, PlayIcon, StepBackIcon, TestTubesIcon } from "../icons"
+import { BookIcon, FileIcon, PlayIcon, StepBackIcon, TestTubesIcon } from "../icons"
 
 // FIXME: Improve types
 export default function CourseItem(props : any) {
@@ -44,24 +44,30 @@ export default function CourseItem(props : any) {
             </div>
             <div className="mb-4 flex items-center justify-between text-sm text-muted-foreground">
               <div className="flex">
-                <span>{course?.chapterCount} Chapters</span>
+                {/* <BookIcon className="w-[18px] h-[18px] mr-2" /> */}
+                <span>{course?.chaptersCount} Chapters</span>
               </div>
               <Separator orientation="vertical" className="mx-2 h-4" />
               <div className="flex">
-                <span>{course?.lessonCount} Lessons</span>
+                {/* <FileIcon className="w-[18px] h-[18px] mr-2" /> */}
+                <span>{course?.lessonsCount} Lessons</span>
               </div>
               <Separator orientation="vertical" className="mx-2 h-4" />
               <div className="flex">
-                <span>{course?.stepCount} Steps</span>
+                {/* <StepBackIcon className="w-[18px] h-[18px] mr-2" /> */}
+                <span>{course?.stepsCount} Steps</span>
               </div>
               <Separator orientation="vertical" className="h-4 mx-2" />
               <div className="flex">
+                {/* <TestTubesIcon className="w-[18px] h-[18px] mr-2" /> */}
                 <span>0 Tests</span>
               </div>
             </div>
-            <Button variant="outline" size="sm">
-              Start
-            </Button>
+            <Link href={`/course/${courseSlug}/${chapterSlug}/${lessonSlug}?stepSlug=${stepSlug}&type=index`} className="hover:underline" prefetch={false}>
+              <Button variant="outline" size="sm">
+                Start
+              </Button>
+            </Link>
           </div>
         </div>
     )
