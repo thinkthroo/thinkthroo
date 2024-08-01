@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"
 import { BookIcon, ChevronRightIcon, FileIcon } from "@/components/icons";
@@ -7,35 +7,32 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export function ChapterMenu(props: { 
-  slugs: {
-    courseSlug: string
-    chapterSlug: string
-    lessonSlug: string
-    stepSlug: string 
-  },
+  courseSlug: string,
   chapters: any[]
 }) {
 
-  const [openChapters, setOpenChapters] = useState({ [props.slugs.chapterSlug]: true });
+  // const [openChapters, setOpenChapters] = useState({ [props.slugs.chapterSlug]: true });
 
-  const handleOpenChange = (chapterSlug: string) => {
-    setOpenChapters(prev => ({
-      ...prev,
-      [chapterSlug]: !prev[chapterSlug]
-    }));
-  };
+  // const handleOpenChange = (chapterSlug: string) => {
+  //   setOpenChapters(prev => ({
+  //     ...prev,
+  //     [chapterSlug]: !prev[chapterSlug]
+  //   }));
+  // };
 
     return (
       <>
         {
           props?.chapters?.map((chapter, index) => <Collapsible className="grid gap-1" key={index} 
-          open={openChapters[chapter.slug] || false} 
-            onOpenChange={() => handleOpenChange(chapter.slug)}>
+          // open={openChapters[chapter.slug] || false} 
+          open={true}
+            // onOpenChange={() => handleOpenChange(chapter.slug)}
+          >
                 <CollapsibleTrigger className={
                   cn(
                       "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground [&[data-state=open]>svg]:rotate-90",
                       {
-                        "bg-accent text-accent-foreground": props.slugs.chapterSlug === chapter.slug
+                        // "bg-accent text-accent-foreground": props.slugs.chapterSlug === chapter.slug
                       })}>
                   <BookIcon className="h-5 w-5" />
                   {chapter.title}
@@ -44,11 +41,11 @@ export function ChapterMenu(props: {
                 <CollapsibleContent className="grid gap-1">
                   {
                     chapter?.lessons?.map((lesson, index: number) => <Link
-                      href={`/course/${props.slugs.courseSlug}/${chapter.slug}/${lesson.slug}?stepSlug=${lesson?.steps[0]?.slug}&type=${lesson?.slug == "index" ? "index": 'challenge'}`}
+                      href={`/course/${props.courseSlug}/${chapter.slug}/${lesson.slug}?stepSlug=${lesson?.steps[0]?.slug}&type=${lesson?.slug == "index" ? "index": 'challenge'}`}
                       className={cn(
                         "pl-5 flex items-center gap-3 rounded-md pr-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
                         {
-                          "bg-accent text-accent-foreground": props.slugs.lessonSlug === lesson.slug
+                          // "bg-accent text-accent-foreground": props.slugs.lessonSlug === lesson.slug
                         })}
                       prefetch={false}
                       key={index}
