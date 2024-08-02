@@ -115,7 +115,7 @@ export function Pricing() {
                     Coming soon
                   </Button>
                 ) : (
-                  <Link href="https://app.tthroo.com/">
+                  <Link href="https://app.thinkthroo.com/">
                     <Button variant="default" className="w-full mt-4">
                       Get Started
                     </Button>

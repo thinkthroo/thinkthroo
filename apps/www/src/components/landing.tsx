@@ -36,7 +36,7 @@ export function Landing() {
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Link
-                  href="https://app.tthroo.com/"
+                  href="https://app.thinkthroo.com/"
                   className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                   prefetch={false}
                 >
@@ -82,7 +82,7 @@ export function Landing() {
               shadow DOM to avoid potential CSS breaks.
             </p>
             <Link
-              href="https://app.tthroo.com/best-practices"
+              href="https://app.thinkthroo.com/best-practices"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -109,7 +109,7 @@ export function Landing() {
               be used as a foundation to expand your knowledge.
             </p>
             <Link
-              href="https://app.tthroo.com/build-from-scratch"
+              href="https://app.thinkthroo.com/build-from-scratch"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -136,7 +136,7 @@ export function Landing() {
               code that is production-grade.
             </p>
             <Link
-              href="https://app.tthroo.com/production-grade-projects"
+              href="https://app.thinkthroo.com/production-grade-projects"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -172,7 +172,7 @@ export function Landing() {
               steps. These steps provide clear instructions to follow along.
             </p>
             <Link
-              href="https://app.tthroo.com/"
+              href="https://app.thinkthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -199,7 +199,7 @@ export function Landing() {
               a challenge
             </p>
             <Link
-              href="https://app.tthroo.com/"
+              href="https://app.thinkthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -224,7 +224,7 @@ export function Landing() {
               If a challenge is too difficult, there is a solution available.
             </p>
             <Link
-              href="https://app.tthroo.com/"
+              href="https://app.thinkthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -251,7 +251,7 @@ export function Landing() {
               to move on to next lesson.
             </p>
             <Link
-              href="https://app.tthroo.com/"
+              href="https://app.thinkthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -277,7 +277,7 @@ export function Landing() {
               expected via our Github integration.
             </p>
             <Link
-              href="https://app.tthroo.com/"
+              href="https://app.thinkthroo.com/"
               className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >

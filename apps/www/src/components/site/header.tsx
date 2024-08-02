@@ -56,12 +56,12 @@ export const Header = () => {
     </nav>
     <div className="flex items-center gap-2">
       <GitHubButton />
-      <Link href="https://app.tthroo.com/">
+      <Link href="https://app.thinkthroo.com/">
         <Button variant="outline" className="text-gray-800">
           Sign In
         </Button>
       </Link>
-      <Link href="https://app.tthroo.com/">
+      <Link href="https://app.thinkthroo.com/">
         <Button className="bg-primary text-white">Try now</Button>
       </Link>
     </div>
