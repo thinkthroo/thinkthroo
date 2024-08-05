@@ -64,12 +64,14 @@ model Step {
 model Challenge {
   id        Int    @id @default(autoincrement())
   markdown  String @default("")
+  draft     String @default("")
   steps     Step[]
 }
 
 model Solution {
   id        Int    @id @default(autoincrement())
   markdown  String @default("")
+  draft     String @default("")
   steps     Step[]
 }
 
