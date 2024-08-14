@@ -25,7 +25,7 @@ export default async function CourseSidebar({ courseSlug }: {
         <div className="flex h-[60px] items-center">
           <SiteNameAndLogo />
         </div>
-        <nav className="flex-1 space-y-2">
+        <nav className="flex-1 space-y-2 overflow-scroll">
           <div className="space-y-1">
             <div className="px-3 text-xs font-medium text-muted-foreground">Chapters</div>
             <ChapterMenu courseSlug={courseSlug} chapters={chapters} />
