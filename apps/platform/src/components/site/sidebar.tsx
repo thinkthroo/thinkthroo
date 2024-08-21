@@ -7,61 +7,72 @@ import { BookIcon } from "../icons";
 import { BoxIcon } from "../icons/box";
 import Image from "next/image";
 import SiteNameAndLogo from "./name-and-logo";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { Checkbox } from "@/components/ui/checkbox"
 
 export default function SiteSidebar() {
 
   const pathname = usePathname()
 
+  const architectureFilters = [{
+    label: "Tooling",
+    filters: ["Husky",, "ESLint"]
+  }, {
+    label: "Structure",
+    filters: ["Husky",, "ESLint"]
+  }, {
+    label: "API Layer",
+    filters: ["Husky",, "ESLint"]
+  }, {
+    label: "State Management",
+    filters: ["Husky",, "ESLint"]
+  }, {
+    label: "Error Handling",
+    filters: ["Husky",, "ESLint"]
+  }, {
+    label: "Security",
+    filters: ["Husky",, "ESLint"]
+  }, {
+    label: "Performance",
+    filters: ["Husky",, "ESLint"]
+  }, {
+    label: "Deployment",
+    filters: ["Husky",, "ESLint"]
+  }]
+
   return (
-    <div className="hidden h-full border-r bg-muted/40 md:block md:w-72">
+    <div className="hidden h-full border-r md:block md:w-72">
       <div className="flex h-full flex-col gap-4 p-4">
-        <div className="flex h-[60px] items-center">
-          <SiteNameAndLogo />
-        </div>
-        <nav className="flex-1 space-y-2">
-          <div className="space-y-1">
-            <div className="px-3 text-xs font-medium text-muted-foreground">Modules</div>
-            <Link
-              href="/best-practices"
-              className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                {
-                  "bg-accent text-accent-foreground": pathname === "/best-practices"
-                }
-              )}
-              prefetch={false}
-            >
-              <BoxIcon className="h-5 w-5" />
-              Best practices
-            </Link>
-            <Link
-              href="/build-from-scratch"
-              className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                {
-                  "bg-accent text-accent-foreground": pathname === "/build-from-scratch"
-                }
-              )}
-              prefetch={false}
-            >
-              <BoxIcon className="h-5 w-5" />
-              Build from scratch
-            </Link>
-            <Link
-              href="/production-grade-projects"
-              className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                {
-                  "bg-accent text-accent-foreground": pathname === "/production-grade-projects"
-                }
-              )}
-              prefetch={false}
-            >
-              <BoxIcon className="h-5 w-5" />
-              Production-grade projects
-            </Link>
-          </div>
-        </nav>
+        <h3 className="font-medium">Filters</h3>
+        {
+          architectureFilters.map(archFilter => <Accordion type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger className="text-sm"><div className="text-sm">{archFilter.label}</div></AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex flex-col space-y-2">
+                    {
+                      archFilter.filters.map(filter => <div className="flex items-center space-x-2">
+                          <Checkbox id="terms" />
+                          <label
+                            htmlFor="terms"
+                            className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          >
+                            {filter}
+                          </label>
+                        </div>
+                      )
+                    }
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          )
+        }
       </div>
     </div>
   )

@@ -1,39 +1,45 @@
 import { Button } from "@/components/ui/button"
 
-import { LogInIcon, MenuIcon, SettingsIcon, UserIcon, ZapIcon } from "../icons"
+import { GithubIcon, LogInIcon, MenuIcon, SettingsIcon, UserIcon, ZapIcon } from "../icons"
 import AuthHeaderButton from "../auth/auth-header-button"
+import { MainNav } from "./main-nav"
+import { siteConfig } from "@/config/site"
+import Link from "next/link"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { MobileNav } from "./mobile-nav"
 
 export default async function SiteHeader() {
 
 
     return (
-        <>
-          <header className="sticky top-0 z-10 border-b bg-background px-4 md:px-6">
-            <div className="flex h-14 items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Button variant="ghost" size="icon" className="block md:hidden">
-                  <MenuIcon className="h-5 w-5" />
-                  <span className="sr-only">Toggle menu</span>
-                </Button>
-                {/* <h1 className="text-lg font-semibold">Dashboard</h1> */}
-              </div>
-              <div className="flex items-center gap-4">
-                {/* <Button variant="outline" size="sm" className="flex items-center justify-center gap-2">
-                  <ZapIcon className="h-4 w-4" />
-                  Upgrade to Pro
-                </Button> */}
-                {/* <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+        <header className="sticky border-b top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="container flex h-14 max-w-screen-2xl items-center">
+            <MainNav />
+            <MobileNav />
+            <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+              <nav className="flex items-center">
+                <Link
+                  href={siteConfig.links.github}
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  <ZapIcon className="h-4 w-4" />
-                  Upgrade
-                </Button> */}
+                  <div
+                    className={cn(
+                      buttonVariants({
+                        variant: "ghost",
+                      }),
+                      "h-8 w-8 px-0"
+                    )}
+                  >
+                    <GithubIcon className="h-4 w-4" />
+                    <span className="sr-only">GitHub</span>
+                  </div>
+                </Link>
                 <AuthHeaderButton />
-              </div>
+              </nav>
             </div>
-          </header>
-        </>
+          </div>
+      </header>
     )
 }

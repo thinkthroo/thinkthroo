@@ -1,5 +1,6 @@
 import SiteHeader from "@/components/site/header";
 import SiteSidebar from "@/components/site/sidebar";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ModuleLayout({
     children,
@@ -7,14 +8,18 @@ export default function ModuleLayout({
     children: React.ReactNode;
   }) {
     return (
-        <div className="flex h-screen w-full">
-            <SiteSidebar />
-            <div className="flex-1">
-                <SiteHeader />
-                <main className="p-4 md:p-6 h-full">
+        <>
+            <SiteHeader />
+            <main className="flex-1">
+                <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+                    <aside className="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block">
+                    <ScrollArea className="h-full py-6 pr-6 lg:py-8">
+                        <SiteSidebar />
+                    </ScrollArea>
+                    </aside>
                     {children}
-                </main>
-            </div>
-        </div>
+                </div>
+            </main>
+        </>
     )
 }

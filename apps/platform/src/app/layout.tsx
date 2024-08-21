@@ -20,7 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="relative flex min-h-screen flex-col bg-background">
+            {children}
+          </div>
+        </Providers>
         <Metrics />
       </body>
     </html>
