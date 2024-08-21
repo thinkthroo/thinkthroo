@@ -18,10 +18,10 @@ export async function CourseList({id}: {id: string}) {
   }
 
   return (
-    <section className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 p-4 md:p-6">
+    <div className="flex gap-4">
       {
         courses?.data?.map((course, index) => <CourseItem key={index} course={course} />)
       }
-    </section>
+    </div>
   )
 }

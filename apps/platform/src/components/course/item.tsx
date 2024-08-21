@@ -68,7 +68,7 @@ export default function CourseItem(props : any) {
     return (
       <>
         
-        <Card>
+        <Card className="hover:shadow-md cursor-pointer">
           <CardHeader>
             <CardTitle>
               <Link href={`/course/${courseSlug}/${chapterSlug}/${lessonSlug}?stepSlug=${stepSlug}&type=index`} className="hover:underline" prefetch={false}>
