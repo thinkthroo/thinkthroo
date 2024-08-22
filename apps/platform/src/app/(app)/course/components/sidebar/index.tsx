@@ -18,6 +18,7 @@ export default async function CourseSidebar({ courseSlug }: {
     slug: courseSlug,
   })
 
+  console.log("chapters", chapters);
 
   return (
     <div className="hidden h-full border-r bg-muted/40 md:block md:w-72">

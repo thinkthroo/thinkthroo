@@ -16,15 +16,15 @@ export default async function LessonMdx(props: {stepSlug: string, type: string})
     type: props?.type
   })
 
-  const supabase = createClient();
+  // const supabase = createClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser();
 
-  if (!user.email && step?.data?.lessonOrder > 1) {
-    return <RequestLogin />
-  }
+  // if (!user?.email && step?.data?.lessonOrder > 1) {
+  //   return <RequestLogin />
+  // }
   
 
   return (

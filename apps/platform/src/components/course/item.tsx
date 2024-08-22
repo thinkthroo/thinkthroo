@@ -74,16 +74,16 @@ export default function CourseItem(props : any) {
               <Link href={`/course/${courseSlug}/${chapterSlug}/${lessonSlug}?stepSlug=${stepSlug}&type=index`} className="hover:underline" prefetch={false}>
                 {course?.title}
               </Link>
+              <div className="flex items-center gap-2 mt-4">
+                <Badge variant="outline">Next.js</Badge>
+                <Badge variant="outline">Tailwind</Badge>
+                <Badge variant="outline">tRPC</Badge>
+              </div>
             </CardTitle>
             {/* <CardDescription>Card Description</CardDescription> */}
           </CardHeader>
           <CardContent>
             <p>Card Content</p>
-            <div className="flex items-center gap-2 mb-4">
-              <Badge variant="outline">Next.js</Badge>
-              <Badge variant="outline">Tailwind</Badge>
-              <Badge variant="outline">tRPC</Badge>
-            </div>
           </CardContent>
           <CardFooter>
             <Link href={`/course/${courseSlug}/${chapterSlug}/${lessonSlug}?stepSlug=${stepSlug}&type=index`} className="hover:underline" prefetch={false}>

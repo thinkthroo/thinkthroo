@@ -35,7 +35,7 @@ export default async function CourseHeader(props: {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
-            <AuthHeaderButton />
+            {/* <AuthHeaderButton /> */}
           </header>
           <NavTab slugs={props.slugs} type={props.type} stepSlug={props.stepSlug} />
     </div>

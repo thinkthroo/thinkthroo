@@ -22,11 +22,13 @@ export default async function LessonSteps(props: {
   stepSlug: string
 }) {
 
-  const supabase = createClient();
+  // const supabase = createClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser();
+
+  let user = {};
 
   const steps: any[] = await api.course.getStepsByLessonSlug({
     slug: props.slugs.lessonSlug,

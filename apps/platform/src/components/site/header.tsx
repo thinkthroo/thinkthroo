@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 
 import { GithubIcon, LogInIcon, MenuIcon, SettingsIcon, UserIcon, ZapIcon } from "../icons"
-import AuthHeaderButton from "../auth/auth-header-button"
+// import AuthHeaderButton from "../auth/auth-header-button"
 import { MainNav } from "./main-nav"
 import { siteConfig } from "@/config/site"
 import Link from "next/link"
@@ -36,7 +36,7 @@ export default async function SiteHeader() {
                     <span className="sr-only">GitHub</span>
                   </div>
                 </Link>
-                <AuthHeaderButton />
+                {/* <AuthHeaderButton /> */}
               </nav>
             </div>
           </div>
