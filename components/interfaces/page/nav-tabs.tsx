@@ -24,6 +24,11 @@ const architecture = [
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/mail",
   },
   {
+    name: "Components Structure",
+    href: "/architecture/mail",
+    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/mail",
+  },
+  {
     name: "API Layer",
     href: "/architecture/dashboard",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/dashboard",
