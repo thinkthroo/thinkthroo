@@ -67,8 +67,6 @@ export default function ArchitecturePage() {
                 Components Structure
               </div>
               <div className="ml-auto flex items-center gap-2 [&amp;>form]:flex">
-                <div className="text-[13px] text-muted-foreground">75%</div>
-                <div data-orientation="vertical" role="none" className="shrink-0 bg-border w-[1px] mx-0 hidden h-4 md:flex"></div>
                 <button
                   className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border-input hover:text-accent-foreground h-6 rounded-[6px] border bg-transparent px-2 text-xs text-foreground shadow-none hover:bg-muted dark:text-foreground"
                   type="button"
@@ -77,8 +75,23 @@ export default function ArchitecturePage() {
                   aria-controls="radix-:rhu:"
                   data-state="closed"
                 >
-                  Read
+                  Practise
                 </button>
+                <div data-orientation="vertical" role="none" className="shrink-0 bg-border w-[1px] mx-0 hidden h-4 md:flex"></div>
+                <Link
+                  href={`/architecture/components-structure-in-shadcn`}
+                >
+                  <button
+                    className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border-input hover:text-accent-foreground h-6 rounded-[6px] border bg-transparent px-2 text-xs text-foreground shadow-none hover:bg-muted dark:text-foreground"
+                    type="button"
+                    aria-haspopup="dialog"
+                    aria-expanded="false"
+                    aria-controls="radix-:rhu:"
+                    data-state="closed"
+                  >
+                    Read
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="relative z-10 [&amp;>div]:rounded-none [&amp;>div]:border-none [&amp;>div]:shadow-none">
