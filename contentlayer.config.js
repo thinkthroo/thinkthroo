@@ -41,7 +41,7 @@ const LinksProperties = defineNestedType(() => ({
 
 export const Doc = defineDocumentType(() => ({
   name: "Doc",
-  filePathPattern: `docs/**/*.mdx`,
+  filePathPattern: `*/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
@@ -135,46 +135,46 @@ export default makeSource({
           },
         },
       ],
-      () => (tree) => {
-        visit(tree, (node) => {
-          if (node?.type === "element" && node?.tagName === "div") {
-            if (!("data-rehype-pretty-code-fragment" in node.properties)) {
-              return
-            }
+    //   () => (tree) => {
+    //     visit(tree, (node) => {
+    //       if (node?.type === "element" && node?.tagName === "div") {
+    //         if (!("data-rehype-pretty-code-fragment" in node.properties)) {
+    //           return
+    //         }
 
-            const preElement = node.children.at(-1)
-            if (preElement.tagName !== "pre") {
-              return
-            }
+    //         const preElement = node.children.at(-1)
+    //         if (preElement.tagName !== "pre") {
+    //           return
+    //         }
 
-            preElement.properties["__withMeta__"] =
-              node.children.at(0).tagName === "div"
-            preElement.properties["__rawString__"] = node.__rawString__
+    //         preElement.properties["__withMeta__"] =
+    //           node.children.at(0).tagName === "div"
+    //         preElement.properties["__rawString__"] = node.__rawString__
 
-            if (node.__src__) {
-              preElement.properties["__src__"] = node.__src__
-            }
+    //         if (node.__src__) {
+    //           preElement.properties["__src__"] = node.__src__
+    //         }
 
-            if (node.__event__) {
-              preElement.properties["__event__"] = node.__event__
-            }
+    //         if (node.__event__) {
+    //           preElement.properties["__event__"] = node.__event__
+    //         }
 
-            if (node.__style__) {
-              preElement.properties["__style__"] = node.__style__
-            }
-          }
-        })
-      },
-      rehypeNpmCommand,
-      [
-        rehypeAutolinkHeadings,
-        {
-          properties: {
-            className: ["subheading-anchor"],
-            ariaLabel: "Link to section",
-          },
-        },
-      ],
+    //         if (node.__style__) {
+    //           preElement.properties["__style__"] = node.__style__
+    //         }
+    //       }
+    //     })
+    //   },
+    //   rehypeNpmCommand,
+    //   [
+    //     rehypeAutolinkHeadings,
+    //     {
+    //       properties: {
+    //         className: ["subheading-anchor"],
+    //         ariaLabel: "Link to section",
+    //       },
+    //     },
+    //   ],
     ],
   },
 })

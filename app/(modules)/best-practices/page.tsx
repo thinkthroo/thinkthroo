@@ -24,10 +24,9 @@ export default function ArchitecturePage() {
   return (
     <div className="container relative">
       <PageHeader>
-        <PageHeaderHeading>Architecture</PageHeaderHeading>
+        <PageHeaderHeading>Best Practices</PageHeaderHeading>
         <PageHeaderDescription>
-          Learn the architectural concepts, build your confidence and 10x your
-          coding skills.
+          Practice the architectural concepts inspired by open source.
         </PageHeaderDescription>
         <PageActions>
           {/* <Button asChild size="sm">
@@ -67,7 +66,7 @@ export default function ArchitecturePage() {
                 Components Structure
               </div>
               <div className="ml-auto flex items-center gap-2 [&amp;>form]:flex">
-                {/* <button
+                <button
                   className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border-input hover:text-accent-foreground h-6 rounded-[6px] border bg-transparent px-2 text-xs text-foreground shadow-none hover:bg-muted dark:text-foreground"
                   type="button"
                   aria-haspopup="dialog"
@@ -77,7 +76,7 @@ export default function ArchitecturePage() {
                 >
                   Practise
                 </button>
-                <div data-orientation="vertical" role="none" className="shrink-0 bg-border w-[1px] mx-0 hidden h-4 md:flex"></div> */}
+                {/* <div data-orientation="vertical" role="none" className="shrink-0 bg-border w-[1px] mx-0 hidden h-4 md:flex"></div>
                 <Link
                   href={`/course/components-structure-in-shadcn-ui/introduction`}
                 >
@@ -91,7 +90,7 @@ export default function ArchitecturePage() {
                   >
                     Read
                   </button>
-                </Link>
+                </Link> */}
               </div>
             </div>
             <div className="relative z-10 [&amp;>div]:rounded-none [&amp;>div]:border-none [&amp;>div]:shadow-none">

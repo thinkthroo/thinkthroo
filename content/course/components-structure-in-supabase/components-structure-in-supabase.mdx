@@ -1,7 +1,7 @@
 ---
 title: Changelog
 description: Latest updates and announcements.
-toc: false
+toc: true
 ---
 
 ## Component Architecture
@@ -40,7 +40,7 @@ This home page source code is found at [app/(app)/page.tsx](https://github.com/s
 
 The following components are imported in the home page, found at [app/(app)/page.tsx](https://github.com/shadcn-ui/ui/blob/main/apps/www/app/(app)/page.tsx)
 
-```
+```js
 import { Announcement } from "@/components/announcement"
 import { ExamplesNav } from "@/components/examples-nav"
 import {
@@ -61,7 +61,7 @@ Example: `Announcement`, `ExamplesNav`, `PageActions`, `PageHeader`, `PageHeader
 - Import alias used.
 You will find the below code snippet in [tsconfig.json](https://github.com/shadcn-ui/ui/blob/main/apps/www/tsconfig.json#L19C5-L20C22)
 
-```
+```json
 "paths": {
       "@/*": ["./*"],
 }
