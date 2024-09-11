@@ -50,6 +50,16 @@ export const docsConfig: DocsConfig = {
           href: "/course/components-structure-in-shadcn-ui/home-page",
           items: [],
         },
+        {
+          title: "Mail Example Page",
+          href: "/course/components-structure-in-shadcn-ui/mail-example-page",
+          items: [],
+        },
+        {
+          title: "Charts Page",
+          href: "/course/components-structure-in-shadcn-ui/charts-page",
+          items: [],
+        },
       ],
     },
     // {
