@@ -9,53 +9,48 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const architecture = [
   {
-    name: "All",
-    href: "/architecture/mail",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/mail",
-  },
-  {
     name: "Tooling",
-    href: "/architecture/mail",
+    href: "#tooling",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/mail",
   },
   {
     name: "Project Structure",
-    href: "/architecture/mail",
+    href: "#project-structure",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/mail",
   },
   {
     name: "Components Structure",
-    href: "/architecture/mail",
+    href: "#components-structure",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/mail",
   },
   {
     name: "API Layer",
-    href: "/architecture/dashboard",
+    href: "#api-layer",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/dashboard",
   },
   {
     name: "State Management",
-    href: "/architecture/cards",
+    href: "#state-management",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/cards",
   },
   {
     name: "Error Handling",
-    href: "/architecture/tasks",
+    href: "#error-handling",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/tasks",
   },
   {
     name: "Testing",
-    href: "/architecture/playground",
+    href: "#testing",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/playground",
   },
   {
     name: "Performance",
-    href: "/architecture/forms",
+    href: "#performance",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/forms",
   },
   {
     name: "Security",
-    href: "/architecture/music",
+    href: "#security",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/music",
   },
 ];
