@@ -6,8 +6,17 @@ import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/interfaces/site/header/main-nav"
 import { MobileNav } from "@/components/interfaces/site/header/mobile-nav"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { createClient } from '@/utils/supabase/server';
+import { AccountMenu } from "./account-menu"
 
-export function SiteHeader() {
+export async function SiteHeader() {
+
+  const supabase = createClient();
+
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
   return (
     <header className="sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
@@ -51,9 +60,14 @@ export function SiteHeader() {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
-            <Button asChild size="sm" className="h-8">
-              <Link href="/login">Login</Link>
-            </Button>
+            {
+              user ? 
+              <AccountMenu fullName={user.user_metadata.full_name} />
+              : 
+              <Button asChild size="sm" className="h-8">
+                <Link href="/signin">Login</Link>
+              </Button>
+            }
           </nav>
         </div>
       </div>
