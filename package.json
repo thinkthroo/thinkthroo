@@ -3,8 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-      "dev": "next dev",
-      "build": "next build",
+      "dev": "contentlayer2 build && next dev",
+      "build": "contentlayer2 build && next build",
       "start": "next start",
       "lint": "next lint",
       "build:docs": "contentlayer2 build"

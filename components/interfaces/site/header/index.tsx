@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/interfaces/site/header/main-nav"
 import { MobileNav } from "@/components/interfaces/site/header/mobile-nav"
-import { buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 
 export function SiteHeader() {
   return (
@@ -51,6 +51,9 @@ export function SiteHeader() {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
+            <Button asChild size="sm" className="h-8">
+              <Link href="/login">Login</Link>
+            </Button>
           </nav>
         </div>
       </div>
