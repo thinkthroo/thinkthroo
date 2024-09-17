@@ -16,6 +16,20 @@ import OauthSignIn from '@/components/interfaces/auth-forms/oauth-signin';
 import ForgotPassword from '@/components/interfaces/auth-forms/forgot-password';
 import UpdatePassword from '@/components/interfaces/auth-forms/update-password';
 import SignUp from '@/components/interfaces/auth-forms/sign-up';
+import { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
+
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+import { UserAuthForm } from "@/components/interfaces/auth-forms/user-auth-form"
+
+export const metadata: Metadata = {
+  title: "Authentication",
+  description: "Authentication forms built using the components.",
+}
+
+
 
 export default async function SignIn({
   params,
@@ -55,58 +69,125 @@ export default async function SignIn({
   }
 
   return (
-    <div className="flex justify-center height-screen-helper">
-      <div className="flex flex-col justify-between max-w-lg p-3 m-auto w-80 ">
-        <div className="flex justify-center pb-12 ">
-          <Icons.logo width="64px" height="64px" />
-        </div>
-        <Card
-          title={
-            viewProp === 'forgot_password'
-              ? 'Reset Password'
-              : viewProp === 'update_password'
-                ? 'Update Password'
-                : viewProp === 'signup'
-                  ? 'Sign Up'
-                  : 'Sign In'
-          }
-        >
-          {viewProp === 'password_signin' && (
-            <PasswordSignIn
-              allowEmail={allowEmail}
-              redirectMethod={redirectMethod}
-            />
-          )}
-          {viewProp === 'email_signin' && (
-            <EmailSignIn
-              allowPassword={allowPassword}
-              redirectMethod={redirectMethod}
-              disableButton={searchParams.disable_button}
-            />
-          )}
-          {viewProp === 'forgot_password' && (
-            <ForgotPassword
-              allowEmail={allowEmail}
-              redirectMethod={redirectMethod}
-              disableButton={searchParams.disable_button}
-            />
-          )}
-          {viewProp === 'update_password' && (
-            <UpdatePassword redirectMethod={redirectMethod} />
-          )}
-          {viewProp === 'signup' && (
-            <SignUp allowEmail={allowEmail} redirectMethod={redirectMethod} />
-          )}
-          {viewProp !== 'update_password' &&
-            viewProp !== 'signup' &&
-            allowOauth && (
-              <>
-                <Separator text="Third-party sign-in" />
-                <OauthSignIn />
-              </>
-            )}
-        </Card>
+    // <div className="flex justify-center height-screen-helper">
+    //   <div className="flex flex-col justify-between max-w-lg p-3 m-auto w-80 ">
+    //     <div className="flex justify-center pb-12 ">
+    //       <Icons.logo width="64px" height="64px" />
+    //     </div>
+    //     <Card
+    //       title={
+    //         viewProp === 'forgot_password'
+    //           ? 'Reset Password'
+    //           : viewProp === 'update_password'
+    //             ? 'Update Password'
+    //             : viewProp === 'signup'
+    //               ? 'Sign Up'
+    //               : 'Sign In'
+    //       }
+    //     >
+    //       {viewProp === 'password_signin' && (
+    //         <PasswordSignIn
+    //           allowEmail={allowEmail}
+    //           redirectMethod={redirectMethod}
+    //         />
+    //       )}
+    //       {viewProp === 'email_signin' && (
+    //         <EmailSignIn
+    //           allowPassword={allowPassword}
+    //           redirectMethod={redirectMethod}
+    //           disableButton={searchParams.disable_button}
+    //         />
+    //       )}
+    //       {viewProp === 'forgot_password' && (
+    //         <ForgotPassword
+    //           allowEmail={allowEmail}
+    //           redirectMethod={redirectMethod}
+    //           disableButton={searchParams.disable_button}
+    //         />
+    //       )}
+    //       {viewProp === 'update_password' && (
+    //         <UpdatePassword redirectMethod={redirectMethod} />
+    //       )}
+    //       {viewProp === 'signup' && (
+    //         <SignUp allowEmail={allowEmail} redirectMethod={redirectMethod} />
+    //       )}
+    //       {viewProp !== 'update_password' &&
+    //         viewProp !== 'signup' &&
+    //         allowOauth && (
+    //           <>
+    //             <Separator text="Third-party sign-in" />
+    //             <OauthSignIn />
+    //           </>
+    //         )}
+    //     </Card>
+    //   </div>
+    // </div>
+    <>
+      <div className="md:hidden">
+        <Image
+          src="/examples/authentication-light.png"
+          width={1280}
+          height={843}
+          alt="Authentication"
+          className="block dark:hidden"
+        />
+        <Image
+          src="/examples/authentication-dark.png"
+          width={1280}
+          height={843}
+          alt="Authentication"
+          className="hidden dark:block"
+        />
       </div>
-    </div>
+      <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+        <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
+          <div className="absolute inset-0 bg-zinc-900" />
+          <div className="relative z-20 flex items-center text-lg font-medium">
+            <Icons.logo className='mr-2 h-8 w-8' />
+            Think Throo
+          </div>
+          <div className="relative z-20 mt-auto">
+            <blockquote className="space-y-2">
+              <p className="text-lg">
+                &ldquo;This library has saved me countless hours of work and
+                helped me deliver stunning designs to my clients faster than
+                ever before.&rdquo;
+              </p>
+              <footer className="text-sm">Sofia Davis</footer>
+            </blockquote>
+          </div>
+        </div>
+        <div className="lg:p-8">
+          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            <div className="flex flex-col space-y-2 text-center">
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Create an account
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Enter your email below to create your account
+              </p>
+            </div>
+            <UserAuthForm />
+            <p className="px-8 text-center text-sm text-muted-foreground">
+              By clicking continue, you agree to our{" "}
+              <Link
+                href="/terms"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/privacy"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Privacy Policy
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
