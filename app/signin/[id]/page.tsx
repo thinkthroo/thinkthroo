@@ -9,19 +9,18 @@ import {
   getRedirectMethod
 } from '@/utils/auth-helpers/settings';
 import Card from '@/components/interfaces/auth-forms/card';
-import PasswordSignIn from '@/components/interfaces/auth-forms/password-signin';
-import EmailSignIn from '@/components/interfaces/auth-forms/email-signin';
+import { EmailSignIn } from '@/components/interfaces/auth-forms/email-signin';
 import Separator from '@/components/interfaces/auth-forms/separator';
 import OauthSignIn from '@/components/interfaces/auth-forms/oauth-signin';
-import ForgotPassword from '@/components/interfaces/auth-forms/forgot-password';
-import UpdatePassword from '@/components/interfaces/auth-forms/update-password';
-import SignUp from '@/components/interfaces/auth-forms/sign-up';
+import { ForgotPassword } from '@/components/interfaces/auth-forms/forgot-password';
+import { UpdatePassword } from '@/components/interfaces/auth-forms/update-password';
+import { SignUp } from '@/components/interfaces/auth-forms/sign-up';
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { UserAuthForm } from "@/components/interfaces/auth-forms/user-auth-form"
 
 export const metadata: Metadata = {
@@ -85,40 +84,40 @@ export default async function SignIn({
     //               : 'Sign In'
     //       }
     //     >
-    //       {viewProp === 'password_signin' && (
-    //         <PasswordSignIn
-    //           allowEmail={allowEmail}
-    //           redirectMethod={redirectMethod}
-    //         />
-    //       )}
-    //       {viewProp === 'email_signin' && (
-    //         <EmailSignIn
-    //           allowPassword={allowPassword}
-    //           redirectMethod={redirectMethod}
-    //           disableButton={searchParams.disable_button}
-    //         />
-    //       )}
-    //       {viewProp === 'forgot_password' && (
-    //         <ForgotPassword
-    //           allowEmail={allowEmail}
-    //           redirectMethod={redirectMethod}
-    //           disableButton={searchParams.disable_button}
-    //         />
-    //       )}
-    //       {viewProp === 'update_password' && (
-    //         <UpdatePassword redirectMethod={redirectMethod} />
-    //       )}
-    //       {viewProp === 'signup' && (
-    //         <SignUp allowEmail={allowEmail} redirectMethod={redirectMethod} />
-    //       )}
-    //       {viewProp !== 'update_password' &&
-    //         viewProp !== 'signup' &&
-    //         allowOauth && (
-    //           <>
-    //             <Separator text="Third-party sign-in" />
-    //             <OauthSignIn />
-    //           </>
-    //         )}
+          // {viewProp === 'password_signin' && (
+          //   <PasswordSignIn
+          //     allowEmail={allowEmail}
+          //     redirectMethod={redirectMethod}
+          //   />
+          // )}
+          // {viewProp === 'email_signin' && (
+          //   <EmailSignIn
+          //     allowPassword={allowPassword}
+          //     redirectMethod={redirectMethod}
+          //     disableButton={searchParams.disable_button}
+          //   />
+          // )}
+          // {viewProp === 'forgot_password' && (
+          //   <ForgotPassword
+          //     allowEmail={allowEmail}
+          //     redirectMethod={redirectMethod}
+          //     disableButton={searchParams.disable_button}
+          //   />
+          // )}
+          // {viewProp === 'update_password' && (
+          //   <UpdatePassword redirectMethod={redirectMethod} />
+          // )}
+          // {viewProp === 'signup' && (
+          //   <SignUp allowEmail={allowEmail} redirectMethod={redirectMethod} />
+          // )}
+          // {viewProp !== 'update_password' &&
+          //   viewProp !== 'signup' &&
+          //   allowOauth && (
+          //     <>
+          //       <Separator text="Third-party sign-in" />
+          //       <OauthSignIn />
+          //     </>
+          //   )}
     //     </Card>
     //   </div>
     // </div>
@@ -159,15 +158,84 @@ export default async function SignIn({
         </div>
         <div className="lg:p-8">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-            <div className="flex flex-col space-y-2 text-center">
-              <h1 className="text-2xl font-semibold tracking-tight">
-                Create an account
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Enter your email below to create your account
-              </p>
+            {
+              viewProp === 'password_signin' && (
+                <UserAuthForm 
+                  allowEmail={allowEmail}
+                  redirectMethod={redirectMethod}
+                />
+              )
+            }
+            
+            {
+              viewProp === 'signup' && (
+                <SignUp allowEmail={allowEmail} redirectMethod={redirectMethod} />
+              )
+            }
+
+            {
+              viewProp === 'email_signin' && (
+                <EmailSignIn
+                  allowPassword={allowPassword}
+                  redirectMethod={redirectMethod}
+                  disableButton={searchParams.disable_button}
+                />
+              )
+            }
+
+          {viewProp === 'forgot_password' && (
+            <ForgotPassword
+              allowEmail={allowEmail}
+              redirectMethod={redirectMethod}
+              disableButton={searchParams.disable_button}
+            />
+          )}
+
+          {viewProp === 'update_password' && (
+            <UpdatePassword redirectMethod={redirectMethod} />
+          )}
+
+          {viewProp !== 'update_password' &&
+            viewProp !== 'signup' &&
+            allowOauth && (
+              // <>
+              //   <Separator text="Third-party sign-in" />
+              //   <OauthSignIn />
+              // </>
+              <>
+              <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Or continue with
+                </span>
+              </div>
             </div>
-            <UserAuthForm />
+            <OauthSignIn />
+            </>
+          )}
+
+            {/* <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Or continue with
+                </span>
+              </div>
+            </div>
+            <Button variant="outline" type="button" disabled={isLoading}>
+              {isLoading ? (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <Icons.gitHub className="mr-2 h-4 w-4" />
+              )}{" "}
+              GitHub
+            </Button> */}
+
             <p className="px-8 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{" "}
               <Link

@@ -1,82 +1,114 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import * as React from "react";
+
+import { cn } from "@/lib/utils";
+import { Icons } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { requestPasswordUpdate } from '@/utils/auth-helpers/server';
+import Link from "next/link";
+import { useRouter, useSearchParams } from 'next/navigation';
 import { handleRequest } from '@/utils/auth-helpers/client';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
-// Define prop type with allowEmail boolean
 interface ForgotPasswordProps {
   allowEmail: boolean;
   redirectMethod: string;
   disableButton?: boolean;
 }
 
-export default function ForgotPassword({
+export function ForgotPassword({
   allowEmail,
   redirectMethod,
   disableButton
 }: ForgotPasswordProps) {
-  const router = redirectMethod === 'client' ? useRouter() : null;
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setIsSubmitting(true); // Disable the button while the request is being handled
-    await handleRequest(e, requestPasswordUpdate, router);
-    setIsSubmitting(false);
-  };
+  const router = redirectMethod === 'client' ? useRouter() : null;
+
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  const searchParams = useSearchParams()
+ 
+  const statusDescription = searchParams.get('status_description') || searchParams.get('error_description')
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) { 
+    setIsLoading(true);
+    await handleRequest(event, requestPasswordUpdate, router);
+    setIsLoading(false);
+  }
 
   return (
-    <div className="my-8">
-      <form
-        noValidate={true}
-        className="mb-4"
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <div className="grid gap-2">
-          <div className="grid gap-1">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              name="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              className="w-full p-3 rounded-md bg-zinc-800"
-            />
-          </div>
-          <Button
-            variant="slim"
-            type="submit"
-            className="mt-1"
-            loading={isSubmitting}
-            disabled={disableButton}
-          >
-            Send Email
-          </Button>
-        </div>
-      </form>
-      <p>
-        <Link href="/signin/password_signin" className="font-light text-sm">
-          Sign in with email and password
-        </Link>
-      </p>
-      {allowEmail && (
-        <p>
-          <Link href="/signin/email_signin" className="font-light text-sm">
-            Sign in via magic link
-          </Link>
+    <>
+      <div className="flex flex-col space-y-2 text-center">
+        <h1 className="text-2xl font-semibold tracking-tight">
+          Reset Password
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          Enter your email to reset your password
         </p>
-      )}
-      <p>
-        <Link href="/signin/signup" className="font-light text-sm">
-          Don't have an account? Sign up
-        </Link>
-      </p>
-    </div>
+      </div>
+      {statusDescription && (
+          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
+            {statusDescription}
+          </p>
+        )}
+      <div className="grid gap-6">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="grid gap-2">
+            <div className="grid gap-1">
+              <Label className="sr-only" htmlFor="email">
+                Email
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                placeholder="joe@bloggs.com"
+                type="email"
+                autoCapitalize="none"
+                autoComplete="email"
+                autoCorrect="off"
+                disabled={isLoading}
+              />
+            </div>
+            <Button disabled={isLoading}>
+              {isLoading && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Reset Password
+            </Button>
+            <div className="grid gap-1">
+              <p className="text-left text-sm text-muted-foreground">
+                  <Link
+                    href="/signin/password_signin"
+                    className="hover:text-primary"
+                  >
+                  Sign in with email and password
+                  </Link>
+              </p>
+              {
+                allowEmail && 
+                <p className="text-left text-sm text-muted-foreground">
+                  <Link
+                    href="/signin/email_signin"
+                    className="hover:text-primary"
+                  >
+                    Sign in via magic link
+                  </Link>
+                </p>
+              }
+              <p className="text-left text-sm text-muted-foreground">
+                <Link
+                  href="/signin/signup"
+                  className="hover:text-primary"
+                >
+                Don't have an account? Sign up
+                </Link>
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

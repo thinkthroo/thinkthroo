@@ -1,5 +1,6 @@
 'use client';
 
+import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { signInWithOAuth } from '@/utils/auth-helpers/client';
 import { type Provider } from '@supabase/supabase-js';
@@ -39,12 +40,21 @@ export default function OauthSignIn() {
         >
           <input type="hidden" name="provider" value={provider.name} />
           <Button
-            variant="slim"
+            variant="outline"
             type="submit"
             className="w-full"
-            loading={isSubmitting}
+            // loading={isSubmitting}
           >
-            <span className="mr-2">{provider.icon}</span>
+            {/* <span className="mr-2">{provider.icon}</span> */}
+
+            {
+              isSubmitting ? (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              ) :
+              ""
+            }
+
+            <Icons.gitHub className="mr-2 h-4 w-4" />
             <span>{provider.displayName}</span>
           </Button>
         </form>
