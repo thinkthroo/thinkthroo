@@ -50,7 +50,7 @@ export async function signInWithEmail(formData: FormData) {
   const supabase = createClient();
   let options = {
     emailRedirectTo: callbackURL,
-    shouldCreateUser: true
+    shouldCreateUser: true,
   };
 
   // If allowPassword is false, do not create a new user

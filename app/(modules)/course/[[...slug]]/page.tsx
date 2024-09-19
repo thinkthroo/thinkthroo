@@ -15,6 +15,8 @@ import { DocsPager } from "@/components/interfaces/course/pager"
 import { DashboardTableOfContents } from "@/components/interfaces/course/toc"
 import { badgeVariants } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import ContentUnlockForm from "@/components/interfaces/course/content-unlock-form"
+import { createClient } from '@/utils/supabase/server';
 
 interface DocPageProps {
   params: {
@@ -78,6 +80,13 @@ export async function generateStaticParams(): Promise<
 }
 
 export default async function DocPage({ params }: DocPageProps) {
+
+  const supabase = createClient();
+
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
   const doc = await getDocFromParams({ params })
 
   if (!doc) {
@@ -131,7 +140,17 @@ export default async function DocPage({ params }: DocPageProps) {
           </div>
         ) : null}
         <div className="pb-12 pt-8">
-          <Mdx code={doc.body.code} />
+          { 
+            (
+              user ||
+              doc.title?.toLowerCase() === "introduction"
+            ) &&
+            <Mdx code={doc.body.code} />
+          }
+          {
+            !user && doc.title?.toLowerCase() !== "introduction" && 
+            <ContentUnlockForm />
+          }
         </div>
         <DocsPager doc={doc} />
       </div>
