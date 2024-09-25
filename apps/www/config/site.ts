@@ -7,6 +7,7 @@ export const siteConfig = {
     links: {
       twitter: "https://twitter.com/thinkthroo",
       github: "https://github.com/thinkthroo",
+      consultation: "https://cal.com/team-thinkthroo-dxiovj/consultation"
     },
   }
   
