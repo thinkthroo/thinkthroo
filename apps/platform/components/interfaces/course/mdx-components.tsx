@@ -36,6 +36,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { Style } from "@/registry/registry-styles"
+import { NewsLetterForm } from "@/components/interfaces/course/newsletter-form"
 
 const components = {
   Accordion,
@@ -230,6 +231,7 @@ const components = {
   ),
   Image,
   Callout,
+  NewsLetterForm,
 //   ComponentPreview,
 //   ComponentExample,
 //   ComponentSource,

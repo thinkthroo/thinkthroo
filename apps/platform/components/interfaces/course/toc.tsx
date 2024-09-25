@@ -6,6 +6,7 @@ import * as React from "react"
 import { TableOfContents } from "@/lib/toc"
 import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
+import { NewsLetterForm } from "./newsletter-form"
 
 interface TocProps {
   toc: TableOfContents
@@ -27,13 +28,14 @@ export function DashboardTableOfContents({ toc }: TocProps) {
   const mounted = useMounted()
 
   if (!toc?.items || !mounted) {
-    return null
+    return <div className="space-y-2"><NewsLetterForm /></div>
   }
 
   return (
     <div className="space-y-2">
       <p className="font-medium">On This Page</p>
       <Tree tree={toc} activeItem={activeHeading} />
+      <NewsLetterForm />
     </div>
   )
 }
