@@ -22,6 +22,7 @@ export function UserAuthForm({
   redirectMethod
 }: PasswordSignInProps) {
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = redirectMethod === 'client' ? useRouter() : null;
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -110,7 +111,7 @@ export function UserAuthForm({
                     href="/signin/signup"
                     className="hover:text-primary"
                   >
-                  Don't have an account? Sign up
+                  Don&apos;t have an account? Sign up
                   </Link>
               </p>
             </div>

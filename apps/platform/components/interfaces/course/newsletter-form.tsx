@@ -37,7 +37,7 @@ export function NewsLetterForm() {
         </CardHeader>
         <CardContent className="text-center">
           <CheckCircle className="w-16 h-16 mx-auto text-black mb-4" />
-          <p>You've successfully subscribed to our newsletter.</p>
+          <p>You&apos;ve successfully subscribed to our newsletter.</p>
         </CardContent>
       </Card>
     );

@@ -65,7 +65,7 @@ export default function ArchitecturePage() {
         <div className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10">
           
         {
-            buildFromScratchCourses.map(course => <div className="relative flex flex-col overflow-hidden rounded-xl border shadow transition-all duration-200 ease-in-out hover:z-30">
+            buildFromScratchCourses.map((course,index) => <div key={index} className="relative flex flex-col overflow-hidden rounded-xl border shadow transition-all duration-200 ease-in-out hover:z-30">
               <div className="items-center gap-2 relative z-20 flex justify-end border-b bg-card px-3 py-2.5 text-card-foreground">
                 <div className="flex items-center gap-1.5 pl-1 text-[13px] text-muted-foreground">
                   {course.concept.label}
@@ -122,7 +122,7 @@ export default function ArchitecturePage() {
                   <div className="p-6 pt-0">
                     <div className="grid grid-cols-3 gap-2">
                       {
-                        course.tags.map(tag => <div className="flex items-center">
+                        course.tags.map((tag, index) => <div key={index} className="flex items-center">
                             <Icons.tag />
                             {tag}
                           </div>

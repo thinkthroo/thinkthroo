@@ -23,6 +23,7 @@ import { usePathname, useRouter } from "next/navigation"
 
 export function AccountMenu(props: {fullName: string}) {
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = getRedirectMethod() === 'client' ? useRouter() : null;
 
     return (

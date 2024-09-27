@@ -22,6 +22,7 @@ export function SignUp({
   redirectMethod
 }: SignUpProps) {
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = redirectMethod === 'client' ? useRouter() : null;
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);

@@ -15,25 +15,25 @@ export default function ContentUnlockForm() {
       <div className="space-y-4">
         <h3 className="font-semibold">This is a free tutorial</h3>
         <p>
-          By signing in, you'll get full access to this and other free Total
+          By signing in, you&apos;ll get full access to this and other free Total
           TypeScript tutorials.
         </p>
         <p>
-          Why sign in? You'll get updates about the latest Total TypeScript
+          Why sign in? You&apos;ll get updates about the latest Total TypeScript
           material. This includes free tutorials, TypeScript Tips, and periodic
-          updates about trends, tools, and TS happenings that I'm excited about.
+          updates about trends, tools, and TS happenings that I&apos;m excited about.
         </p>
         <p>
-          In addition to the piles of free Total TypeScript content, you'll get
+          In addition to the piles of free Total TypeScript content, you&apos;ll get
           the earliest access and best discounts to the paid courses when they
           launch.
         </p>
         <p>
-          There won't be any spam, and every email you get will have an
+          There won&apos;t be any spam, and every email you get will have an
           unsubscribe link.
         </p>
         <p className="font-semibold">
-          If this sounds like a fair trade, let's go!
+          If this sounds like a fair trade, let&apos;s go!
         </p>
       </div>
     </div>
