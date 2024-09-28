@@ -1,9 +1,9 @@
 export const siteConfig = {
     name: "Think Throo",
-    url: "https://thinkthroo.com",
-    ogImage: "https://thinkthroo.com/logo.jpg",
+    url: "https://app.thinkthroo.com",
+    ogImage: "https://app.thinkthroo.com/logo.svg",
     description:
-      "Learn the best practices used in open source",
+      "Learn the large codebase architecture",
     links: {
       twitter: "https://twitter.com/thinkthroo",
       github: "https://github.com/thinkthroo",
