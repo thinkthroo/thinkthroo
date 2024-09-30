@@ -5,17 +5,9 @@ import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/interfaces/site/header/main-nav"
 import { MobileNav } from "@/components/interfaces/site/header/mobile-nav"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { createClient } from '@/utils/supabase/server';
-import { AccountMenu } from "./account-menu"
+import { buttonVariants } from "@/components/ui/button"
 
 export async function SiteHeader() {
-
-  const supabase = createClient();
-
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
 
   return (
     <header className="sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

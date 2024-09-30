@@ -3,7 +3,7 @@ export const siteConfig = {
     url: "https://thinkthroo.com",
     ogImage: "https://thinkthroo.com/logo.jpg",
     description:
-      "Learn the best practices used in open source",
+      "Learn the Large Codebase Architecture",
     links: {
       twitter: "https://twitter.com/thinkthroo",
       github: "https://github.com/thinkthroo",

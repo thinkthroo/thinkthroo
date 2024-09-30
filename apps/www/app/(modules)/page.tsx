@@ -35,7 +35,7 @@ export default function RootPage() {
               rel="noreferrer"
               href={siteConfig.links.consultation}
             >
-              Book a free consultation
+              Book a meeting
             </Link>
           </Button>
         </PageActions>
@@ -56,35 +56,35 @@ export default function RootPage() {
 
       <div className="max-w-7xl mx-auto px-4 py-8 md:py-12 md:pb-10 lg:py-14 lg:pb-10 mt-24">
         <div className="lg:grid-cols-5 lg:max-w-none lg:mx-0 sm:row-gap-14 sm:gap-x-10 sm:grid-cols-6 sm:max-w-3xl gap-y-12 gap-x-8 items-center grid-cols-4 max-w-lg grid mx-auto">
-          <img
+          <Image
             alt="Transistor"
             src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"
             width="158"
             height="48"
             className="object-contain w-full max-h-12 col-span-2 lg:col-span-1"
           />
-          <img
+          <Image
             alt="Reform"
             src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg"
             width="158"
             height="48"
             className="object-contain w-full max-h-12 col-span-2 lg:col-span-1"
           />
-          <img
+          <Image
             alt="Tuple"
             src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg"
             width="158"
             height="48"
             className="object-contain w-full max-h-12 col-span-2 lg:col-span-1"
           />
-          <img
+          <Image
             alt="SavvyCal"
             src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"
             width="158"
             height="48"
             className="object-contain w-full max-h-12 col-span-2 lg:col-span-1"
           />
-          <img
+          <Image
             alt="Statamic"
             src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"
             width="158"
@@ -628,7 +628,7 @@ export default function RootPage() {
 
           <div className="flex flex-wrap items-center justify-between">
             <div className="flex items-center space-x-4">
-              <img alt="Think Throo" src="/logo.svg" className="h-7" />
+              <Image alt="Think Throo" src="/logo.svg" className="h-7" height={24} width={24} />
               <div className="text-gray-900 font-semibold">Think Throo</div>
             </div>
           </div>
