@@ -140,17 +140,7 @@ export default async function DocPage({ params }: DocPageProps) {
           </div>
         ) : null}
         <div className="pb-12 pt-8">
-          { 
-            (
-              user ||
-              doc.title?.toLowerCase() === "introduction"
-            ) &&
-            <Mdx code={doc.body.code} />
-          }
-          {
-            !user && doc.title?.toLowerCase() !== "introduction" && 
-            <ContentUnlockForm />
-          }
+          <Mdx code={doc.body.code} />
         </div>
         <DocsPager doc={doc} />
       </div>

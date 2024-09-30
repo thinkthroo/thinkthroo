@@ -60,14 +60,6 @@ export async function SiteHeader() {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
-            {
-              user ? 
-              <AccountMenu fullName={user.user_metadata.full_name} />
-              : 
-              <Button asChild size="sm" className="h-8">
-                <Link href="/signin">Login</Link>
-              </Button>
-            }
           </nav>
         </div>
       </div>

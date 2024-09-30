@@ -20,25 +20,58 @@ export function MainNav() {
       </Link>
       <nav className="flex items-center gap-4 text-sm lg:gap-6">
         <Link
-          href="/architecture"
+          href="https://app.thinkthroo.com/architecture"
           className={cn(
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/architecture") ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Modules
+          Architecture
         </Link>
         <Link
-          href="/best-practices"
+          href="https://app.thinkthroo.com/best-practices"
           className={cn(
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/best-practices") ? "text-foreground" : "text-foreground/60"
           )}
         >
+          Best Practices
+        </Link>
+        <Link
+          href="https://app.thinkthroo.com/production-grade-projects"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/production-grade-projects")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
+          Production-Grade Projects
+        </Link>
+        <Link
+          href="https://app.thinkthroo.com/build-from-scratch"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/build-from-scratch")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
+          Build From Scratch
+        </Link>
+        <Link
+          href="/pricing"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/production-grade-projects")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
           Pricing
         </Link>
         <Link
-          href="/production-grade-projects"
+          href="/blog"
           className={cn(
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/production-grade-projects")
@@ -49,7 +82,7 @@ export function MainNav() {
           Blog
         </Link>
         <Link
-          href="/build-from-scratch"
+          href="/contact"
           className={cn(
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/build-from-scratch")
