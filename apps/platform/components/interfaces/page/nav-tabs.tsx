@@ -10,48 +10,43 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 const architecture = [
   {
     name: "Tooling",
-    href: "#tooling",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/mail",
-  },
-  {
-    name: "Project Structure",
-    href: "#project-structure",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/mail",
+    href: "#tooling"
   },
   {
     name: "Components Structure",
-    href: "#components-structure",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/mail",
+    href: "#componentsStructure"
   },
   {
     name: "API Layer",
-    href: "#api-layer",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/dashboard",
+    href: "#apiLayer"
   },
   {
     name: "State Management",
-    href: "#state-management",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/cards",
+    href: "#stateManagement"
   },
   {
     name: "Error Handling",
-    href: "#error-handling",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/tasks",
+    href: "#errorHandling"
   },
   {
     name: "Testing",
-    href: "#testing",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/playground",
+    href: "#testing"
   },
   {
     name: "Performance",
-    href: "#performance",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/forms",
+    href: "#performance"
   },
   {
     name: "Security",
-    href: "#security",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/architecture/music",
+    href: "#security"
+  },
+  {
+    name: "Project Structure",
+    href: "#projectStructure"
+  },
+  {
+    name: "Deployment",
+    href: "#deployment"
   },
 ];
 
@@ -83,31 +78,5 @@ export function NavTabs({ className, ...props }: NavTabsProps) {
         <ScrollBar orientation="horizontal" className="invisible" />
       </ScrollArea>
     </div>
-  );
-}
-
-interface NavTabLinkProps {
-  pathname: string | null;
-}
-
-export function NavTabLink({ pathname }: NavTabLinkProps) {
-  const example = architecture.find((example) =>
-    pathname?.startsWith(example.href)
-  );
-
-  if (!example?.code) {
-    return null;
-  }
-
-  return (
-    <Link
-      href={example?.code}
-      target="_blank"
-      rel="nofollow"
-      className="absolute right-0 top-0 hidden items-center rounded-[0.5rem] text-sm font-medium md:flex"
-    >
-      View code
-      <ArrowRightIcon className="ml-1 h-4 w-4" />
-    </Link>
   );
 }
