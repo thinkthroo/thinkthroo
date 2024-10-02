@@ -1,14 +1,25 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons"
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+import { Icons } from "@/components/icons";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 export function MainNav() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <div className="mr-4 hidden md:flex">
@@ -23,53 +34,149 @@ export function MainNav() {
           href="https://app.thinkthroo.com/architecture"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/architecture") ? "text-foreground" : "text-foreground/60"
+            pathname?.startsWith("/architecture")
+              ? "text-foreground"
+              : "text-foreground/60"
           )}
         >
           Architecture
         </Link>
-        <Link
-          href="https://app.thinkthroo.com/best-practices"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/best-practices") ? "text-foreground" : "text-foreground/60"
-          )}
-        >
-          Best Practices
-        </Link>
-        <Link
-          href="https://app.thinkthroo.com/production-grade-projects"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/production-grade-projects")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Production-Grade Projects
-        </Link>
-        <Link
-          href="https://app.thinkthroo.com/build-from-scratch"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/build-from-scratch")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Build From Scratch
-        </Link>
-        <Link
-          href="/pricing"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/production-grade-projects")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Pricing
-        </Link>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger
+                className={cn(
+                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal"
+                )}
+              >
+                Courses
+              </NavigationMenuTrigger>
+              <NavigationMenuContent className="px-4 py-2 ">
+                  <Link 
+                    href="https://app.thinkthroo.com/best-practices"
+                    legacyBehavior 
+                    passHref
+                  >
+                    <NavigationMenuLink 
+                      className={
+                        navigationMenuTriggerStyle()
+                      }
+                    >
+                      Best Practices
+                    </NavigationMenuLink>
+                  </Link>
+                  <Link 
+                    href="https://app.thinkthroo.com/production-grade-projects"
+                    legacyBehavior 
+                    passHref
+                  >
+                    <NavigationMenuLink 
+                      className={
+                        navigationMenuTriggerStyle()
+                      }
+                    >
+                      Production-Grade Projects
+                    </NavigationMenuLink>
+                  </Link>
+                  <Link 
+                    href="https://app.thinkthroo.com/build-from-scratch"
+                    legacyBehavior 
+                    passHref
+                  >
+                    <NavigationMenuLink 
+                      className={
+                        navigationMenuTriggerStyle()
+                      }
+                    >
+                      Build From Scratch
+                    </NavigationMenuLink>
+                  </Link>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger
+                className={cn(
+                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal"
+                )}
+              >
+                Products
+              </NavigationMenuTrigger>
+              <NavigationMenuContent className="px-4 py-2 ">
+                  <Link 
+                    href="/web-development" 
+                    legacyBehavior 
+                    passHref
+                  >
+                    <NavigationMenuLink 
+                      className={
+                        navigationMenuTriggerStyle() + " min-w-12"
+                      }
+                    >
+                      thinkthroo/ui
+                    </NavigationMenuLink>
+                  </Link>
+                  <Link 
+                    href="/web-development" 
+                    legacyBehavior 
+                    passHref
+                  >
+                    <NavigationMenuLink 
+                      className={
+                        navigationMenuTriggerStyle() + " min-w-12"
+                      }
+                    >
+                      thinkthroo/cli
+                    </NavigationMenuLink>
+                  </Link>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger
+                className={cn(
+                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal"
+                )}
+              >
+                Services
+              </NavigationMenuTrigger>
+              <NavigationMenuContent className="px-4 py-2 ">
+                  <Link 
+                    href="/web-development" 
+                    legacyBehavior 
+                    passHref
+                  >
+                    <NavigationMenuLink 
+                      className={
+                        navigationMenuTriggerStyle()
+                      }
+                    >
+                      Web Development
+                    </NavigationMenuLink>
+                  </Link>
+                  <Link 
+                    href="/technical-writing" 
+                    legacyBehavior 
+                    passHref
+                  >
+                    <NavigationMenuLink 
+                      className={
+                        navigationMenuTriggerStyle()
+                      }
+                    >
+                      Technical Writing
+                    </NavigationMenuLink>
+                  </Link>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
         <Link
           href="/blog"
           className={cn(
@@ -94,5 +201,5 @@ export function MainNav() {
         </Link>
       </nav>
     </div>
-  )
+  );
 }

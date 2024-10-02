@@ -55,7 +55,7 @@ export default function RootPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-8 md:py-12 md:pb-10 lg:py-14 lg:pb-10 mt-24">
-        <div className="lg:grid-cols-5 lg:max-w-none lg:mx-0 sm:row-gap-14 sm:gap-x-10 sm:grid-cols-6 sm:max-w-3xl gap-y-12 gap-x-8 items-center grid-cols-4 max-w-lg grid mx-auto">
+        {/* <div className="lg:grid-cols-5 lg:max-w-none lg:mx-0 sm:row-gap-14 sm:gap-x-10 sm:grid-cols-6 sm:max-w-3xl gap-y-12 gap-x-8 items-center grid-cols-4 max-w-lg grid mx-auto">
           <Image
             alt="Transistor"
             src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"
@@ -91,7 +91,7 @@ export default function RootPage() {
             height="48"
             className="object-contain w-full max-h-12 col-span-2 lg:col-span-1"
           />
-        </div>
+        </div> */}
         <div className="justify-center flex mt-16">
           <div className="ring-1 ring-gray-900/10 ring-inset shadow-sm text-gray-600 leading-6 text-sm leading-5 py-1.5 px-4 rounded-full relative">
             <span className="hidden md:inline">
