@@ -14,7 +14,11 @@ export interface DocsSidebarNavProps {
 export function DocsSidebarNav({ config }: DocsSidebarNavProps) {
   const pathname = usePathname()
 
-  const items = config.sidebarNav
+  console.log("pathname", pathname)
+
+  // let foundSidenav = config.sidebarNav.find(sn => sn.href === pathname);
+
+  const items = config.shadcnToolingNav
 
   return items.length ? (
     <div className="w-full">

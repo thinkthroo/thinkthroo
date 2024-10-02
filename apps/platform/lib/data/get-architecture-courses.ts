@@ -1,7 +1,7 @@
 const tooling = [{
     title: "Tooling in Shadcn-ui/ui",
     description: "Learn the tooling in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -12,7 +12,7 @@ const tooling = [{
 }, {
     title: "Tooling in Supabase",
     description: "Learn the tooling in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -23,7 +23,7 @@ const tooling = [{
 }, {
     title: "Tooling in Cal.com",
     description: "Learn the tooling in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -34,7 +34,7 @@ const tooling = [{
 }, {
     title: "Tooling in Lobechat",
     description: "Learn the tooling in Lobechat",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -47,7 +47,7 @@ const tooling = [{
 const componentsStructure = [{
     title: "Components Structure In Shadcn-ui/ui",
     description: "Learn how the components are organized in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -58,7 +58,7 @@ const componentsStructure = [{
 }, {
     title: "Components Structure In Supabase",
     description: "Learn how the components are organized in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -69,7 +69,7 @@ const componentsStructure = [{
 }, {
     title: "Components Structure In Cal.com",
     description: "Learn how the components are organized in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -80,7 +80,7 @@ const componentsStructure = [{
 }, {
     title: "Components Structure In Lobechat",
     description: "Learn how the components are organized in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -93,7 +93,7 @@ const componentsStructure = [{
 const apiLayer = [{
     title: "API layer In Shadcn-ui/ui",
     description: "Learn the API layer used in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -104,7 +104,7 @@ const apiLayer = [{
 }, {
     title: "API layer In Supabase",
     description: "Learn the API layer used in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -115,7 +115,7 @@ const apiLayer = [{
 }, {
     title: "API layer In Cal.com",
     description: "Learn the API layer used in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -126,7 +126,7 @@ const apiLayer = [{
 }, {
     title: "API layer In Lobechat",
     description: "Learn the API layer used in Lobechat",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -139,7 +139,7 @@ const apiLayer = [{
 const stateManagement = [{
     title: "State Management in Shadcn-ui/ui",
     description: "Learn the state management in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -150,7 +150,7 @@ const stateManagement = [{
 }, {
     title: "State Management in Supabase",
     description: "Learn the state management in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -161,7 +161,7 @@ const stateManagement = [{
 }, {
     title: "State Management In Cal.com",
     description: "Learn the state management used in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -172,7 +172,7 @@ const stateManagement = [{
 }, {
     title: "State Management In Lobechat",
     description: "Learn the state management used in Lobechat",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -185,7 +185,7 @@ const stateManagement = [{
 const errorHandling = [{
     title: "Error Handling in Shadcn-ui/ui",
     description: "Learn the error handling in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -196,7 +196,7 @@ const errorHandling = [{
 }, {
     title: "Error Handling in Supabase",
     description: "Learn the error handling in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -207,7 +207,7 @@ const errorHandling = [{
 }, {
     title: "Error Handling In Cal.com",
     description: "Learn the error handling used in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -218,7 +218,7 @@ const errorHandling = [{
 }, {
     title: "Error Handling In Lobechat",
     description: "Learn the error handling used in Lobechat",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -231,7 +231,7 @@ const errorHandling = [{
 const testing = [{
     title: "Testing in Shadcn-ui/ui",
     description: "Learn the testing in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -242,7 +242,7 @@ const testing = [{
 }, {
     title: "Testing in Supabase",
     description: "Learn the testing in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -253,7 +253,7 @@ const testing = [{
 }, {
     title: "Testing In Cal.com",
     description: "Learn the testing in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -264,7 +264,7 @@ const testing = [{
 }, {
     title: "Testing In Lobechat",
     description: "Learn the testing in Lobechat",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -277,7 +277,7 @@ const testing = [{
 const performance = [{
     title: "Performance Optimizations in Shadcn-ui/ui",
     description: "Learn the performance optimizations in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -288,7 +288,7 @@ const performance = [{
 }, {
     title: "Performance Optimizations in Supabase",
     description: "Learn the performance optimizations in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -299,7 +299,7 @@ const performance = [{
 }, {
     title: "Performance Optimizations in Cal.com",
     description: "Learn the performance optimizations in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -310,7 +310,7 @@ const performance = [{
 }, {
     title: "Performance Optimizations in Lobechat",
     description: "Learn the performance optimizations in Lobechat",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -323,7 +323,7 @@ const performance = [{
 const security = [{
     title: "Security in Shadcn-ui/ui",
     description: "Learn the security in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/security/supabase/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -334,7 +334,7 @@ const security = [{
 }, {
     title: "Security in Supabase",
     description: "Learn the security in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/security/supabase/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -345,7 +345,7 @@ const security = [{
 }, {
     title: "Security in Cal.com",
     description: "Learn the security in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/security/supabase/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -356,7 +356,7 @@ const security = [{
 }, {
     title: "Security in Lobechat",
     description: "Learn the security in Lobechat",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/security/supabase/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -369,7 +369,7 @@ const security = [{
 const projectStructure = [{
     title: "Project Structure in Shadcn-ui/ui",
     description: "Learn the project structure in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -380,7 +380,7 @@ const projectStructure = [{
 }, {
     title: "Project Structure in Supabase",
     description: "Learn the project structure in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -391,7 +391,7 @@ const projectStructure = [{
 }, {
     title: "Project Structure in Cal.com",
     description: "Learn the project structure in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -402,7 +402,7 @@ const projectStructure = [{
 }, {
     title: "Project Structure in Lobechat",
     description: "Learn the project structure in Lobechat",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -415,7 +415,7 @@ const projectStructure = [{
 const deployment = [{
     title: "Deployment in Shadcn-ui/ui",
     description: "Learn the deployment mechanism used in Shadcn-ui/ui",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -426,7 +426,7 @@ const deployment = [{
 }, {
     title: "Deployment in Supabase",
     description: "Learn the deployment mechanism in Supabase",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -437,7 +437,7 @@ const deployment = [{
 }, {
     title: "Deployment in Cal.com",
     description: "Learn the deployment in Cal.com",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
@@ -448,7 +448,7 @@ const deployment = [{
 }, {
     title: "Deployment in Lobechat",
     description: "Learn the deployment in Lobechat",
-    slug: "/course/components-structure-in-shadcn-ui/introduction",
+    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
     chapters: 1,
     lessons: 4,
     concept: {

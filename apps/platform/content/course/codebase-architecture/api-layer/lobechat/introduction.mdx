@@ -1,0 +1,45 @@
+[Architecture: API Layer in LobeChat]
+[C: Introduction]
+
+In this guide, you will learn the API layer used in [Lobe Chat](https://github.com/lobehub/lobe-chat/tree/main). 
+
+🤯 Lobe Chat is an open-source, modern-design AI chat framework. Supports 
+  Multi AI Providers( OpenAI / Claude 3 / Gemini / Ollama / Azure / DeepSeek), 
+Knowledge Base (file upload / knowledge management / RAG ), Multi-Modals (Vision/TTS) and plugin system. 
+  One-click FREE deployment of your private ChatGPT/ Claude application. 
+
+# What's API Layer?
+In the context of web applications, API layer means communicating with your server to get/mutate data.
+Inspired by [Bulletproof React's API Layer](https://github.com/alan2207/bulletproof-react/blob/master/docs/api-layer.md)
+We analyze the API Layer in the [Lobechat](https://github.com/lobehub/lobe-chat/tree/main). 
+
+# Lobe Chat API Layer
+To study the API Layer, we pick a page on https://chat-preview.lobehub.com/ and look at the source code except we are
+narrowing down our expedition to focus on the API Layer.
+
+# Concepts you will learn:
+You will be learning the API layer used in the Lobe Chat. 
+Read through this guide to understand how Lobe Chat's API layer works.
+
+## Data fetched in Discover Home Page
+1. [Discover Home Page]
+(https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/page.tsx)
+2. [DiscoverService](https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L27)
+
+## Data fetched in Chat Page
+1. [Session List](https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/chat/%40session/features/SessionListContent/DefaultMode.tsx#L29)
+2. [useFetchSessions](https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L200)
+3. [useClientDataSWR](https://github.com/lobehub/lobe-chat/blob/main/src/libs/swr/index.ts#L22C14-L22C30)
+
+# References:
+API layer example 1:
+1. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/page.tsx
+2. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/Client.tsx
+3. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/features/AssistantList.tsx
+4. https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L28
+5. https://github.com/lobehub/lobe-chat/blob/main/src/server/modules/AssistantStore/index.ts
+
+API layer example 2:
+1. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/chat/%40session/features/SessionListContent/DefaultMode.tsx
+2. https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L200
+3. https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L11
