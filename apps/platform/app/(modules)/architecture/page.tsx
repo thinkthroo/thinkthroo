@@ -51,7 +51,9 @@ export default function ArchitecturePage() {
     return (
       <>
         {
-          props?.courses.map((course, index: number) => <div key={index} className="relative flex flex-col overflow-hidden rounded-xl border shadow transition-all duration-200 ease-in-out hover:z-30">
+          props?.courses.map((course, index: number) => 
+            <Link href={course.slug}>
+            <div key={index} className="relative flex flex-col overflow-hidden rounded-xl border shadow transition-all duration-200 ease-in-out hover:z-30">
                 <div className="items-center gap-2 relative z-20 flex justify-end border-b bg-card px-3 py-2.5 text-card-foreground">
                   <div className="flex items-center gap-1.5 pl-1 text-[13px] text-muted-foreground">
                     {course.concept.label}
@@ -95,30 +97,32 @@ export default function ArchitecturePage() {
                     </Link>
                   </div>
                 </div>
-                <div className="relative z-10 [&amp;>div]:rounded-none [&amp;>div]:border-none [&amp;>div]:shadow-none">
-                  <div className="bg-card text-card-foreground shadow">
-                    <div className="flex flex-col space-y-1.5 p-6">
-                      <h3 className="font-semibold leading-none tracking-tight">
-                        {course.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {course.description}
-                      </p>
-                    </div>
-                    <div className="p-6 pt-0">
-                      <div className="grid grid-cols-3 gap-2">
-                        {
-                          course.tags.map((tag, index: number) => <div key={index} className="flex items-center">
-                              <Icons.tag />
-                              {tag}
-                            </div>
-                          )
-                        }
+                
+                  <div className="relative z-10 [&amp;>div]:rounded-none [&amp;>div]:border-none [&amp;>div]:shadow-none">
+                    <div className="bg-card text-card-foreground shadow">
+                      <div className="flex flex-col space-y-1.5 p-6">
+                        <h3 className="font-semibold leading-none tracking-tight">
+                          {course.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {course.description}
+                        </p>
+                      </div>
+                      <div className="p-6 pt-0">
+                        <div className="grid grid-cols-3 gap-2">
+                          {
+                            course.tags.map((tag, index: number) => <div key={index} className="flex items-center">
+                                <Icons.tag />
+                                {tag}
+                              </div>
+                            )
+                          }
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
+              </Link>
           )
         }
       </>

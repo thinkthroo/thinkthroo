@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import Metrics from "@/components/metrics";
 import { siteConfig } from "@/config/site"
+import ChatwootWidget from "@/components/interfaces/integrations/chatwoot";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -74,6 +75,7 @@ export default function RootLayout({
           {children}
         </div>
         <Metrics />
+        <ChatwootWidget />
       </body>
     </html>
   );

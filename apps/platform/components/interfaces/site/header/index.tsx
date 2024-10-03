@@ -26,6 +26,15 @@ export async function SiteHeader() {
           <div className="w-full flex-1 md:w-auto md:flex-none">
           </div>
           <nav className="flex items-center">
+            <Button asChild size="sm" variant="outline">
+              <Link
+                target="_blank"
+                rel="noreferrer"
+                href={siteConfig.links.consultation}
+              >
+                Book a free consultation
+              </Link>
+            </Button>
             <Link
               href={siteConfig.links.github}
               target="_blank"
