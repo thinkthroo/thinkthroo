@@ -52,8 +52,8 @@ export default function ArchitecturePage() {
       <>
         {
           props?.courses.map((course, index: number) => 
-            <Link href={course.slug}>
-            <div key={index} className="relative flex flex-col overflow-hidden rounded-xl border shadow transition-all duration-200 ease-in-out hover:z-30">
+            <Link key={index} href={course.slug}>
+            <div className="relative flex flex-col overflow-hidden rounded-xl border shadow transition-all duration-200 ease-in-out hover:z-30">
                 <div className="items-center gap-2 relative z-20 flex justify-end border-b bg-card px-3 py-2.5 text-card-foreground">
                   <div className="flex items-center gap-1.5 pl-1 text-[13px] text-muted-foreground">
                     {course.concept.label}
