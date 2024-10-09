@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { SidebarNavItem } from "@/types/nav"
 
-import { type DocsConfig } from "@/config/docs"
+import { getSidenavConfig, type DocsConfig } from "@/config/docs"
 import { cn } from "@/lib/utils"
 
 export interface DocsSidebarNavProps {
@@ -14,11 +14,9 @@ export interface DocsSidebarNavProps {
 export function DocsSidebarNav({ config }: DocsSidebarNavProps) {
   const pathname = usePathname()
 
-  console.log("pathname", pathname)
+  // const items = getSidenavConfig(pathname);
 
-  // let foundSidenav = config.sidebarNav.find(sn => sn.href === pathname);
-
-  const items = config.shadcnToolingNav
+  const items = config.sidebarNav
 
   return items.length ? (
     <div className="w-full">

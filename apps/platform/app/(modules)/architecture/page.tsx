@@ -81,20 +81,17 @@ export default function ArchitecturePage() {
                       {course.lessons} Lessons
                     </button>
                     <div data-orientation="vertical" role="none" className="shrink-0 bg-border w-[1px] mx-0 hidden h-4 md:flex"></div>
-                    <Link
-                      href={course.slug}
+                    
+                    <button
+                      className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border-input hover:text-accent-foreground h-6 rounded-[6px] border bg-transparent px-2 text-xs text-foreground shadow-none hover:bg-muted dark:text-foreground"
+                      type="button"
+                      aria-haspopup="dialog"
+                      aria-expanded="false"
+                      aria-controls="radix-:rhu:"
+                      data-state="closed"
                     >
-                      <button
-                        className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border-input hover:text-accent-foreground h-6 rounded-[6px] border bg-transparent px-2 text-xs text-foreground shadow-none hover:bg-muted dark:text-foreground"
-                        type="button"
-                        aria-haspopup="dialog"
-                        aria-expanded="false"
-                        aria-controls="radix-:rhu:"
-                        data-state="closed"
-                      >
-                        Read
-                      </button>
-                    </Link>
+                      Read
+                    </button>
                   </div>
                 </div>
                 

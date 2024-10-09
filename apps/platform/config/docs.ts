@@ -1,5 +1,10 @@
 import { Icons } from "@/components/icons"
 import { SidebarNavItem } from "@/types/nav"
+import { introUrl as shadcnComponentsStructureIntroUrl, shadcnComponentsStructureNav } from "./codebase-architecture/components-structure/shadcn-ui"
+import { introUrl as lobechatApiLayerIntroUrl, lobechatApiLayerNav } from "./codebase-architecture/api-layer/lobechat"
+import { introUrl as calcomErrorHandlingIntroUrl, calcomErrorHandlingNav } from "./codebase-architecture/error-handling/cal-com"
+import { introUrl as supabaseSecurityIntroUrl, supabaseSecurityNav } from "./codebase-architecture/security/supabase"
+import { introUrl as shadcnToolingIntroUrl, shadcnToolingNav } from "./codebase-architecture/tooling/shadcn-ui"
 
 export interface NavItem {
     title: string
@@ -14,12 +19,7 @@ export interface MainNavItem extends NavItem {}
 
 export interface DocsConfig {
   mainNav: MainNavItem[],
-  sidebarNav: SidebarNavItem[],
-  shadcnToolingNav: SidebarNavItem[],
-  supabaseSecurityNav: SidebarNavItem[],
-  calcomErrorHandlingNav: SidebarNavItem[],
-  shadcnComponentsStructureNav: SidebarNavItem[],
-  lobechatApiLayerNav: SidebarNavItem[],
+  sidebarNav: SidebarNavItem[]
 }
 
 export const docsConfig: DocsConfig = {
@@ -43,95 +43,49 @@ export const docsConfig: DocsConfig = {
   ],
   sidebarNav: [
     {
-      title: "Tooling in Shadcn-ui/ui",
-      href: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
-      items: [
-        {
-          title: "Introduction",
-          href: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
-          items: [],
-        }
-      ],
-    },    
-  ],
-  shadcnToolingNav: [
-    {
-      title: "Tooling in Shadcn-ui/ui",
-      href: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
-      items: [
-        {
-          title: "Introduction",
-          href: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
-          items: [],
-        }
-      ],
-    },
-  ],
-  supabaseSecurityNav: [
-    {
-      title: "Security in Supabase",
-      href: "/course/codebase-architecture/security/supabase/introduction",
-      items: [
-        {
-          title: "Introduction",
-          href: "/course/codebase-architecture/security/supabase/introduction",
-          items: [],
-        }
-      ],
-    },
-  ],
-  calcomErrorHandlingNav: [
-    {
-      title: "Error Handling in Cal.com",
-      href: "/course/codebase-architecture/error-handling/cal-com/introduction",
-      items: [
-        {
-          title: "Introduction",
-          href: "/course/codebase-architecture/error-handling/cal-com/introduction",
-          items: [],
-        }
-      ],
-    },
-  ],
-  shadcnComponentsStructureNav: [
-    {
       title: "Components Structure In Shadcn-ui/ui",
-      href: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
+      href: `/course/codebase-architecture/components-structure/shadcn-ui/introduction`,
       items: [
         {
           title: "Introduction",
-          href: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
+          href: `/course/codebase-architecture/components-structure/shadcn-ui/introduction`,
           items: [],
         },
         {
           title: "Home Page",
-          href: "/course/codebase-architecture/components-structure/shadcn-ui/home-page",
+          href: `/course/codebase-architecture/components-structure/shadcn-ui/home-page`,
           items: [],
         },
         {
           title: "Mail Example Page",
-          href: "/course/codebase-architecture/components-structure/shadcn-ui/mail-example-page",
+          href: `/course/codebase-architecture/components-structure/shadcn-ui/mail-example-page`,
           items: [],
         },
         {
           title: "Charts Page",
-          href: "/course/codebase-architecture/components-structure/shadcn-ui/charts-page",
+          href: `/course/codebase-architecture/components-structure/shadcn-ui/charts-page`,
           items: [],
         },
       ],
     },
-  ],
-  lobechatApiLayerNav: [
-    {
-      title: "API Layer in Lobechat",
-      href: "/course/codebase-architecture/api-layer/lobechat/introduction",
-      items: [
-        {
-          title: "Introduction",
-          href: "/course/codebase-architecture/api-layer/lobechat/introduction",
-          items: [],
-        }
-      ],
-    },
-  ]
+  ]  
+}
+
+let sidebarNav = new Map();
+sidebarNav.set(shadcnComponentsStructureIntroUrl, shadcnComponentsStructureNav)
+sidebarNav.set(lobechatApiLayerIntroUrl, lobechatApiLayerNav)
+sidebarNav.set(calcomErrorHandlingIntroUrl, calcomErrorHandlingNav)
+sidebarNav.set(supabaseSecurityIntroUrl, supabaseSecurityNav)
+sidebarNav.set(shadcnToolingIntroUrl, shadcnToolingNav)
+
+export function getSidenavConfig(pathname: String): SidebarNavItem[] {
+
+  let visitedSidebarNav = sidebarNav.get(pathname);
+  if (visitedSidebarNav) {
+    docsConfig.sidebarNav = visitedSidebarNav
+
+    return docsConfig.sidebarNav
+  } 
+
+  return docsConfig.sidebarNav
 }

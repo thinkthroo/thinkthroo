@@ -616,7 +616,7 @@ export default function RootPage() {
           </div>
         </dl>
       </div>
-
+        {/* FIXME: Should be moved to SiteFooter and placed in layout.tsx */}
       <div className="max-w-[80rem] mt-24 mx-auto px-6 md:px-8">
         <footer className="pt-24 pb-24 md:pt-32 md:pb-32 mt-36 border-t border-gray-900/10 relative">
           <h2
