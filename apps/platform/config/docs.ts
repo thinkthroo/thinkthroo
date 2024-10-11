@@ -1,10 +1,10 @@
 import { Icons } from "@/components/icons"
 import { SidebarNavItem } from "@/types/nav"
-import { introUrl as shadcnComponentsStructureIntroUrl, shadcnComponentsStructureNav } from "./codebase-architecture/components-structure/shadcn-ui"
-import { introUrl as lobechatApiLayerIntroUrl, lobechatApiLayerNav } from "./codebase-architecture/api-layer/lobechat"
-import { introUrl as calcomErrorHandlingIntroUrl, calcomErrorHandlingNav } from "./codebase-architecture/error-handling/cal-com"
-import { introUrl as supabaseSecurityIntroUrl, supabaseSecurityNav } from "./codebase-architecture/security/supabase"
-import { introUrl as shadcnToolingIntroUrl, shadcnToolingNav } from "./codebase-architecture/tooling/shadcn-ui"
+import { baseUrl as shadcnComponentsStructureBaseUrl, shadcnComponentsStructureNav } from "./codebase-architecture/components-structure/shadcn-ui"
+import { baseUrl as lobechatApiLayerBaseUrl, lobechatApiLayerNav } from "./codebase-architecture/api-layer/lobechat"
+import { baseUrl as calcomErrorHandlingBaseUrl, calcomErrorHandlingNav } from "./codebase-architecture/error-handling/cal-com"
+import { baseUrl as supabaseSecurityBaseUrl, supabaseSecurityNav } from "./codebase-architecture/security/supabase"
+import { baseUrl as shadcnToolingBaseUrl, shadcnToolingNav } from "./codebase-architecture/tooling/shadcn-ui"
 
 export interface NavItem {
     title: string
@@ -44,7 +44,7 @@ export const docsConfig: DocsConfig = {
   sidebarNav: [
     {
       title: "Components Structure In Shadcn-ui/ui",
-      href: `/course/codebase-architecture/components-structure/shadcn-ui/introduction`,
+      href: `/course/codebase-architecture/components-structure/shadcn-ui`,
       items: [
         {
           title: "Introduction",
@@ -72,20 +72,17 @@ export const docsConfig: DocsConfig = {
 }
 
 let sidebarNav = new Map();
-sidebarNav.set(shadcnComponentsStructureIntroUrl, shadcnComponentsStructureNav)
-sidebarNav.set(lobechatApiLayerIntroUrl, lobechatApiLayerNav)
-sidebarNav.set(calcomErrorHandlingIntroUrl, calcomErrorHandlingNav)
-sidebarNav.set(supabaseSecurityIntroUrl, supabaseSecurityNav)
-sidebarNav.set(shadcnToolingIntroUrl, shadcnToolingNav)
+sidebarNav.set(shadcnComponentsStructureBaseUrl, shadcnComponentsStructureNav)
+sidebarNav.set(lobechatApiLayerBaseUrl, lobechatApiLayerNav)
+sidebarNav.set(calcomErrorHandlingBaseUrl, calcomErrorHandlingNav)
+sidebarNav.set(supabaseSecurityBaseUrl, supabaseSecurityNav)
+sidebarNav.set(shadcnToolingBaseUrl, shadcnToolingNav)
 
 export function getSidenavConfig(pathname: String): SidebarNavItem[] {
-
-  let visitedSidebarNav = sidebarNav.get(pathname);
-  if (visitedSidebarNav) {
-    docsConfig.sidebarNav = visitedSidebarNav
-
-    return docsConfig.sidebarNav
-  } 
-
-  return docsConfig.sidebarNav
+  // This slice is required since the key is base url to dynamically fetch sidebar nav items
+  // based on course selected and found using baseUrl instead of introUrl safe as baseUrl
+  // is common in a couse
+  // Example: "/course/codebase-architecture/components-structure/shadcn-ui/charts-page" becomes
+  // "/course/codebase-architecture/components-structure/shadcn-ui" which is a baseUrl and is the key.
+  return sidebarNav.get(pathname.slice(0, pathname.lastIndexOf("/")))
 }

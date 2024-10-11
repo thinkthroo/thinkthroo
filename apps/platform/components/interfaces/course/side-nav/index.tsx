@@ -14,9 +14,7 @@ export interface DocsSidebarNavProps {
 export function DocsSidebarNav({ config }: DocsSidebarNavProps) {
   const pathname = usePathname()
 
-  // const items = getSidenavConfig(pathname);
-
-  const items = config.sidebarNav
+  const items = getSidenavConfig(pathname);
 
   return items.length ? (
     <div className="w-full">
