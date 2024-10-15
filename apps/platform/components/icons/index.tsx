@@ -1,25 +1,38 @@
-type IconProps = React.HTMLAttributes<SVGElement>
+type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
   logo: (props: IconProps) => (
-    <svg 
-        width="224" 
-        height="216" 
-        viewBox="0 0 224 216" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
+    <svg
+      width="224"
+      height="216"
+      viewBox="0 0 224 216"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
-        <ellipse cx="112" cy="108" rx="112" ry="108" fill="white"/>
-        <circle cx="112.5" cy="108.5" r="87.5" fill="black"/>
-        <circle cx="112" cy="108" r="72" fill="white"/>
-        <circle cx="112" cy="108" r="63" fill="black"/>
-        <line x1="112" y1="15" x2="112" y2="39" stroke="white" stroke-width="8"/>
-        <line x1="112" y1="180" x2="112" y2="204" stroke="white" stroke-width="8"/>
-        <line x1="180" y1="104" x2="204" y2="104" stroke="white" stroke-width="8"/>
-        <line x1="19" y1="104" x2="43" y2="104" stroke="white" stroke-width="8"/>
+      <ellipse cx="112" cy="108" rx="112" ry="108" fill="white" />
+      <circle cx="112.5" cy="108.5" r="87.5" fill="black" />
+      <circle cx="112" cy="108" r="72" fill="white" />
+      <circle cx="112" cy="108" r="63" fill="black" />
+      <line x1="112" y1="15" x2="112" y2="39" stroke="white" stroke-width="8" />
+      <line
+        x1="112"
+        y1="180"
+        x2="112"
+        y2="204"
+        stroke="white"
+        stroke-width="8"
+      />
+      <line
+        x1="180"
+        y1="104"
+        x2="204"
+        y2="104"
+        stroke="white"
+        stroke-width="8"
+      />
+      <line x1="19" y1="104" x2="43" y2="104" stroke="white" stroke-width="8" />
     </svg>
-
   ),
   tag: (props: IconProps) => (
     <svg
@@ -156,4 +169,25 @@ export const Icons = {
       <path d="M21 12a9 9 0 1 1-6.219-8.56" />
     </svg>
   ),
-}
+  linkedin: (props: IconProps) => (
+    <svg
+      // xmlns="http://www.w3.org/2000/svg"
+      // viewBox="0 0 16 16"
+      // fill="none"
+      // stroke="none"
+      // className="sbui-icon"
+      // width="100%"
+      // height="100%"
+      {...props}
+      height="23"
+      viewBox="0 0 1200 1227"
+      width="23"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill="currentColor"
+        d="M12.6009 0.903908H15.0544L9.69434 7.03008L16 15.3664H11.0627L7.19566 10.3105L2.77087 15.3664H0.31595L6.04904 8.81379L0 0.903908H5.06262L8.55811 5.52524L12.6009 0.903908ZM11.7399 13.8979H13.0993L4.32392 2.29528H2.86506L11.7399 13.8979Z"
+      ></path>
+    </svg>
+  ),
+};

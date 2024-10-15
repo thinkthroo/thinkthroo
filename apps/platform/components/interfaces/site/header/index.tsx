@@ -32,7 +32,7 @@ export async function SiteHeader() {
                 rel="noreferrer"
                 href={siteConfig.links.consultation}
               >
-                Book a free consultation
+                Book a meeting
               </Link>
             </Button>
             <Link

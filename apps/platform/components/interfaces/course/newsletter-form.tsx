@@ -76,10 +76,10 @@ export function NewsLetterForm() {
         </form>
       </CardContent>
       <CardFooter>
-        <p className="text-sm text-muted-foreground">
+        {/* <p className="text-sm text-muted-foreground">
           No spam, just valuable content. Get weekly tips and insights from the best
           open-source projects.
-        </p>
+        </p> */}
         {/* <p className="text-sm text-muted-foreground">
           Plus, 
         </p> */}

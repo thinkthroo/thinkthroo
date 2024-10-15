@@ -7,6 +7,7 @@ import { TableOfContents } from "@/lib/toc"
 import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
 import { NewsLetterForm } from "./newsletter-form"
+import ShareArticleActions from "./share-article-actions"
 
 interface TocProps {
   toc: TableOfContents
@@ -35,6 +36,8 @@ export function DashboardTableOfContents({ toc }: TocProps) {
     <div className="space-y-2">
       <p className="font-medium">On This Page</p>
       <Tree tree={toc} activeItem={activeHeading} />
+      <p className="font-small">Share this article</p>
+      <ShareArticleActions />
       <NewsLetterForm />
     </div>
   )

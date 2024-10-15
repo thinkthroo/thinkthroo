@@ -5,6 +5,7 @@ import { baseUrl as lobechatApiLayerBaseUrl, lobechatApiLayerNav } from "./codeb
 import { baseUrl as calcomErrorHandlingBaseUrl, calcomErrorHandlingNav } from "./codebase-architecture/error-handling/cal-com"
 import { baseUrl as supabaseSecurityBaseUrl, supabaseSecurityNav } from "./codebase-architecture/security/supabase"
 import { baseUrl as shadcnToolingBaseUrl, shadcnToolingNav } from "./codebase-architecture/tooling/shadcn-ui"
+import { baseUrl as calcomApiLayerBaseUrl, calcomApiLayerNav } from "./codebase-architecture/api-layer/calcom"
 
 export interface NavItem {
     title: string
@@ -72,10 +73,16 @@ export const docsConfig: DocsConfig = {
 }
 
 let sidebarNav = new Map();
-sidebarNav.set(shadcnComponentsStructureBaseUrl, shadcnComponentsStructureNav)
+
 sidebarNav.set(lobechatApiLayerBaseUrl, lobechatApiLayerNav)
+sidebarNav.set(calcomApiLayerBaseUrl, calcomApiLayerNav)
+
+sidebarNav.set(shadcnComponentsStructureBaseUrl, shadcnComponentsStructureNav)
+
 sidebarNav.set(calcomErrorHandlingBaseUrl, calcomErrorHandlingNav)
+
 sidebarNav.set(supabaseSecurityBaseUrl, supabaseSecurityNav)
+
 sidebarNav.set(shadcnToolingBaseUrl, shadcnToolingNav)
 
 export function getSidenavConfig(pathname: String): SidebarNavItem[] {
