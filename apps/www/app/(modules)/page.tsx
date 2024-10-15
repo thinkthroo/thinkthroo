@@ -26,7 +26,7 @@ export default function RootPage() {
               href="https://app.thinkthroo.com/architecture"
               target="_blank"
             >
-              Read Free Architectural Guides
+              Read Architectural Guides
             </Link>
           </Button>
           <Button asChild size="sm" variant="outline">

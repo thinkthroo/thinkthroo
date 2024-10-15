@@ -39,7 +39,18 @@ export function MainNav() {
               : "text-foreground/60"
           )}
         >
-          Architecture
+          Components
+        </Link>
+        <Link
+          href="https://app.thinkthroo.com/architecture"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/architecture")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
+          Codebase Architecture
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
@@ -49,48 +60,19 @@ export function MainNav() {
                   "transition-colors hover:text-foreground/80 text-foreground/60 font-normal"
                 )}
               >
-                Courses
+                Services
               </NavigationMenuTrigger>
               <NavigationMenuContent className="px-4 py-2 ">
-                  <Link 
-                    href="https://app.thinkthroo.com/best-practices"
-                    legacyBehavior 
-                    passHref
-                  >
-                    <NavigationMenuLink 
-                      className={
-                        navigationMenuTriggerStyle()
-                      }
-                    >
-                      Best Practices
-                    </NavigationMenuLink>
-                  </Link>
-                  <Link 
-                    href="https://app.thinkthroo.com/production-grade-projects"
-                    legacyBehavior 
-                    passHref
-                  >
-                    <NavigationMenuLink 
-                      className={
-                        navigationMenuTriggerStyle()
-                      }
-                    >
-                      Production-Grade Projects
-                    </NavigationMenuLink>
-                  </Link>
-                  <Link 
-                    href="https://app.thinkthroo.com/build-from-scratch"
-                    legacyBehavior 
-                    passHref
-                  >
-                    <NavigationMenuLink 
-                      className={
-                        navigationMenuTriggerStyle()
-                      }
-                    >
-                      Build From Scratch
-                    </NavigationMenuLink>
-                  </Link>
+                <Link href="/web-development" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Bespoke Web Development
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/technical-writing" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Technical Writing
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
@@ -106,32 +88,34 @@ export function MainNav() {
                 Products
               </NavigationMenuTrigger>
               <NavigationMenuContent className="px-4 py-2 ">
-                  <Link 
-                    href="/web-development" 
-                    legacyBehavior 
-                    passHref
+                <Link href="/web-development" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={navigationMenuTriggerStyle()}
                   >
-                    <NavigationMenuLink 
-                      className={
-                        navigationMenuTriggerStyle() + " min-w-12"
-                      }
-                    >
-                      thinkthroo/ui
-                    </NavigationMenuLink>
-                  </Link>
-                  <Link 
-                    href="/web-development" 
-                    legacyBehavior 
-                    passHref
+                    CRM Application
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/web-development" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={navigationMenuTriggerStyle()}
                   >
-                    <NavigationMenuLink 
-                      className={
-                        navigationMenuTriggerStyle() + " min-w-12"
-                      }
-                    >
-                      thinkthroo/cli
-                    </NavigationMenuLink>
-                  </Link>
+                    Invoice Application
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/web-development" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    Digital Signature
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/web-development" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    Email Marketing
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
@@ -144,35 +128,36 @@ export function MainNav() {
                   "transition-colors hover:text-foreground/80 text-foreground/60 font-normal"
                 )}
               >
-                Services
+                Courses
               </NavigationMenuTrigger>
               <NavigationMenuContent className="px-4 py-2 ">
-                  <Link 
-                    href="/web-development" 
-                    legacyBehavior 
-                    passHref
-                  >
-                    <NavigationMenuLink 
-                      className={
-                        navigationMenuTriggerStyle()
-                      }
-                    >
-                      Web Development
-                    </NavigationMenuLink>
-                  </Link>
-                  <Link 
-                    href="/technical-writing" 
-                    legacyBehavior 
-                    passHref
-                  >
-                    <NavigationMenuLink 
-                      className={
-                        navigationMenuTriggerStyle()
-                      }
-                    >
-                      Technical Writing
-                    </NavigationMenuLink>
-                  </Link>
+                <Link
+                  href="https://app.thinkthroo.com/best-practices"
+                  legacyBehavior
+                  passHref
+                >
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Best Practices
+                  </NavigationMenuLink>
+                </Link>
+                <Link
+                  href="https://app.thinkthroo.com/production-grade-projects"
+                  legacyBehavior
+                  passHref
+                >
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Production-Grade Projects
+                  </NavigationMenuLink>
+                </Link>
+                <Link
+                  href="https://app.thinkthroo.com/build-from-scratch"
+                  legacyBehavior
+                  passHref
+                >
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Build From Scratch
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
