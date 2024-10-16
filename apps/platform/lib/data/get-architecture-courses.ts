@@ -1,48 +1,48 @@
-const tooling = [{
-    title: "Tooling in Shadcn-ui/ui",
-    description: "Learn the tooling in Shadcn-ui/ui",
-    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
+const apiLayer = [{
+    title: "API layer In Shadcn-ui/ui",
+    description: "Learn the API layer used in Shadcn-ui/ui",
+    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
-        label: "Tooling",
-        slug: "tooling"
+        label: "API Layer",
+        slug: "api-layer"
     },
     tags: ["next.js", "shadcn-ui/ui"]
 }, {
-    title: "Tooling in Supabase",
-    description: "Learn the tooling in Supabase",
-    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
+    title: "API layer In Supabase",
+    description: "Learn the API layer used in Supabase",
+    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
-        label: "Tooling",
-        slug: "tooling"
+        label: "API Layer",
+        slug: "api-layer"
     },
     tags: ["next.js", "supabase"]
 }, {
-    title: "Tooling in Cal.com",
-    description: "Learn the tooling in Cal.com",
-    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
+    title: "API layer In Cal.com",
+    description: "Learn the API layer used in Cal.com",
+    slug: "/course/codebase-architecture/api-layer/cal-com/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
-        label: "Tooling",
-        slug: "tooling"
+        label: "API Layer",
+        slug: "api-layer"
     },
     tags: ["next.js", "cal.com"]
 }, {
-    title: "Tooling in Lobechat",
-    description: "Learn the tooling in Lobechat",
-    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
+    title: "API layer In Lobechat",
+    description: "Learn the API layer used in Lobechat",
+    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
-        label: "Tooling",
-        slug: "tooling"
+        label: "API Layer",
+        slug: "api-layer"
     },
     tags: ["next.js", "lobechat"]
-}];
+}]
 
 const componentsStructure = [{
     title: "Components Structure In Shadcn-ui/ui",
@@ -90,51 +90,143 @@ const componentsStructure = [{
     tags: ["next.js", "lobechat"]
 }];
 
-const apiLayer = [{
-    title: "API layer In Shadcn-ui/ui",
-    description: "Learn the API layer used in Shadcn-ui/ui",
-    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
+const errorHandling = [{
+    title: "Error Handling in Shadcn-ui/ui",
+    description: "Learn the error handling in Shadcn-ui/ui",
+    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
-        label: "API Layer",
-        slug: "api-layer"
+        label: "Error handling",
+        slug: "error-handling"
     },
     tags: ["next.js", "shadcn-ui/ui"]
 }, {
-    title: "API layer In Supabase",
-    description: "Learn the API layer used in Supabase",
-    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
+    title: "Error Handling in Supabase",
+    description: "Learn the error handling in Supabase",
+    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
-        label: "API Layer",
-        slug: "api-layer"
+        label: "Error handling",
+        slug: "error-handling"
     },
     tags: ["next.js", "supabase"]
 }, {
-    title: "API layer In Cal.com",
-    description: "Learn the API layer used in Cal.com",
-    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
+    title: "Error Handling In Cal.com",
+    description: "Learn the error handling used in Cal.com",
+    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
-        label: "API Layer",
-        slug: "api-layer"
+        label: "Error handling",
+        slug: "error-handling"
     },
     tags: ["next.js", "cal.com"]
 }, {
-    title: "API layer In Lobechat",
-    description: "Learn the API layer used in Lobechat",
-    slug: "/course/codebase-architecture/api-layer/lobechat/introduction",
+    title: "Error Handling In Lobechat",
+    description: "Learn the error handling used in Lobechat",
+    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
     chapters: 1,
     lessons: 4,
     concept: {
-        label: "API Layer",
-        slug: "api-layer"
+        label: "Error handling",
+        slug: "error-handling"
     },
     tags: ["next.js", "lobechat"]
 }]
+
+const projectStructure = [{
+    title: "Project Structure in Shadcn-ui/ui",
+    description: "Learn the project structure in Shadcn-ui/ui",
+    slug: "/course/codebase-architecture/project-structure/shadcn-ui/introduction",
+    chapters: 1,
+    lessons: 4,
+    concept: {
+        label: "Project Structure",
+        slug: "project-structure"
+    },
+    tags: ["next.js", "shadcn-ui/ui"]
+}, {
+    title: "Project Structure in Supabase",
+    description: "Learn the project structure in Supabase",
+    slug: "/course/codebase-architecture/project-structure/shadcn-ui/introduction",
+    chapters: 1,
+    lessons: 4,
+    concept: {
+        label: "Project Structure",
+        slug: "project-structure"
+    },
+    tags: ["next.js", "supabase"]
+}, {
+    title: "Project Structure in Cal.com",
+    description: "Learn the project structure in Cal.com",
+    slug: "/course/codebase-architecture/project-structure/shadcn-ui/introduction",
+    chapters: 1,
+    lessons: 4,
+    concept: {
+        label: "Project Structure",
+        slug: "project-structure"
+    },
+    tags: ["next.js", "cal.com"]
+}, {
+    title: "Project Structure in Lobechat",
+    description: "Learn the project structure in Lobechat",
+    slug: "/course/codebase-architecture/project-structure/shadcn-ui/introduction",
+    chapters: 1,
+    lessons: 4,
+    concept: {
+        label: "Project Structure",
+        slug: "project-structure"
+    },
+    tags: ["next.js", "lobechat"]
+}]
+
+const tooling = [{
+    title: "Tooling in Shadcn-ui/ui",
+    description: "Learn the tooling in Shadcn-ui/ui",
+    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
+    chapters: 1,
+    lessons: 4,
+    concept: {
+        label: "Tooling",
+        slug: "tooling"
+    },
+    tags: ["next.js", "shadcn-ui/ui"]
+}, {
+    title: "Tooling in Supabase",
+    description: "Learn the tooling in Supabase",
+    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
+    chapters: 1,
+    lessons: 4,
+    concept: {
+        label: "Tooling",
+        slug: "tooling"
+    },
+    tags: ["next.js", "supabase"]
+}, {
+    title: "Tooling in Cal.com",
+    description: "Learn the tooling in Cal.com",
+    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
+    chapters: 1,
+    lessons: 4,
+    concept: {
+        label: "Tooling",
+        slug: "tooling"
+    },
+    tags: ["next.js", "cal.com"]
+}, {
+    title: "Tooling in Lobechat",
+    description: "Learn the tooling in Lobechat",
+    slug: "/course/codebase-architecture/tooling/shadcn-ui/introduction",
+    chapters: 1,
+    lessons: 4,
+    concept: {
+        label: "Tooling",
+        slug: "tooling"
+    },
+    tags: ["next.js", "lobechat"]
+}];
 
 const stateManagement = [{
     title: "State Management in Shadcn-ui/ui",
@@ -178,52 +270,6 @@ const stateManagement = [{
     concept: {
         label: "State Management",
         slug: "state-management"
-    },
-    tags: ["next.js", "lobechat"]
-}]
-
-const errorHandling = [{
-    title: "Error Handling in Shadcn-ui/ui",
-    description: "Learn the error handling in Shadcn-ui/ui",
-    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
-    chapters: 1,
-    lessons: 4,
-    concept: {
-        label: "Error handling",
-        slug: "error-handling"
-    },
-    tags: ["next.js", "shadcn-ui/ui"]
-}, {
-    title: "Error Handling in Supabase",
-    description: "Learn the error handling in Supabase",
-    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
-    chapters: 1,
-    lessons: 4,
-    concept: {
-        label: "Error handling",
-        slug: "error-handling"
-    },
-    tags: ["next.js", "supabase"]
-}, {
-    title: "Error Handling In Cal.com",
-    description: "Learn the error handling used in Cal.com",
-    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
-    chapters: 1,
-    lessons: 4,
-    concept: {
-        label: "Error handling",
-        slug: "error-handling"
-    },
-    tags: ["next.js", "cal.com"]
-}, {
-    title: "Error Handling In Lobechat",
-    description: "Learn the error handling used in Lobechat",
-    slug: "/course/codebase-architecture/error-handling/cal-com/introduction",
-    chapters: 1,
-    lessons: 4,
-    concept: {
-        label: "Error handling",
-        slug: "error-handling"
     },
     tags: ["next.js", "lobechat"]
 }]
@@ -362,52 +408,6 @@ const security = [{
     concept: {
         label: "Security",
         slug: "security"
-    },
-    tags: ["next.js", "lobechat"]
-}]
-
-const projectStructure = [{
-    title: "Project Structure in Shadcn-ui/ui",
-    description: "Learn the project structure in Shadcn-ui/ui",
-    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
-    chapters: 1,
-    lessons: 4,
-    concept: {
-        label: "Project Structure",
-        slug: "project-structure"
-    },
-    tags: ["next.js", "shadcn-ui/ui"]
-}, {
-    title: "Project Structure in Supabase",
-    description: "Learn the project structure in Supabase",
-    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
-    chapters: 1,
-    lessons: 4,
-    concept: {
-        label: "Project Structure",
-        slug: "project-structure"
-    },
-    tags: ["next.js", "supabase"]
-}, {
-    title: "Project Structure in Cal.com",
-    description: "Learn the project structure in Cal.com",
-    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
-    chapters: 1,
-    lessons: 4,
-    concept: {
-        label: "Project Structure",
-        slug: "project-structure"
-    },
-    tags: ["next.js", "cal.com"]
-}, {
-    title: "Project Structure in Lobechat",
-    description: "Learn the project structure in Lobechat",
-    slug: "/course/codebase-architecture/components-structure/shadcn-ui/introduction",
-    chapters: 1,
-    lessons: 4,
-    concept: {
-        label: "Project Structure",
-        slug: "project-structure"
     },
     tags: ["next.js", "lobechat"]
 }]

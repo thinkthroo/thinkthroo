@@ -6,6 +6,10 @@ import { baseUrl as calcomErrorHandlingBaseUrl, calcomErrorHandlingNav } from ".
 import { baseUrl as supabaseSecurityBaseUrl, supabaseSecurityNav } from "./codebase-architecture/security/supabase"
 import { baseUrl as shadcnToolingBaseUrl, shadcnToolingNav } from "./codebase-architecture/tooling/shadcn-ui"
 import { baseUrl as calcomApiLayerBaseUrl, calcomApiLayerNav } from "./codebase-architecture/api-layer/calcom"
+import { baseUrl as shadcnProjectStructureBaseUrl, shadcnProjectStructureNav } from "./codebase-architecture/project-structure/shadcn"
+import { baseUrl as supabaseProjectStructureBaseUrl, supabaseProjectStructureNav } from "./codebase-architecture/project-structure/supabase"
+import { baseUrl as lobechatStateManagementUrl, lobechatStateManagementNav } from "./codebase-architecture/state-management/lobechat"
+import { baseUrl as supabaseToolingBaseUrl, supabaseToolingNav } from "./codebase-architecture/tooling/supabase"
 
 export interface NavItem {
     title: string
@@ -74,16 +78,33 @@ export const docsConfig: DocsConfig = {
 
 let sidebarNav = new Map();
 
+// Codebase architecture
+
+// [CA]:[API Layer]
 sidebarNav.set(lobechatApiLayerBaseUrl, lobechatApiLayerNav)
 sidebarNav.set(calcomApiLayerBaseUrl, calcomApiLayerNav)
 
+// [CA]:[Components Structure]
 sidebarNav.set(shadcnComponentsStructureBaseUrl, shadcnComponentsStructureNav)
 
+// [CA]:[Error Handling]
 sidebarNav.set(calcomErrorHandlingBaseUrl, calcomErrorHandlingNav)
 
+// [CA]:[Project Structure]
+sidebarNav.set(shadcnProjectStructureBaseUrl, shadcnProjectStructureNav)
+sidebarNav.set(supabaseProjectStructureBaseUrl, supabaseProjectStructureNav)
+
+// [CA]:[Security]
 sidebarNav.set(supabaseSecurityBaseUrl, supabaseSecurityNav)
 
+// [CA]:[State Management]
+sidebarNav.set(lobechatStateManagementUrl, lobechatStateManagementNav)
+
+// [CA]:[Tooling]
 sidebarNav.set(shadcnToolingBaseUrl, shadcnToolingNav)
+sidebarNav.set(supabaseToolingBaseUrl, supabaseToolingNav)
+
+// Best practices
 
 export function getSidenavConfig(pathname: String): SidebarNavItem[] {
   // This slice is required since the key is base url to dynamically fetch sidebar nav items

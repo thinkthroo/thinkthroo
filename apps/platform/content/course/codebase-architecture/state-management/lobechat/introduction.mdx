@@ -132,6 +132,48 @@ is in `store` file.
 ## store.ts
 
 [store.ts](https://github.com/lobehub/lobe-chat/blob/main/src/store/session/store.ts) has some advanced 
+Zustand API. This store.ts is a perfect demonstration of how an experienced senior dev would manage 
+Zustand store.
+
+Let's first analyze how the store is created.
+
+```
+const createStore: StateCreator<SessionStore, [['zustand/devtools', never]]> = (...parameters) => ({
+  ...initialState,
+  ...createSessionSlice(...parameters),
+  ...createSessionGroupSlice(...parameters),
+});
+
+//  ===============  implement useStore ============ //
+const devtools = createDevtools('session');
+
+export const useSessionStore = createWithEqualityFn<SessionStore>()(
+  subscribeWithSelector(
+    devtools(createStore, {
+      name: 'LobeChat_Session' + (isDev ? '_DEV' : ''),
+    }),
+  ),
+  shallow,
+);
+```
+You might be familiar with simple use case of Zustand but this example from Lobechat's session store shows
+you how you can leverage advanced API such as devTools, createWithEqualityFn, subscribeWithSelector.
+
+We start off with the below code snippet:
+
+```
+const createStore: StateCreator<SessionStore, [['zustand/devtools', never]]> = (...parameters) => ({
+  ...initialState,
+  ...createSessionSlice(...parameters),
+  ...createSessionGroupSlice(...parameters),
+});
+```
+
+StateCreator is a type imported from `zustand/vanilla`. Lobechat uses slices pattern. In fact, what you see
+in the above code snippet - `StateCreator<SessionStore, [['zustand/devtools', never]]>` is mentioned in
+[Zustand documentation](https://zustand.docs.pmnd.rs/guides/typescript#slices-pattern). Check this [full list 
+of Middlewares and their mutators reference](https://zustand.docs.pmnd.rs/guides/typescript#middlewares-and-their-mutators-reference).
+
 
 
 [L: Slices in zustand]

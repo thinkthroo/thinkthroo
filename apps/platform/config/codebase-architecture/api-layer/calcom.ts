@@ -1,4 +1,4 @@
-export const baseUrl = `/course/codebase-architecture/api-layer/calcom`
+export const baseUrl = `/course/codebase-architecture/api-layer/cal-com`
 export const introUrl = `${baseUrl}/introduction`
 export const calcomApiLayerNav = [
     {
