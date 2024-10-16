@@ -33,6 +33,73 @@ export default async function Blog() {
               ))}
             </div>
             </div>
+            <ol
+              className={'grid -mx-2 sm:-mx-4 py-6 lg:py-6 lg:pb-20 grid-cols-1'}
+            >
+              <div className="col-span-12 px-2 sm:px-4 [&_a]:last:border-none" key={1}>
+                <Link
+                  href={"/blog"}
+                  className="group flex flex-col lg:grid lg:grid-cols-10 xl:grid-cols-12 w-full py-2 sm:py-4 h-full border-b"
+                >
+                  <div className="flex w-full lg:col-span-8 xl:col-span-8">
+                    <h3 className="text-foreground text-lg group-hover:underline">TypeDoc usage in @vercel/edge</h3>
+                  </div>
+                  <div className="lg:col-span-2 xl:col-span-4 flex justify-start items-center lg:grid grid-cols-2 xl:grid-cols-3 gap-2 text-sm">
+                    <p className="text-foreground-lighter group-hover:text-foreground-light flex-1 lg:text-right w-full">
+                      16 Oct 2024
+                    </p>
+                  </div>
+                </Link>
+              </div>
+
+              <div className="col-span-12 px-2 sm:px-4 [&_a]:last:border-none" key={2}>
+                <Link
+                  href={"/blog"}
+                  className="group flex flex-col lg:grid lg:grid-cols-10 xl:grid-cols-12 w-full py-2 sm:py-4 h-full border-b"
+                >
+                  <div className="flex w-full lg:col-span-8 xl:col-span-8">
+                    <h3 className="text-foreground text-lg group-hover:underline">How Shadcn/ui uses error constants to improve code readability</h3>
+                  </div>
+                  <div className="lg:col-span-2 xl:col-span-4 flex justify-start items-center lg:grid grid-cols-2 xl:grid-cols-3 gap-2 text-sm">
+                    <p className="text-foreground-lighter group-hover:text-foreground-light flex-1 lg:text-right w-full">
+                      16 Oct 2024
+                    </p>
+                  </div>
+                </Link>
+              </div>
+
+              <div className="col-span-12 px-2 sm:px-4 [&_a]:last:border-none" key={2}>
+                <Link
+                  href={"/blog"}
+                  className="group flex flex-col lg:grid lg:grid-cols-10 xl:grid-cols-12 w-full py-2 sm:py-4 h-full border-b"
+                >
+                  <div className="flex w-full lg:col-span-8 xl:col-span-8">
+                    <h3 className="text-foreground text-lg group-hover:underline">How Shadcn/ui uses error constants to improve code readability</h3>
+                  </div>
+                  <div className="lg:col-span-2 xl:col-span-4 flex justify-start items-center lg:grid grid-cols-2 xl:grid-cols-3 gap-2 text-sm">
+                    <p className="text-foreground-lighter group-hover:text-foreground-light flex-1 lg:text-right w-full">
+                      16 Oct 2024
+                    </p>
+                  </div>
+                </Link>
+              </div>
+
+              <div className="col-span-12 px-2 sm:px-4 [&_a]:last:border-none" key={2}>
+                <Link
+                  href={"/blog"}
+                  className="group flex flex-col lg:grid lg:grid-cols-10 xl:grid-cols-12 w-full py-2 sm:py-4 h-full border-b"
+                >
+                  <div className="flex w-full lg:col-span-8 xl:col-span-8">
+                    <h3 className="text-foreground text-lg group-hover:underline">How Shadcn/ui uses error constants to improve code readability</h3>
+                  </div>
+                  <div className="lg:col-span-2 xl:col-span-4 flex justify-start items-center lg:grid grid-cols-2 xl:grid-cols-3 gap-2 text-sm">
+                    <p className="text-foreground-lighter group-hover:text-foreground-light flex-1 lg:text-right w-full">
+                      16 Oct 2024
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </ol>
           </div>
         </div>
     </div>
