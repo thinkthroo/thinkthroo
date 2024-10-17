@@ -65,12 +65,17 @@ export function MainNav() {
               <NavigationMenuContent className="px-4 py-2 ">
                 <Link href="/web-development" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Bespoke Web Development
+                    Next.js Development
                   </NavigationMenuLink>
                 </Link>
                 <Link href="/technical-writing" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Technical Writing
+                    React Development
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/technical-writing" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Node.js Development
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuContent>
