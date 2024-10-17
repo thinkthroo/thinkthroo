@@ -5,7 +5,7 @@ const ShareArticleActions = ({
   title,
   slug,
   iconSize = 20,
-  basePath = 'https://app.thinkthroo.com/',
+  basePath = 'https://app.thinkthroo.com',
 }: {
   title: string
   slug: string
@@ -32,15 +32,16 @@ const ShareArticleActions = ({
         target="_blank"
         className="text-foreground-lighter hover:text-foreground"
       >
-        <Icons.twitter />
+        <Icons.linkedin />
       </Link>
+
       <Link
-        aria-label="Share on Hacker News"
-        href={`https://news.ycombinator.com/submitlink?u=${permalink}&t=${encodedTitle}`}
+        aria-label="Share on Reddit"
+        href={`https://www.reddit.com/submit?url=${permalink}&text=${encodedTitle}`}
         target="_blank"
         className="text-foreground-lighter hover:text-foreground"
       >
-        <Icons.twitter />
+        <Icons.reddit />
       </Link>
     </div>
   )

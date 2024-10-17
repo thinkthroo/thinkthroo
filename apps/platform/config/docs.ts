@@ -1,15 +1,35 @@
 import { Icons } from "@/components/icons"
 import { SidebarNavItem } from "@/types/nav"
-import { baseUrl as shadcnComponentsStructureBaseUrl, shadcnComponentsStructureNav } from "./codebase-architecture/components-structure/shadcn-ui"
+
+// Codebase architecture
+// [CA]:[API Layer]
 import { baseUrl as lobechatApiLayerBaseUrl, lobechatApiLayerNav } from "./codebase-architecture/api-layer/lobechat"
-import { baseUrl as calcomErrorHandlingBaseUrl, calcomErrorHandlingNav } from "./codebase-architecture/error-handling/cal-com"
-import { baseUrl as supabaseSecurityBaseUrl, supabaseSecurityNav } from "./codebase-architecture/security/supabase"
-import { baseUrl as shadcnToolingBaseUrl, shadcnToolingNav } from "./codebase-architecture/tooling/shadcn-ui"
 import { baseUrl as calcomApiLayerBaseUrl, calcomApiLayerNav } from "./codebase-architecture/api-layer/calcom"
+
+// [CA]:[Components Structure]
+import { baseUrl as shadcnComponentsStructureBaseUrl, shadcnComponentsStructureNav } from "./codebase-architecture/components-structure/shadcn-ui"
+
+// [CA]:[Error Handling]
+import { baseUrl as calcomErrorHandlingBaseUrl, calcomErrorHandlingNav } from "./codebase-architecture/error-handling/cal-com"
+
+// [CA]:[Project Structure]
 import { baseUrl as shadcnProjectStructureBaseUrl, shadcnProjectStructureNav } from "./codebase-architecture/project-structure/shadcn"
 import { baseUrl as supabaseProjectStructureBaseUrl, supabaseProjectStructureNav } from "./codebase-architecture/project-structure/supabase"
+
+// [CA]:[Security]
+import { baseUrl as supabaseSecurityBaseUrl, supabaseSecurityNav } from "./codebase-architecture/security/supabase"
+
+// [CA]:[State Management]
 import { baseUrl as lobechatStateManagementUrl, lobechatStateManagementNav } from "./codebase-architecture/state-management/lobechat"
+
+// [CA]:[Tooling]
+import { baseUrl as shadcnToolingBaseUrl, shadcnToolingNav } from "./codebase-architecture/tooling/shadcn-ui"
 import { baseUrl as supabaseToolingBaseUrl, supabaseToolingNav } from "./codebase-architecture/tooling/supabase"
+
+// Best practices
+// [BP]:[CRM]:[Contacts Page]:[Components Structure]
+import { baseUrl as crmContactsPageCsShadcnBaseUrl, crmContactsPageComponentsStructureByShadcnNav } from "./best-practices/crm-contacts-page/components-structure/shadcn"
+import { baseUrl as crmContactsPageCsSupabaseBaseUrl, crmContactsPageComponentsStructureBySupabaseNav } from "./best-practices/crm-contacts-page/components-structure/supabase"
 
 export interface NavItem {
     title: string
@@ -46,6 +66,7 @@ export const docsConfig: DocsConfig = {
       href: "/build-from-scratch",
     }
   ],
+  // TODO: do we still need this sidebarNav?
   sidebarNav: [
     {
       title: "Components Structure In Shadcn-ui/ui",
@@ -105,6 +126,11 @@ sidebarNav.set(shadcnToolingBaseUrl, shadcnToolingNav)
 sidebarNav.set(supabaseToolingBaseUrl, supabaseToolingNav)
 
 // Best practices
+
+// [BP]:[CRM]:[Contacts Page]:[Components Structure]
+sidebarNav.set(crmContactsPageCsShadcnBaseUrl, crmContactsPageComponentsStructureByShadcnNav);
+sidebarNav.set(crmContactsPageCsSupabaseBaseUrl, crmContactsPageComponentsStructureBySupabaseNav);
+
 
 export function getSidenavConfig(pathname: String): SidebarNavItem[] {
   // This slice is required since the key is base url to dynamically fetch sidebar nav items

@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
 import { NewsLetterForm } from "./newsletter-form"
 import ShareArticleActions from "./share-article-actions"
+import { usePathname } from "next/navigation"
 
 interface TocProps {
   toc: TableOfContents
@@ -27,6 +28,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
   )
   const activeHeading = useActiveItem(itemIds)
   const mounted = useMounted()
+  const pathname = usePathname()
 
   if (!toc?.items || !mounted) {
     return <div className="space-y-2"><NewsLetterForm /></div>
@@ -37,7 +39,9 @@ export function DashboardTableOfContents({ toc }: TocProps) {
       <p className="font-medium">On This Page</p>
       <Tree tree={toc} activeItem={activeHeading} />
       <p className="font-small">Share this article</p>
-      <ShareArticleActions />
+      <ShareArticleActions 
+        slug={pathname}
+      />
       <NewsLetterForm />
     </div>
   )

@@ -1,7 +1,7 @@
 export const baseUrl = `/course/best-practices/crm-contacts-page/components-structure/shadcn-ui`
 export const introUrl = `${baseUrl}/introduction`
 // FIXME: Can be named better.
-export const contactsPageComponentsStructureByShadcnNav = [
+export const crmContactsPageComponentsStructureByShadcnNav = [
     {
       title: "Build a contacts page",
       href: introUrl,
