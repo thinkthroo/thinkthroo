@@ -1,0 +1,89 @@
+---
+title: buildDesignSystem fn in Tailwind CSS source code.
+toc: true
+---
+
+In this article, we analyze [buildDesignSystem function in Tailwind CSS source code.](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/design-system.ts#L36)
+
+![](https://miro.medium.com/v2/resize:fit:875/1*OcKTGhnCYia7TSxHpMGHsg.png align="left")
+
+DesignSystem type picked from [design-system.ts](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/design-system.ts#L36)
+
+```plaintext
+export type DesignSystem = {
+  theme: Theme
+  utilities: Utilities
+  variants: Variants
+
+  invalidCandidates: Set<string>
+
+  // Whether to mark utility declarations as !important
+  important: boolean
+
+  getClassOrder(classes: string[]): [string, bigint | null][]
+  getClassList(): ClassEntry[]
+  getVariants(): VariantEntry[]
+
+  parseCandidate(candidate: string): Candidate[]
+  parseVariant(variant: string): Variant | null
+  compileAstNodes(candidate: Candidate): ReturnType<typeof compileAstNodes>
+
+  getVariantOrder(): Map<Variant, number>
+  resolveThemeValue(path: string): string | undefined
+
+  // Used by IntelliSense
+  candidatesToCss(classes: string[]): (string | null)[]
+}
+```
+
+At the time of writing this article, [design-system.ts](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/design-system.ts#L36) has about 144 LOC.
+
+Let’s discuss how the values returned by DefaultMap utility function is used in [designSystem](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/design-system.ts#L48).
+
+```plaintext
+let parsedVariants = new DefaultMap((variant) => parseVariant(variant, designSystem))
+let parsedCandidates = new DefaultMap((candidate) =>
+  Array.from(parseCandidate(candidate, designSystem)),
+)
+let compiledAstNodes = new DefaultMap<Candidate>((candidate) =>
+  compileAstNodes(candidate, designSystem),
+)
+```
+
+These variables are used in designSystem object as shown below:
+
+```plaintext
+parseCandidate(candidate: string) {
+  return parsedCandidates.get(candidate)
+},
+parseVariant(variant: string) {
+  return parsedVariants.get(variant)
+},
+compileAstNodes(candidate: Candidate) {
+  return compiledAstNodes.get(candidate)
+},
+```
+
+utilities and variants are the values returned by `createUtilities` and `createVariants`.
+
+Keys such as [candidatesToCss](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/design-system.ts#L56C5-L56C20), [getVariantOrder](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/design-system.ts#L97) and [resolveThemeValue](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/design-system.ts#L122) have their function implementations that require furter analysis.
+
+# **About us:**
+
+At [Think Throo](https://thinkthroo.com/), we are on a mission to [teach the advanced codebase architectural concepts](https://app.thinkthroo.com/architecture) used in open-source projects.
+
+10x your coding skills by practising [advanced architectural concepts](https://app.thinkthroo.com/architecture) in Next.js/React, [learn the best practices](https://app.thinkthroo.com/best-practices) and [build production-grade projects](https://app.thinkthroo.com/production-grade-projects).
+
+We are open source — [https://github.com/thinkthroo/thinkthroo](https://github.com/thinkthroo/thinkthroo) (Do give us a star!)
+
+We also ***provide web development and technical writing services***. Reach out to us at ***hello@thinkthroo.com*** to learn more!
+
+# **References:**
+
+1. [https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/design-system.ts](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/design-system.ts)
+    
+2. [https://github.com/tailwindlabs/tailwindcss/blob/c01b8254e822d4f328674357347ca0532f1283a0/packages/tailwindcss/src/index.ts#L319](https://github.com/tailwindlabs/tailwindcss/blob/c01b8254e822d4f328674357347ca0532f1283a0/packages/tailwindcss/src/index.ts#L319)
+    
+
+[  
+](https://medium.com/tag/javascript?source=post_page-----dc5c2c6036a1--------------------------------)

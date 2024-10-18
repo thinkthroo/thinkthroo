@@ -38,26 +38,31 @@ export const docsConfig: DocsConfig = {
   ],
   sidebarNav: [
     {
-      title: "Components Structure In Shadcn-ui/ui",
+      title: "October, 2024",
       items: [
         {
-          title: "Introduction",
-          href: "/course/components-structure-in-shadcn-ui/introduction",
+          title: "Component decorator in TypeDoc",
+          href: "/blog/component-decorator-in-typedoc",
           items: [],
         },
         {
-          title: "Home Page",
-          href: "/course/components-structure-in-shadcn-ui/home-page",
+          title: "TypeDoc usage in @vercel/edge",
+          href: "/blog/typedoc-usage-in-vercel-edge",
           items: [],
         },
         {
-          title: "Mail Example Page",
-          href: "/course/components-structure-in-shadcn-ui/mail-example-page",
+          title: "create-next-app validates your app name using this package",
+          href: "/blog/cna-app-name-validation",
           items: [],
         },
         {
-          title: "Charts Page",
-          href: "/course/components-structure-in-shadcn-ui/charts-page",
+          title: "How Shadcn CLI uses error constants to improve code readability",
+          href: "/blog/error-codes-in-shadcn",
+          items: [],
+        },
+        {
+          title: "buildDesignSystem fn in Tailwind CSS source code",
+          href: "/blog/build-design-system-in-tailwind",
           items: [],
         },
       ],
