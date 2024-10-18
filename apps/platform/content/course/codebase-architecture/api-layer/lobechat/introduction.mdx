@@ -26,20 +26,71 @@ Read through this guide to understand how Lobe Chat's API layer works.
 (https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/page.tsx)
 2. [DiscoverService](https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L27)
 
-## Data fetched in Chat Page
-1. [Session List](https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/chat/%40session/features/SessionListContent/DefaultMode.tsx#L29)
-2. [useFetchSessions](https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L200)
-3. [useClientDataSWR](https://github.com/lobehub/lobe-chat/blob/main/src/libs/swr/index.ts#L22C14-L22C30)
+In this guide, we will find out how the API layer is implemented in Discover page. You will learn how the data is fetched
+in the Discover page.
 
-# References:
-API layer example 1:
+[Insert a screenshot of Discover page - https://lobechat.com/discover]
+
+Discover page has Home, Assistants, Plugins etc., tabs. For this guide, let's pick assistants tab and 
+find out how the data is fetched.
+
+In the [Discover page.tsx](https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/page.tsx),
+You will find the below code snippet.
+
+```
+const discoverService = new DiscoverService();
+const assistantList = await discoverService.getAssistantList(locale);
+const pluginList = await discoverService.getPluginList(locale);
+const modelList = await discoverService.getModelList(locale);
+```
+### DiscoverService
+
+[DiscoverService](https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L52) is class that is
+instantiated using `new DiscoverService()`. You could also just export the functions from a service file but using a class
+in a service helps you organize your functions better as your functions are encapsulated in a class. This approach also make it
+easy to mock your service for testing purposes. 
+
+### discoverService.getAssistantList(locale)
+
+```
+getAssistantList = async (locale: Locales): Promise<DiscoverAssistantItem[]> => {
+    let res = await fetch(this.assistantStore.getAgentIndexUrl(locale), {
+      next: { revalidate },
+    });
+
+    if (!res.ok) {
+      res = await fetch(this.assistantStore.getAgentIndexUrl(DEFAULT_LANG), {
+        next: { revalidate },
+      });
+    }
+
+    if (!res.ok) return [];
+
+    const json = await res.json();
+
+    return json.agents;
+};
+```
+This above code snippet is picked from [getAssistantList](https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L52)
+
+This function uses [fetch](https://nextjs.org/docs/app/api-reference/functions/fetch). Next.js extends the native Web 
+fetch() API to allow each request on the server to set its own persistent caching semantics.
+
+
+
+## References:
 1. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/page.tsx
 2. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/Client.tsx
 3. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/features/AssistantList.tsx
 4. https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L28
 5. https://github.com/lobehub/lobe-chat/blob/main/src/server/modules/AssistantStore/index.ts
 
-API layer example 2:
+## Data fetched in Chat Page
+1. [Session List](https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/chat/%40session/features/SessionListContent/DefaultMode.tsx#L29)
+2. [useFetchSessions](https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L200)
+3. [useClientDataSWR](https://github.com/lobehub/lobe-chat/blob/main/src/libs/swr/index.ts#L22C14-L22C30)
+
+# References:
 1. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/chat/%40session/features/SessionListContent/DefaultMode.tsx
 2. https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L200
 3. https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L11
