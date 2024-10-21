@@ -41,6 +41,11 @@ export const docsConfig: DocsConfig = {
       title: "October, 2024",
       items: [
         {
+          title: "Dosu bot usage in lobechat",
+          href: "/blog/dosu-bot-usage-in-lobechat",
+          items: [],
+        },
+        {
           title: "Component decorator in TypeDoc",
           href: "/blog/component-decorator-in-typedoc",
           items: [],
