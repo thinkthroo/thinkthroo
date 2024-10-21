@@ -42,7 +42,7 @@ export function MainNav() {
           Components
         </Link>
         <Link
-          href="https://app.thinkthroo.com/architecture"
+          href="/codebase-architecture"
           className={cn(
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/architecture")

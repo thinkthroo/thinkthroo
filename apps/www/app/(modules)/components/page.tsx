@@ -16,7 +16,7 @@ export default function Page() {
     <div className="container relative">
       <PageHeader>
         <PageHeaderHeading>
-            Beautiful UI components, crafted with Shadcn/ui.
+            Beautiful UI components.
         </PageHeaderHeading>
         <PageHeaderDescription>
           Copy and paste these reusable components into your project.
@@ -24,19 +24,11 @@ export default function Page() {
         <PageActions>
           <Button asChild size="sm">
             <Link
-              href="https://app.thinkthroo.com/architecture"
-              target="_blank"
-            >
-              Documentation
-            </Link>
-          </Button>
-          <Button asChild size="sm" variant="outline">
-            <Link
               target="_blank"
               rel="noreferrer"
               href={siteConfig.links.consultation}
             >
-              Hire us
+              Book a meeting
             </Link>
           </Button>
         </PageActions>
@@ -49,28 +41,30 @@ export default function Page() {
               id="examples"
               className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
             >
-              <div
-                className={
-                  "themes-wrapper group relative flex flex-col overflow-hidden rounded-xl border cursor-pointer hover:shadow transition-all duration-200 ease-in-out hover:z-30"
-                }
-              >
-                <div className="relative z-10 [&>div]:rounded-none [&>div]:border-none [&>div]:shadow-none">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Hero sections</CardTitle>
-                      <CardDescription>4 components</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <Image
-                            src={"/heroes.png"}
-                            alt="Component"
-                            width={500}
-                            height={500}
-                        />
-                    </CardContent>
-                  </Card>
+              <Link href={"/components/hero"}>
+                <div
+                  className={
+                    "themes-wrapper group relative flex flex-col overflow-hidden rounded-xl border cursor-pointer hover:shadow transition-all duration-200 ease-in-out hover:z-30"
+                  }
+                >
+                  <div className="relative z-10 [&>div]:rounded-none [&>div]:border-none [&>div]:shadow-none">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Hero sections</CardTitle>
+                        <CardDescription>4 components</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                          <Image
+                              src={"/heroes.png"}
+                              alt="Component"
+                              width={500}
+                              height={500}
+                          />
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
-              </div>
+              </Link>
               <div
                 className={
                   "themes-wrapper group relative flex flex-col overflow-hidden rounded-xl border cursor-pointer hover:shadow transition-all duration-200 ease-in-out hover:z-30"

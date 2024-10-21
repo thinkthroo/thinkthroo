@@ -14,13 +14,22 @@ export default function RootPage() {
     <div className="container relative">
       <PageHeader>
         <PageHeaderHeading>
-          Next.js Development Services for Digital Products.
+          Learn the Large Codebase Architecture
         </PageHeaderHeading>
         <PageHeaderDescription>
-          We build digital products using Next.js and a well-researched architecture tailored for performance, scalability, and future-proofing.
+          We study large open-source projects and provide free architectural
+          guides. Take our courses to learn the best practices.
         </PageHeaderDescription>
         <PageActions>
           <Button asChild size="sm">
+            <Link
+              href="https://app.thinkthroo.com/architecture"
+              target="_blank"
+            >
+              Read Architectural Guides
+            </Link>
+          </Button>
+          <Button asChild size="sm" variant="outline">
             <Link
               target="_blank"
               rel="noreferrer"
@@ -30,6 +39,7 @@ export default function RootPage() {
             </Link>
           </Button>
         </PageActions>
+        <p className="text-sm italic">No login required.</p>
       </PageHeader>
 
       <div className="ring-gray-900/10 ring-inset custom-ring p-2 bg-gray-900/5 rounded-lg -m-2">
