@@ -26,7 +26,7 @@ export function MainNav() {
             pathname?.startsWith("/architecture") ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Architecture
+          Codebase Architecture
         </Link>
         <Link
           href="/best-practices"
