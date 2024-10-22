@@ -1,6 +1,11 @@
+---
+title: Object.is() usage in Zustand's source code
+toc: true
+---
+
 In this article, we will explore how Object.is() method is used in [Zustand’s source code](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L71). 
 
-![](https://cdn-images-1.medium.com/max/1000/1*CMnT4oJcS6-EjWECujm5ZQ.png align="left")
+![](https://cdn-images-1.medium.com/max/1000/1*CMnT4oJcS6-EjWECujm5ZQ.png)
 
 The above code snippet is picked from [vanilla.ts](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L71)
 
@@ -74,13 +79,13 @@ const setState: StoreApi<TState>['setState'] = (partial, replace) => {
 
 The below image shows the Object.is() in action
 
-![](https://cdn-images-1.medium.com/max/1000/1*wkLCVrd_hdUJqRqRJ4ontg.png align="left")
+![](https://cdn-images-1.medium.com/max/1000/1*wkLCVrd_hdUJqRqRJ4ontg.png)
 
-![](https://cdn-images-1.medium.com/max/1000/1*B1C9X61Rr7faIhczJnyS7Q.png align="left")
+![](https://cdn-images-1.medium.com/max/1000/1*B1C9X61Rr7faIhczJnyS7Q.png)
 
 To add the above log statements, I compiled Zustand using the command `pnpm run build` and copied the dist into `examples/demo/src`. Looks hacky, but hey we are experimenting and figuring out how Zustand works internally.
 
-![](https://cdn-images-1.medium.com/max/1000/1*1FOi8LhNb04F4-x1neQ5vA.png align="left")
+![](https://cdn-images-1.medium.com/max/1000/1*1FOi8LhNb04F4-x1neQ5vA.png)
 
 ```javascript
 const useStore = create((set) => ({
