@@ -1,0 +1,108 @@
+In this article, we will understand how Set() method is used in [Zustand’s source code](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L71).
+
+![](https://miro.medium.com/v2/resize:fit:875/1*OmmD1X7HpeX2fPvhRTfuOA.png)
+
+so the listeners in Zustand are basically a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set). The above code snippet is picked from [vanilla.ts](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L71)
+
+# **Set**
+
+The `Set` object lets you store unique values of any type, whether [primitive values](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) or object references. `Set` objects are collections of values. A value in the set may only occur once; it is unique in the set's collection. You can iterate through the elements of a set in insertion order. — [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+
+```javascript
+const mySet1 = new Set();
+
+mySet1.add(1); // Set(1) { 1 }
+mySet1.add(5); // Set(2) { 1, 5 }
+mySet1.add(5); // Set(2) { 1, 5 }
+mySet1.add("some text"); // Set(3) { 1, 5, 'some text' }
+
+for (const item of mySet1) {
+  console.log(item);
+}
+// 1, 5, 'some text'
+```
+
+listeners are added in a function subscribe in Zustand. Let’s take a closer look at subscribe
+
+# **subscribe**
+
+How is subscribe used in a React project? the below explanation is picked from Zustand’s Readme.
+
+The subscribe function allows components to bind to a state-portion without forcing re-render on changes. Best combine it with useEffect for automatic unsubscribe on unmount. This can make a [drastic](https://codesandbox.io/s/peaceful-johnson-txtws) performance impact when you are allowed to mutate the view directly.
+
+```javascript
+const useScratchStore = create((set) => ({ scratches: 0, ... }))
+const Component = () => {
+  // Fetch initial state
+  const scratchRef = useRef(useScratchStore.getState().scratches)
+  // Connect to the store on mount, disconnect on unmount, catch state-changes in a reference
+  useEffect(() => useScratchStore.subscribe(
+    state => (scratchRef.current = state.scratches)
+  ), [])
+  ...
+```
+
+Let’s now look at the subscribe source code in Zustand.
+
+```javascript
+const subscribe: StoreApi<TState>['subscribe'] = (listener) => {
+    listeners.add(listener)
+    // Unsubscribe
+    return () => listeners.delete(listener)
+}
+```
+
+subscribe simply adds the listener to the listeners Set.
+
+Let’s see what the logs from experimentation say. To add the console.log statements, I compiled Zustand using the command `pnpm run build` and copied the dist into `examples/demo/src`. Looks hacky, but hey we are experimenting and figuring out how Zustand works internally.
+
+![](https://miro.medium.com/v2/resize:fit:875/1*ctFSmLkfJb8Y_8K-kYXSPA.png)
+
+![](https://miro.medium.com/v2/resize:fit:875/1*hmwr4QJlEjom-2zCEqpdJg.png)
+
+This is how the listeners Set looks like
+
+![](https://miro.medium.com/v2/resize:fit:875/1*F0iBPkLIR2rdZ3_D4cC_Ag.png)
+
+I subscribed to changes in App.jsx
+
+```javascript
+// Subscribe to changes in the state
+useStore.subscribe((state) => {
+  console.log("State changed: ", state);
+});
+```
+
+Another observation is that, there is a additional listener that got added to this set:
+
+```javascript
+ƒ () {
+  if (checkIfSnapshotChanged(inst)) {
+    forceStoreRerender(fiber);
+  }
+}
+```
+
+# **About us:**
+
+At [Think Throo](https://thinkthroo.com/), we are on a mission to [teach the best practices](https://app.thinkthroo.com/best-practices) inspired by open-source projects.
+
+10x your coding skills by practising [advanced architectural concepts](https://app.thinkthroo.com/architecture) in Next.js/React, [learn the best practices](https://app.thinkthroo.com/best-practices) and [build production-grade projects](https://app.thinkthroo.com/production-grade-projects).
+
+We are open source — [https://github.com/thinkthroo/thinkthroo](https://github.com/thinkthroo/thinkthroo) (Do give us a star!)
+
+Looking to build bespoke web systems for your business? Contact us at hello@thinkthroo.com
+
+# **About the author:**
+
+Hey, I’m Ram. I am a passionate software engineer/OSS Tinkerer.
+
+Checkout my website: [https://www.ramunarasinga.com/](https://www.ramunarasinga.com/)
+
+# **References:**
+
+1. [https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L62](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L62)
+    
+2. [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+    
+3. [https://github.com/pmndrs/zustand/tree/main?tab=readme-ov-file#transient-updates-for-often-occurring-state-changes](https://github.com/pmndrs/zustand/tree/main?tab=readme-ov-file#transient-updates-for-often-occurring-state-changes)
