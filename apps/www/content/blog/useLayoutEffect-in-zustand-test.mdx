@@ -1,3 +1,8 @@
+---
+title: useLayoutEffect in Zustand test-case explained.
+toc: true
+---
+
 React’s `useLayoutEffect` is one of the lesser-used but crucial hooks that offers precise control over side effects that need to be executed before the browser paints the UI. In this article, we'll break down how `useLayoutEffect` works and demonstrate its usage with a [test case from Zustand's source code](https://github.com/pmndrs/zustand/blob/v4.5.5/tests/basic.test.tsx#L598). The [test case](https://github.com/pmndrs/zustand/blob/v4.5.5/tests/basic.test.tsx#L598) provides a perfect example of how `useLayoutEffect` can help manage state and updates effectively when timing is critical.
 
 This test case validates a bug fix related to an [issue reported](https://github.com/pmndrs/zustand/issues/84) where the subscribed listener gets overwritten. Please note this issue was reported on Zustand’s version — 2.2.1. Link to codesandbox: [https://codesandbox.io/s/quirky-taussig-ng90m](https://codesandbox.io/s/quirky-taussig-ng90m)
