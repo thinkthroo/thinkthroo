@@ -1,0 +1,155 @@
+In this article, we will understand how createStore in Zustand’s source code is written/works.
+
+![](https://cdn-images-1.medium.com/max/1000/1*DZYFn7JU3OzQk9DOEIExXA.png align="left")
+
+createStore is exported from [vanilla.ts](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L9) and you will find this at the end of the file.
+
+```javascript
+export const createStore = ((createState) =>
+  createState ? createStoreImpl(createState) : createStoreImpl) as CreateStore
+```
+
+createStore is arrow function that accepts a parameter called createState. if createState exists, createStoreImpl(createState) is called.
+
+### createStoreImpl
+
+```javascript
+const createStoreImpl: CreateStoreImpl = (createState) => {
+  type TState = ReturnType<typeof createState>
+  type Listener = (state: TState, prevState: TState) => void
+  let state: TState
+  const listeners: Set<Listener> = new Set()
+
+  const setState: StoreApi<TState>['setState'] = (partial, replace) => {
+    // TODO: Remove type assertion once https://github.com/microsoft/TypeScript/issues/37663 is resolved
+    // https://github.com/microsoft/TypeScript/issues/37663#issuecomment-759728342
+    const nextState =
+      typeof partial === 'function'
+        ? (partial as (state: TState) => TState)(state)
+        : partial
+    if (!Object.is(nextState, state)) {
+      const previousState = state
+      state =
+        (replace ?? (typeof nextState !== 'object' || nextState === null))
+          ? (nextState as TState)
+          : Object.assign({}, state, nextState)
+      listeners.forEach((listener) => listener(state, previousState))
+    }
+  }
+
+  const getState: StoreApi<TState>['getState'] = () => state
+
+  const getInitialState: StoreApi<TState>['getInitialState'] = () =>
+    initialState
+
+  const subscribe: StoreApi<TState>['subscribe'] = (listener) => {
+    listeners.add(listener)
+    // Unsubscribe
+    return () => listeners.delete(listener)
+  }
+
+  const api = { setState, getState, getInitialState, subscribe }
+  const initialState = (state = createState(setState, getState, api))
+  return api as any
+}
+```
+
+In our previous articles, I have written about how setState, subscribe work. We will cover the remaining functions such as getState, getInitialState, createState.
+
+#### getState
+
+getState simply returns the state that is declared at the top of this createStoreImpl function.
+
+```javascript
+const getState: StoreApi<TState>['getState'] = () => state
+```
+
+#### getInitialState
+
+getInitialState returns the initialState.
+
+```javascript
+const getInitialState: StoreApi<TState>['getInitialState'] = () =>
+    initialState
+```
+
+#### createState
+
+createState is used to initialise the state variable.
+
+```javascript
+const createStoreImpl: CreateStoreImpl = (createState) => {
+```
+
+createState is a parameter in createStoreImpl. Let’s run some experiments using the demo example provided in the Zustand’s repo.
+
+![](https://cdn-images-1.medium.com/max/1000/1*4O0mYmQi7Iwg9bFdoHdUJg.png align="left")
+
+This is basically just what you pass into “create”
+
+```javascript
+// Create the store using Zustand
+const useStore = create((set) => ({
+  count: 1,
+  inc: () => set((state) => ({ count: state.count + 1 })),
+}));
+```
+
+State initialisation happens in [vanilla.ts at L93](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L93C3-L93C70), even though create is originally exported from React, [react.ts](https://github.com/pmndrs/zustand/blob/main/src/react.ts) internally calls createStore in vanilla.ts.
+
+So how does calling createState initializes the state?
+
+```javascript
+  const initialState = (state = createState(setState, getState, api))
+```
+
+The trick lies in calling the arrow function, createState. From the above code snippet, you can see that createState is called with setState, getState, api
+
+Let’s run some experiments with this information. Let’s pass a custom function named test as the parameter without the original parameters.
+
+![](https://cdn-images-1.medium.com/max/1000/1*sk5a2f94XnAA6iD3ohCQ5g.png align="left")
+
+The above image shows the custom test function I added to demonstrate how the parameters are passed to createState function.
+
+let’s now see this internal test function in action. For us to access this test function, the following example shows how createStore can be initialised with this newly added test parameter.
+
+```javascript
+// Create the store using Zustand
+const useStore = create((set, get, api, test) => ({
+  count: 1,
+  inc: () => set((state) => ({ count: state.count + 1 })),
+  test: () => test() 
+}));
+```
+
+Because we exposed test in vanilla.mjs as shown below, you will have access to this function when you initialise the create function
+
+![](https://cdn-images-1.medium.com/max/1000/1*en9fBc6yZO8U0IHmnWMmPg.png align="left")
+
+I am triggering this test function when the button in the demo example is clicked.
+
+![](https://cdn-images-1.medium.com/max/1000/1*lGrFilrA51cudi_SAoCIXQ.png align="left")
+
+This, in turn, calls the test function.
+
+This is some advanced JavaScript arrow functions usage and oh, we also just added a custom test function and used in the demo app. That is cool.
+
+### About us:
+
+At [Think Throo](https://thinkthroo.com/), we are on a mission to [teach the best practices](https://app.thinkthroo.com/best-practices) inspired by open-source projects.
+
+10x your coding skills by practising [advanced architectural concepts](https://app.thinkthroo.com/architecture) in Next.js/React, [learn the best practices](https://app.thinkthroo.com/best-practices) and [build production-grade projects](https://app.thinkthroo.com/production-grade-projects).
+
+We are open source — [https://github.com/thinkthroo/thinkthroo](https://github.com/thinkthroo/thinkthroo) (Do give us a star!)
+
+Looking to build bespoke web systems for your business? Contact us at hello@thinkthroo.com
+
+### About the author:
+
+Hey, I’m Ram. I am a passionate software engineer/OSS Tinkerer.
+
+Checkout my website: [https://www.ramunarasinga.com/](https://www.ramunarasinga.com/)
+
+### References:
+
+1. [https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L97](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L97)
