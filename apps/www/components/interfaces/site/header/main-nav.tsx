@@ -57,7 +57,7 @@ export function MainNav() {
             <NavigationMenuItem>
               <NavigationMenuTrigger
                 className={cn(
-                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal"
+                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal bg-transparent"
                 )}
               >
                 Services
@@ -87,7 +87,7 @@ export function MainNav() {
             <NavigationMenuItem>
               <NavigationMenuTrigger
                 className={cn(
-                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal"
+                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal bg-transparent"
                 )}
               >
                 Products
@@ -130,7 +130,7 @@ export function MainNav() {
             <NavigationMenuItem>
               <NavigationMenuTrigger
                 className={cn(
-                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal"
+                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal bg-transparent"
                 )}
               >
                 Courses
