@@ -1,6 +1,11 @@
+---
+title:createStore in Zustand's source code explained.
+toc: true
+---
+
 In this article, we will understand how createStore in Zustand’s source code is written/works.
 
-![](https://cdn-images-1.medium.com/max/1000/1*DZYFn7JU3OzQk9DOEIExXA.png align="left")
+![](https://cdn-images-1.medium.com/max/1000/1*DZYFn7JU3OzQk9DOEIExXA.png)
 
 createStore is exported from [vanilla.ts](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L9) and you will find this at the end of the file.
 
@@ -83,7 +88,7 @@ const createStoreImpl: CreateStoreImpl = (createState) => {
 
 createState is a parameter in createStoreImpl. Let’s run some experiments using the demo example provided in the Zustand’s repo.
 
-![](https://cdn-images-1.medium.com/max/1000/1*4O0mYmQi7Iwg9bFdoHdUJg.png align="left")
+![](https://cdn-images-1.medium.com/max/1000/1*4O0mYmQi7Iwg9bFdoHdUJg.png)
 
 This is basically just what you pass into “create”
 
@@ -107,7 +112,7 @@ The trick lies in calling the arrow function, createState. From the above code s
 
 Let’s run some experiments with this information. Let’s pass a custom function named test as the parameter without the original parameters.
 
-![](https://cdn-images-1.medium.com/max/1000/1*sk5a2f94XnAA6iD3ohCQ5g.png align="left")
+![](https://cdn-images-1.medium.com/max/1000/1*sk5a2f94XnAA6iD3ohCQ5g.png)
 
 The above image shows the custom test function I added to demonstrate how the parameters are passed to createState function.
 
@@ -124,11 +129,11 @@ const useStore = create((set, get, api, test) => ({
 
 Because we exposed test in vanilla.mjs as shown below, you will have access to this function when you initialise the create function
 
-![](https://cdn-images-1.medium.com/max/1000/1*en9fBc6yZO8U0IHmnWMmPg.png align="left")
+![](https://cdn-images-1.medium.com/max/1000/1*en9fBc6yZO8U0IHmnWMmPg.png)
 
 I am triggering this test function when the button in the demo example is clicked.
 
-![](https://cdn-images-1.medium.com/max/1000/1*lGrFilrA51cudi_SAoCIXQ.png align="left")
+![](https://cdn-images-1.medium.com/max/1000/1*lGrFilrA51cudi_SAoCIXQ.png)
 
 This, in turn, calls the test function.
 
