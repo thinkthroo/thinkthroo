@@ -1,0 +1,97 @@
+In this article, I will provide a review on how setState in Zustand’s source code is written/works. This concept leverages closures in JavaScript and arrow functions.
+
+![](https://cdn-images-1.medium.com/max/1000/1*j06fhTrBgMVu_tv3D_lTLw.png)
+
+[StoreApi](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L9) type is straight forward.
+
+```javascript
+export interface StoreApi<T> {
+  setState: SetStateInternal<T>
+  getState: () => T
+  getInitialState: () => T
+  subscribe: (listener: (state: T, prevState: T) => void) => () => void
+}
+```
+
+setState accepts two parameters
+
+1. partial 
+    
+2. replace
+    
+
+Let’s perform an experiment using the example demo app provided in theZustand repo.
+
+I added some console statements in the dist to see what’s in partial and replace.
+
+![](https://cdn-images-1.medium.com/max/1000/1*8MHKhUDAlHQKCh38g_3iXA.png)
+
+And this is what the values are when you update the count in the demo example.
+
+![](https://cdn-images-1.medium.com/max/1000/1*1l8VM-IDSniIQTEPurunSQ.png)
+
+Since partial is a function here, 
+
+```javascript
+const nextState = typeof partial === "function" ? partial(state) : partial;
+```
+
+If you look closely, state is initialised when you createStore and is outside the setState function. Does that ring a bell? Refer to [Closures in Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
+
+`partial` is an [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+```javascript
+(state)=>({
+    count: state.count + 1
+})
+```
+
+The beauty is that you can call these functions with a parameter since it returns a function, that is why we have `partial(state)` and state is outside the setState. setState has access to this state variable, thanks to closures in JavaScript.
+
+You can run the below code snippet in a browser console and it logs what you sent as a parameter.
+
+```javascript
+(a => console.log(a))("test")
+// Output: test
+```
+
+I wrote detailed articles about Object.is and Object.assign usage. Since replace is null,
+
+```javascript
+if (!Object.is(nextState, state)) {
+  const previousState = state
+  state =
+    (replace ?? (typeof nextState !== 'object' || nextState === null))
+      ? (nextState as TState)
+      : Object.assign({}, state, nextState)
+  listeners.forEach((listener) => listener(state, previousState))
+}
+```
+
+State is updated using Object.assign. We will look at an advanced use case where replace is not null and understand how setState behaves in the future articles.
+
+### About us:
+
+At [Think Throo](https://thinkthroo.com/), we are on a mission to [teach the best practices](https://app.thinkthroo.com/best-practices) inspired by open-source projects.
+
+10x your coding skills by practising [advanced architectural concepts](https://app.thinkthroo.com/architecture) in Next.js/React, [learn the best practices](https://app.thinkthroo.com/best-practices) and [build production-grade projects](https://app.thinkthroo.com/production-grade-projects).
+
+We are open source — [https://github.com/thinkthroo/thinkthroo](https://github.com/thinkthroo/thinkthroo) (Do give us a star!)
+
+Looking to build bespoke web systems for your business? Contact us at hello@thinkthroo.com
+
+### About the author:
+
+Hey, I’m Ram. I am a passionate software engineer/OSS Tinkerer.
+
+Checkout my website: [https://www.ramunarasinga.com/](https://www.ramunarasinga.com/)
+
+### References:
+
+1. [https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L64](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L64)
+    
+2. [https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L9](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L9)
+    
+3. [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+    
+4. [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow\_functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
