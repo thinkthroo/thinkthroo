@@ -1,0 +1,120 @@
+In this article, we will analyse how the [createWithEqualityFnImpl](https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L74) is implemented by logging some of its value to get a better understanding.
+
+![](https://miro.medium.com/v2/resize:fit:875/1*t2aYkuCeF0AGVfR0vRG1pA.png)
+
+As you can tell from the above image, createWithEqualityFn calls the function createWithEqualityFnImpl. This pattern is used in [vanilla.ts](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts) as well as demonstrated below:
+
+```plaintext
+export const createStore = ((createState) =>
+  createState ? createStoreImpl(createState) : createStoreImpl) as CreateStore
+```
+
+createStore calls createStoreImpl and createWithEqualityFn calls createWithhEqualityFnImpl.
+
+Before we jump into the execution of createWithEqualityFn, let’s first understand the purpose of using createWithEqualityFn.
+
+![](https://miro.medium.com/v2/resize:fit:875/1*nHutJ49cqYhbqHX2GVVF_A.png)
+
+The above screenshot is from [https://github.com/pmndrs/zustand/tree/main](https://github.com/pmndrs/zustand/tree/main)
+
+You can use createWithEqualityFn to have more control over re-rendering.
+
+## **createWithEqualityFn**
+
+```plaintext
+const createWithEqualityFnImpl = <T>(
+  createState: StateCreator<T, [], []>,
+  defaultEqualityFn?: <U>(a: U, b: U) => boolean,
+) => {
+  const api = createStore(createState)
+
+  const useBoundStoreWithEqualityFn: any = (
+    selector?: any,
+    equalityFn = defaultEqualityFn,
+  ) => useStoreWithEqualityFn(api, selector, equalityFn)
+
+  Object.assign(useBoundStoreWithEqualityFn, api)
+
+  return useBoundStoreWithEqualityFn
+}
+```
+
+## **useStoreWithEqualityFn**
+
+```plaintext
+export function useStoreWithEqualityFn<S extends ReadonlyStoreApi<unknown>>(
+  api: S,
+): ExtractState<S>
+
+export function useStoreWithEqualityFn<S extends ReadonlyStoreApi<unknown>, U>(
+  api: S,
+  selector: (state: ExtractState<S>) => U,
+  equalityFn?: (a: U, b: U) => boolean,
+): U
+
+export function useStoreWithEqualityFn<TState, StateSlice>(
+  api: ReadonlyStoreApi<TState>,
+  selector: (state: TState) => StateSlice = identity as any,
+  equalityFn?: (a: StateSlice, b: StateSlice) => boolean,
+) {
+  const slice = useSyncExternalStoreWithSelector(
+    api.subscribe,
+    api.getState,
+    api.getInitialState,
+    selector,
+    equalityFn,
+  )
+  useDebugValue(slice)
+  return slice
+}
+```
+
+This is an overloading function. useStoreWithEqualityFn has 3 definitions:
+
+```plaintext
+export function useStoreWithEqualityFn<S extends ReadonlyStoreApi<unknown>>(
+  api: S,
+): ExtractState<S>
+
+export function useStoreWithEqualityFn<S extends ReadonlyStoreApi<unknown>, U>(
+  api: S,
+  selector: (state: ExtractState<S>) => U,
+  equalityFn?: (a: U, b: U) => boolean,
+): U
+
+export function useStoreWithEqualityFn<TState, StateSlice>(
+  api: ReadonlyStoreApi<TState>,
+  selector: (state: TState) => StateSlice = identity as any,
+  equalityFn?: (a: StateSlice, b: StateSlice) => boolean,
+) {
+```
+
+![](https://miro.medium.com/v2/resize:fit:875/1*svt_ucTCpyNOGTCnKmMoPw.png)
+
+Let’s see how the slice value looks like:
+
+![](https://miro.medium.com/v2/resize:fit:875/1*GrB9UBQDkm3c_hBzkmq8iQ.png)
+
+value: 1 is skipped because we set the code to avoid re-render when the value is 1 as shown below:
+
+![](https://miro.medium.com/v2/resize:fit:875/1*jyi-JX5AZmFx9KhplHD6hw.png)
+
+# **About us:**
+
+At [Think Throo](https://thinkthroo.com/), we are on a mission to [teach the best practices](https://app.thinkthroo.com/best-practices) inspired by open-source projects.
+
+10x your coding skills by practising [advanced architectural concepts](https://app.thinkthroo.com/architecture) in Next.js/React, [learn the best practices](https://app.thinkthroo.com/best-practices) and [build production-grade projects](https://app.thinkthroo.com/production-grade-projects).
+
+We are open source — [https://github.com/thinkthroo/thinkthroo](https://github.com/thinkthroo/thinkthroo) (Do give us a star!)
+
+Up skill your team with our advanced courses based on codebase architecture. Reach out to us at hello@thinkthroo.com to learn more!
+
+# **References:**
+
+1. [https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L74](https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L74)
+    
+2. [https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L39](https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L39)
+    
+
+[  
+](https://medium.com/tag/javascript?source=post_page-----2bd444f4ea88--------------------------------)
