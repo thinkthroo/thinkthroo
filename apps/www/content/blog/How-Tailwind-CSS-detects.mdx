@@ -1,0 +1,129 @@
+---
+title: How Tailwind CSS detects circular dependancy.
+toc: true
+---
+
+![](https://miro.medium.com/v2/resize:fit:875/1*VThlmyxd0bN028srx1jlVg.png)
+
+In this article, we analyze error thrown in [substituteAtApply](https://github.com/tailwindlabs/tailwindcss/blob/c01b8254e822d4f328674357347ca0532f1283a0/packages/tailwindcss/src/apply.ts). This error is about circular dependency detected.
+
+```plaintext
+walk(rule.nodes, (child) => {
+  if (child !== node) return
+  throw new Error(
+   `You cannot \`@apply\` the \`${candidate}\` utility here because it creates a circular dependency.`,
+   )
+})
+```
+
+This is a high level overview of the code around this error.
+
+## **walk — recursive function:**
+
+Let’s begin with [walk](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/ast.ts#L70):
+
+```plaintext
+export function walk(
+   ast: AstNode[],
+   visit: (
+     node: AstNode,
+     utils: {
+     parent: AstNode | null
+     replaceWith(newNode: AstNode | AstNode[]): void
+     context: Record<string, string>
+   },
+ ) => void | WalkAction,
+ parent: AstNode | null = null,
+ context: Record<string, string> = {},
+) {
+ for (let i = 0; i < ast.length; i++) {
+   let node = ast[i]
+  // We want context nodes to be transparent in walks. This means that
+   // whenever we encounter one, we immediately walk through its children and
+   // furthermore we also don't update the parent.
+ if (node.kind === 'context') {
+   walk(node.nodes, visit, parent, { …context, …node.context })
+   continue
+ }
+let status = visit(node, {
+   parent,
+   replaceWith(newNode) {
+   ast.splice(i, 1, …(Array.isArray(newNode) ? newNode : [newNode]))
+   // We want to visit the newly replaced node(s), which start at the
+   // current index (i). By decrementing the index here, the next loop
+   // will process this position (containing the replaced node) again.
+   i - 
+ },
+ context,
+ }) ?? WalkAction.Continue
+  // Stop the walk entirely
+   if (status === WalkAction.Stop) return
+  // Skip visiting the children of this node
+   if (status === WalkAction.Skip) continue
+  if (node.kind === 'rule') {
+   walk(node.nodes, visit, node, context)
+   }
+ }
+}
+```
+
+walk is a recursive function located in [ast.ts](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/ast.ts#L70C1-L118C1).
+
+It calls itself recursively when `node.kind === ‘context’` or when `node.kind === ‘rule’`, breaking condition is based on status
+
+```plaintext
+// Stop the walk entirely
+if (status === WalkAction.Stop) return
+// Skip visiting the children of this node
+if (status === WalkAction.Skip) continue
+```
+
+Now let’s zoom out a bit and study the code in the vicinity of walk function in [apply.ts](https://github.com/tailwindlabs/tailwindcss/blob/c01b8254e822d4f328674357347ca0532f1283a0/packages/tailwindcss/src/apply.ts)
+
+```plaintext
+// Verify that we don't have any circular dependencies by verifying that
+// the current node does not appear in the new nodes.
+walk(newNodes, (child) => {
+ if (child !== node) return
+  // At this point we already know that we have a circular dependency.
+  //
+  // Figure out which candidate caused the circular dependency. This will
+ // help to create a useful error message for the end user.
+ for (let candidate of candidates) {
+   let selector = `.${escape(candidate)}`
+    for (let rule of candidateAst) {
+     if (rule.kind !== 'rule') continue
+     if (rule.selector !== selector) continue
+      walk(rule.nodes, (child) => {
+     if (child !== node) return
+      throw new Error(
+       `You cannot \`@apply\` the \`${candidate}\` utility here because it creates a circular dependency.`,
+       )
+     })
+    }
+ }
+})
+```
+
+TailwindCSS authors have added explaining comments across the codebase where required or it makes sense to provide additional context  
+with comments.
+
+# **About us:**
+
+At [Think Throo](https://thinkthroo.com/), we are on a mission to [teach the advanced codebase architectural concepts](https://app.thinkthroo.com/architecture) used in open-source projects.
+
+10x your coding skills by practising [advanced architectural concepts](https://app.thinkthroo.com/architecture) in Next.js/React, [learn the best practices](https://app.thinkthroo.com/best-practices) and [build production-grade projects](https://app.thinkthroo.com/production-grade-projects).
+
+We are open source — [https://github.com/thinkthroo/thinkthroo](https://github.com/thinkthroo/thinkthroo) (Do give us a star!)
+
+We also provide web development and technical writing services. Reach out to us at ***hello@thinkthroo.com*** to learn more!
+
+# **References:**
+
+1. [https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/ast.ts#L70](https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/ast.ts#L70)
+    
+2. [https://github.com/tailwindlabs/tailwindcss/blob/c01b8254e822d4f328674357347ca0532f1283a0/packages/tailwindcss/src/apply.ts](https://github.com/tailwindlabs/tailwindcss/blob/c01b8254e822d4f328674357347ca0532f1283a0/packages/tailwindcss/src/apply.ts)
+    
+3. [https://stackoverflow.com/questions/71669246/need-help-using-apply-directive-in-tailwind-css](https://stackoverflow.com/questions/71669246/need-help-using-apply-directive-in-tailwind-css)
+    
+4. https://github.com/tailwindlabs/tailwindcss/issues/2807
