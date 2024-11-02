@@ -193,10 +193,6 @@ export default function ArchitecturePage() {
   const [selectedFramework, setSelectedFramework] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<string>("All");
 
-  const getKeys = () => {
-    return Object.keys(architectureCourses) as Array<keyof typeof architectureCourses>;
-  };
-
   const handleFrameworkChange = (value: string) => {
     setSelectedFramework(value);
   };
@@ -300,20 +296,11 @@ export default function ArchitecturePage() {
         </PageActions>
       </PageHeader>
 
-      <NavTabs className="[&>a:first-child]:text-primary" />
-
       <div className="grid flex-1 gap-12">
-        {getKeys().map((key) => {
-          const filteredCourses = filterCourses(architectureCourses[key]);
-          return (
-            <>
-              <div key={key} id={key} className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 lg:grid-cols-3">
-                <Item courses={filteredCourses} />
-              </div>
-              <Separator />
-            </>
-          );
-        })}
+        <div className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 lg:grid-cols-3">
+          <Item courses={architectureCourses} />
+        </div>
+        <Separator />
       </div>
     </div>
   );
