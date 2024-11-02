@@ -1,0 +1,97 @@
+---
+title: Usage of Dexie, an IndexedDB wrapper, in Lobechat
+toc: true
+---
+
+In this article, we analyze [Dexie](https://dexie.org/) usage in [Lobechat](https://github.com/lobehub/lobe-chat/blob/main/src/database/client/core/db.ts).
+
+If you check \[database folder in [lobechat](https://github.com/lobehub/lobe-chat/tree/main/src/database), it has 2 folders:
+
+1. client
+    
+2. server
+    
+
+In this [Lobechat’s self-host docs](https://lobehub.com/docs/self-hosting/server-database), it is mentioned that LobeChat  
+defaults to using a client-side database (IndexedDB). That is why you have two folders, one for client and one for server.
+
+![](https://miro.medium.com/v2/resize:fit:875/1*auzPtXHE1jG8EtFtUwBhrw.png align="left")
+
+[database/client/core/db.ts](https://github.com/lobehub/lobe-chat/blob/main/src/database/client/core/db.ts) imports [Dexie](https://dexie.org/).
+
+Dexie is a minimalistic wrapper for indexedDB. Let’s look at a simple dexie example provided in the [Getting Started tutorial](https://dexie.org/docs/Tutorial/React).
+
+```javascript
+// db.ts
+import Dexie, { type EntityTable } from 'dexie';
+interface Friend {
+ id: number;
+ name: string;
+ age: number;
+}
+const db = new Dexie('FriendsDatabase') as Dexie & {
+ friends: EntityTable<
+ Friend,
+ 'id' // primary key "id" (for the typings only)
+ >;
+};
+// Schema declaration:
+db.version(1).stores({
+ friends: '++id, name, age' // primary key "id" (for the runtime!)
+});
+export type { Friend };
+export { db };
+```
+
+## **Important note:**
+
+Applications typically have one single Dexie instance declared as its own module. This is where you declare which tables you need and how each table shall be indexed. A Dexie instance is a singleton throughout the  
+application — you do not need to create it on demand. Export the resulting db instance from your module so that components or other modules can use it to query or write to the database.
+
+Using this line shown below, Lobechat creates a singleton instance of BrowserDB.
+
+```javascript
+export class BrowserDB extends Dexie {
+ public files: BrowserDBTable<'files'>;
+ public sessions: BrowserDBTable<'sessions'>;
+ public messages: BrowserDBTable<'messages'>;
+ public topics: BrowserDBTable<'topics'>;
+ public plugins: BrowserDBTable<'plugins'>;
+ public sessionGroups: BrowserDBTable<'sessionGroups'>;
+ public users: BrowserDBTable<'users'>;
+constructor() {
+ this.version(1).stores(dbSchemaV1);
+ this.version(2).stores(dbSchemaV2);
+ this.version(3).stores(dbSchemaV3);
+ this.version(4)
+ .stores(dbSchemaV4)
+ .upgrade((trans) => this.upgradeToV4(trans));
+ // … more code
+export const browserDB = new BrowserDB();
+```
+
+versions written in constructor show how the client side database schema evolved over the time, Read more about [Dexie.version()](https://dexie.org/docs/Dexie/Dexie.version\(\)) to understand the versions.
+
+# **About us:**
+
+At [Thinkthroo](https://thinkthroo.com/), we study large open source projects and [provide architectural guides](https://app.thinkthroo.com/architecture). We have developed resubale [Components, built with tailwind, that you can use in your project](https://thinkthroo.com/components). We offer [Next.js, React and Node development services.](https://thinkthroo.com/components)
+
+[Book a meeting](https://cal.com/team-thinkthroo-dxiovj/consultation?date=2024-10-19&month=2024-10) with us to discuss your project.
+
+![](https://miro.medium.com/v2/resize:fit:875/0*GpcLZVm5e_Dwf8tn.png align="left")
+
+![](https://miro.medium.com/v2/resize:fit:875/0*lePdQLioYoaQOt1E.png align="left")
+
+# **References:**
+
+1. [https://github.com/lobehub/lobe-chat/blob/main/src/database/client/core/db.ts](https://github.com/lobehub/lobe-chat/blob/main/src/database/client/core/db.ts)
+    
+2. [https://dexie.org/](https://dexie.org/)
+    
+3. [https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB\_API/Using\_IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB)
+    
+4. [https://web.dev/articles/indexeddb](https://web.dev/articles/indexeddb)
+    
+5. [https://lobehub.com/docs/self-hosting/server-database](https://lobehub.com/docs/self-hosting/server-database)
+    
+6. [https://dexie.org/docs/Tutorial/React](https://dexie.org/docs/Tutorial/React)

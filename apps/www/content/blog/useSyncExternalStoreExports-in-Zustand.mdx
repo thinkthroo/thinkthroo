@@ -1,0 +1,109 @@
+---
+title: useSyncExternalStoreExports in Zustand source code explained.
+toc: true
+---
+
+In this article, we will look at how Zustand uses `useSyncExternalStoreExports` in its [source code.](https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L44)
+
+![](https://miro.medium.com/v2/resize:fit:875/1*clGskdPnb_vycCWlYYcq5A.png)
+
+`useSyncExternalStoreExports` is imported from [use-sync-external-store/shim/with-selector](https://www.npmjs.com/package/use-sync-external-store). use-sync-external-store is a backwards-compatible shim for [`React.useSyncExternalStore`](https://reactjs.org/docs/hooks-reference.html#usesyncexternalstore) Works with any React that supports Hooks.
+
+Reading the above sentence, you might be wondering what a useSyncExternalStore.
+
+# **useSyncExternalStore**
+
+[`useSyncExternalStore`](https://react.dev/reference/react/useSyncExternalStore) is a React Hook that lets you subscribe to an external store.
+
+```plaintext
+const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
+```
+
+Use the useSyncExternalStore to read a value from external store that can be:
+
+1. Third-party state management libraries that hold state outside of React.
+    
+2. Browser APIs that expose a mutable value and events to subscribe to its changes.
+    
+
+## **Example usage:**
+
+```plaintext
+import { useSyncExternalStore } from 'react';
+import { todosStore } from './todoStore.js';
+
+function TodosApp() {
+  const todos = useSyncExternalStore(todosStore.subscribe, todosStore.getSnapshot);
+  // ...
+}
+```
+
+The above example is picked from [React docs](https://react.dev/reference/react/useSyncExternalStore#subscribing-to-an-external-store).
+
+# **useSyncExternalStore Usage In Zustand:**
+
+Zustand uses `useSyncExternalStore` in [src/traditional.ts](https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L44).
+
+```plaintext
+import ReactExports from 'react'
+// eslint-disable-next-line import/extensions
+import useSyncExternalStoreExports from 'use-sync-external-store/shim/with-selector'
+import { createStore } from './vanilla.ts'
+import type {
+  Mutate,
+  StateCreator,
+  StoreApi,
+  StoreMutatorIdentifier,
+} from './vanilla.ts'
+
+const { useDebugValue } = ReactExports
+const { useSyncExternalStoreWithSelector } = useSyncExternalStoreExports
+```
+
+`useSyncExternalStoreWithSelector` is de-structured from `useSyncExternalStoreExports` and this is used in `useStoreWithEqualityFn`.
+
+```plaintext
+export function useStoreWithEqualityFn<TState, StateSlice>(
+  api: ReadonlyStoreApi<TState>,
+  selector: (state: TState) => StateSlice = identity as any,
+  equalityFn?: (a: StateSlice, b: StateSlice) => boolean,
+) {
+  const slice = useSyncExternalStoreWithSelector(
+    api.subscribe,
+    api.getState,
+    api.getInitialState,
+    selector,
+    equalityFn,
+  )
+  useDebugValue(slice)
+  return slice
+}
+```
+
+useSyncExternalStoreWithSelector has api.subscribe, api.getState, api.getInitialState, selector and equalityFn.
+
+# **About us:**
+
+At [Think Throo](https://thinkthroo.com/), we are on a mission to [teach the best practices](https://app.thinkthroo.com/best-practices) inspired by open-source projects.
+
+10x your coding skills by practising [advanced architectural concepts](https://app.thinkthroo.com/architecture) in Next.js/React, [learn the best practices](https://app.thinkthroo.com/best-practices) and [build production-grade projects](https://app.thinkthroo.com/production-grade-projects).
+
+We are open source — [https://github.com/thinkthroo/thinkthroo](https://github.com/thinkthroo/thinkthroo) (Do give us a star!)
+
+Up skill your team with our advanced courses based on codebase architecture. Reach out to us at hello@thinkthroo.com to learn more!
+
+# **References:**
+
+1. [https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L44](https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L44)
+    
+2. [https://www.npmjs.com/package/use-sync-external-store](https://www.npmjs.com/package/use-sync-external-store)
+    
+3. [https://legacy.reactjs.org/docs/hooks-reference.html#usesyncexternalstore](https://legacy.reactjs.org/docs/hooks-reference.html#usesyncexternalstore)
+    
+4. [https://react.dev/reference/react/useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore)
+    
+5. [https://github.com/reactwg/react-18/discussions/86](https://github.com/reactwg/react-18/discussions/86)
+    
+
+[  
+](https://medium.com/tag/javascript?source=post_page-----5b92cc0f3bf8---------------javascript-----------------)

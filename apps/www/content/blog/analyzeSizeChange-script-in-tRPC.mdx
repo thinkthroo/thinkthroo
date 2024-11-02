@@ -1,0 +1,132 @@
+---
+title:analyzeSizeChange script in tRPC source code
+toc: true
+---
+
+In this article, we provide an overview of [analyzeSizeChange script in trpc source code](https://github.com/trpc/trpc/blob/next/scripts/analyzeSizeChange.ts).
+
+This file has the following functions:
+
+1\. func analyzeSizeChange  
+2\. func onAnalysis  
+3\. type GitHubLogType  
+4\. type GitHubLogOptions  
+5\. func logNewModule  
+6\. func logDifference  
+7\. func logGithubMessage  
+8\. func difference  
+9\. func resolveJsonPaths  
+10\. func stripAnsiEscapes  
+11\. func formatGithubOptions  
+12\. func formatGithubMessage
+
+![](https://miro.medium.com/v2/resize:fit:875/1*5bZryISMnFUikOk1liDFag.png)
+
+The most important function here is analyzeSizeChange because it has a function named onAnalysis.
+
+```plaintext
+export default function analyzeSizeChange(packageDir: string) {
+ let analyzePluginIterations = 0;
+ return analyze({
+ summaryOnly: process.env.CI ? undefined : true,
+ skipFormatted: process.env.CI ? true : undefined,
+ onAnalysis: (analysis) => {
+ …
+ // calls logDifference
+ if (prevModule) {
+ logDifference(
+ `Module '${module.id}'`,
+ prevModule.size,
+ module.size,
+ );
+ } else {
+ logNewModule(module.id, module.size);
+ }
+ …
+ })
+}
+```
+
+logDifference and logNewModule are in this same file and are colocated. This is for readability and reusability purposes.
+
+# **logNewModule:**
+
+```plaintext
+function logNewModule(name: string, size: number) {
+ if (size < ABSOLUTE_BYTE_CHANGE_THRESHOLD) {
+   return;
+ }
+ const type = 'notice';
+ const options = {
+   title: `New Module (${size} bytes in ${name})`,
+ };
+ const message = `${name} size: ${size} bytes`;
+ logGithubMessage(type, message, options);
+}
+```
+
+logNewModule calls a function named logGithubMessage that is located somewhere at the bottom of this same file after this  
+function.
+
+# **logDifference:**
+
+```plaintext
+function logDifference(name: string, before: number, after: number) {
+ const change = difference(before, after);
+ if (
+   change.absolute < ABSOLUTE_BYTE_CHANGE_THRESHOLD &&
+   change.percent < PERCENT_CHANGE_THRESHOLD
+ ) {
+   return;
+ }
+ const type = 'error';
+ const options = {
+   title: `Important Size Change (${change.absolute} bytes in ${name})`,
+ };
+ const message = `${name} size change: ${
+   change.absolute
+ } bytes (${change.percent.toFixed(2)}%)`;
+ logGithubMessage(type, message, options);
+}
+```
+
+`logDifference` calls logGithubMessage and difference functions, at this point, we can see that function heierarchy is  
+from top to bottom, core functions are ranked higher while single responsibility functions are positioned lower.
+
+# **logGithubMessage**
+
+```plaintext
+function logGithubMessage(
+ type: GitHubLogType,
+ message: string,
+ options: GitHubLogOptions = {},
+) {
+ console.log(
+   stripAnsiEscapes(
+   `::${type} ${formatGithubOptions(options)}::${formatGithubMessage(
+   message,
+   )
+}`,
+),
+ );
+}
+```
+
+logGithubMessage uses three functions — stripAnsiEscapes, formatGithubOptions and formatGithubMessage.
+
+# **About us:**
+
+At [Thinkthroo](https://thinkthroo.com/), we study large open source projects and [provide architectural guides](https://app.thinkthroo.com/architecture). We have developed resubale [Components, built with tailwind, that you can use in your project](https://thinkthroo.com/components). We offer [Next.js, React and Node development services.](https://thinkthroo.com/components)
+
+[Book a meeting](https://cal.com/team-thinkthroo-dxiovj/consultation?date=2024-10-19&month=2024-10) with us to disucss your project.
+
+![](https://miro.medium.com/v2/resize:fit:875/1*6kRyk_7nWfv8JSoaXxoNjQ.png)
+
+![](https://miro.medium.com/v2/resize:fit:875/1*_1bbtIe_HR07sKSyskLy2A.png)
+
+# **References:**
+
+1\. https://github.com/trpc/trpc/blob/next/scripts/analyzeSizeChange.ts
+
+[  
+](https://medium.com/tag/javascript?source=post_page-----b216f5ea61ff--------------------------------)

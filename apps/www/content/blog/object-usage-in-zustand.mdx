@@ -1,0 +1,121 @@
+---
+title: Object.is() usage in Zustand's source code
+toc: true
+---
+
+In this article, we will explore how Object.is() method is used in [Zustand’s source code](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L71). 
+
+![](https://cdn-images-1.medium.com/max/1000/1*CMnT4oJcS6-EjWECujm5ZQ.png)
+
+The above code snippet is picked from [vanilla.ts](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L71)
+
+Object.is() method is used in setState (more articles on this later on).
+
+Let’s first understand what an Object.is() method is.
+
+### [Object.is()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
+
+The [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) static method determines whether two values are [the same value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#same-value_equality_using_object.is).
+
+The below example is picked from MDN Docs:
+
+```javascript
+console.log(Object.is('1', 1));
+// Expected output: false
+
+console.log(Object.is(NaN, NaN));
+// Expected output: true
+
+console.log(Object.is(-0, 0));
+// Expected output: false
+
+const obj = {};
+console.log(Object.is(obj, {}));
+// Expected output: false
+```
+
+Here is a bit complicated JSON example:
+
+```javascript
+const jsonObject1 = {
+    name: "foo",
+    age: 30
+};
+
+const jsonObject2 = {
+    name: "bar",
+    age: 30
+};
+
+console.log(Object.is(jsonObject1, jsonObject2)); // false
+```
+
+#### Why does `Object.is()` return `false`?
+
+Even though `jsonObject1` and `jsonObject2` have the same content, they are different objects in memory. In JavaScript, objects are compared by reference, not by their content. Since these two objects are stored at different memory locations, `Object.is()` returns `false`.
+
+### Object.is(nextState, state)
+
+In the below code snippet from Zustand, the `Object.is()` method is used to determine whether the `nextState` is truly different from the current `state` before proceeding to update the state and notify listeners. This check is crucial for performance and avoiding unnecessary state updates.
+
+```typescript
+const setState: StoreApi<TState>['setState'] = (partial, replace) => {
+  // TODO: Remove type assertion once https://github.com/microsoft/TypeScript/issues/37663 is resolved
+  // https://github.com/microsoft/TypeScript/issues/37663#issuecomment-759728342
+  const nextState =
+    typeof partial === 'function'
+      ? (partial as (state: TState) => TState)(state)
+      : partial
+  if (!Object.is(nextState, state)) {
+    const previousState = state
+    state =
+      (replace ?? (typeof nextState !== 'object' || nextState === null))
+        ? (nextState as TState)
+        : Object.assign({}, state, nextState)
+    listeners.forEach((listener) => listener(state, previousState))
+  }
+}
+```
+
+The below image shows the Object.is() in action
+
+![](https://cdn-images-1.medium.com/max/1000/1*wkLCVrd_hdUJqRqRJ4ontg.png)
+
+![](https://cdn-images-1.medium.com/max/1000/1*B1C9X61Rr7faIhczJnyS7Q.png)
+
+To add the above log statements, I compiled Zustand using the command `pnpm run build` and copied the dist into `examples/demo/src`. Looks hacky, but hey we are experimenting and figuring out how Zustand works internally.
+
+![](https://cdn-images-1.medium.com/max/1000/1*1FOi8LhNb04F4-x1neQ5vA.png)
+
+```javascript
+const useStore = create((set) => ({
+  count: 1,
+  inc: () => set((state) => ({ count: state.count + 1 })),
+}))
+```
+
+Calling inc somehow triggers the setState, we will figure out how in the upcoming articles.
+
+### About us:
+
+At [Think Throo](https://thinkthroo.com/), we are on a mission to [teach the best practices](https://app.thinkthroo.com/best-practices) inspired by open-source projects.
+
+Improve your coding skills by practising advanced architectural concepts, [learn the best practices](https://app.thinkthroo.com/best-practices) and [build production-grade projects](https://app.thinkthroo.com/production-grade-projects).
+
+We are open source — [https://github.com/thinkthroo/thinkthroo](https://github.com/thinkthroo/thinkthroo) (Do give us a star!)
+
+Need help with a Next.js project? Contact us at hello@thinkthroo.com
+
+#### About the author:
+
+Hey, I’m Ram. I am a passionate software engineer/OSS Tinkerer.
+
+Checkout my website: [https://www.ramunarasinga.com/](https://www.ramunarasinga.com/)
+
+### References:
+
+1. [https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L71](https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts#L71)
+    
+2. [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Object/is](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
+    
+3. [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality\_comparisons\_and\_sameness#same-value\_equality\_using\_object.is](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#same-value_equality_using_object.is)

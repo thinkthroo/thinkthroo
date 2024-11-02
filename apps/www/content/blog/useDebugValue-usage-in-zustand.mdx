@@ -1,0 +1,61 @@
+---
+title: useDebugValue usage in Zustand source code explained.
+toc: true
+---
+
+In this article, we will understand how useDebugValue is used in [Zustand’s source code](https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L51).
+
+![](https://miro.medium.com/v2/resize:fit:875/1*pmHgtvDCjmbheB334tPcuA.png)
+
+useDebugValue is used in a function named useStoreWithEquality. `useDebugValue` is a React Hook that lets you add a label to a custom Hook in [React DevTools.](https://react.dev/learn/react-developer-tools)
+
+Call `useDebugValue` at the top level of your [custom Hook](https://react.dev/learn/reusing-logic-with-custom-hooks) to display a readable debug value:
+
+```plaintext
+// Pulled from https://react.dev/reference/react/useDebugValue
+import { useDebugValue } from 'react';
+
+function useOnlineStatus() {
+  // ...
+  useDebugValue(isOnline ? 'Online' : 'Offline');
+  // ...
+}
+```
+
+![](https://miro.medium.com/v2/resize:fit:875/1*lpnm07SZX97KWa6hCSIChQ.png)
+
+In Zustand, useDebugValue is used on slice an object that looks like below:
+
+```plaintext
+const slice = useSyncExternalStoreWithSelector(
+  api.subscribe,
+  api.getState,
+  api.getInitialState,
+  selector,
+  equalityFn,
+)
+```
+
+useDebugValue is also used in [src/react.ts](https://github.com/pmndrs/zustand/blob/0a4f9d0f71477c5ef399191acc19e25674d0d3c4/src/react.ts#L42)
+
+# **About us:**
+
+At [Think Throo](https://thinkthroo.com/), we are on a mission to [teach the best practices](https://app.thinkthroo.com/best-practices) inspired by open-source projects.
+
+10x your coding skills by practising [advanced architectural concepts](https://app.thinkthroo.com/architecture) in Next.js/React, [learn the best practices](https://app.thinkthroo.com/best-practices) and [build production-grade projects](https://app.thinkthroo.com/production-grade-projects).
+
+We are open source — [https://github.com/thinkthroo/thinkthroo](https://github.com/thinkthroo/thinkthroo) (Do give us a star!)
+
+Up skill your team with our advanced courses based on codebase architecture. Reach out to us at hello@thinkthroo.com to learn more!
+
+# **References:**
+
+1. [https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L51](https://github.com/pmndrs/zustand/blob/main/src/traditional.ts#L51)
+    
+2. [https://react.dev/reference/react/useDebugValue](https://react.dev/reference/react/useDebugValue)
+    
+3. [https://github.com/pmndrs/zustand/blob/0a4f9d0f71477c5ef399191acc19e25674d0d3c4/src/react.ts#L42](https://github.com/pmndrs/zustand/blob/0a4f9d0f71477c5ef399191acc19e25674d0d3c4/src/react.ts#L42)
+    
+
+[  
+](https://medium.com/tag/javascript?source=post_page-----76979f026054--------------------------------)
