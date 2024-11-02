@@ -38,11 +38,91 @@ export const docsConfig: DocsConfig = {
   ],
   sidebarNav: [
     {
+      title: "November, 2024",
+      items: [
+        {
+          title: "Biome.js, a toolchain to format and lint your web project",
+          href: "/blog/biome-tool-chain",
+          items: [],
+        },
+        {
+          title: "Bunchee, a bundler for JS/TS package",
+          href: "/blog/bunchee-bundler",
+          items: [],
+        },
+        {
+          title: "Generate a documentation site using Nextra",
+          href: "/blog/generate-doc-with-nextra",
+          items: [],
+        },
+        {
+          title: "Manage your versioning and changelogs using Changesets",
+          href: "/blog/manage-version-changelog",
+          items: [],
+        },
+        {
+          title: "Lobechat applies typesafety to its environment variables",
+          href: "/blog/t3-env-in-lobechat",
+          items: [],
+        }
+      ]
+    },
+    {
       title: "October, 2024",
       items: [
         {
+          title: "arrayToDict function in tRPC source code",
+          href: "/blog/arrayToDict-function",
+          items: [],
+        },
+        {
+          title: "httpBatchLink types in tRPC source code explained",
+          href: "/blog/httpBatchLink-types",
+          items: [],
+        },
+        {
+          title: "Istanbul usage in tRPC source code",
+          href: "/blog/Istanbul-usage",
+          items: [],
+        },
+        {
+          title: "IndexedDB explained",
+          href: "/blog/IndexedDB-explained",
+          items: [],
+        },
+        {
+          title: "Usage of Dexie, an IndexedDB wrapper, in Lobechat",
+          href: "/blog/Usage-of-Dexie",
+          items: [],
+        },
+        {
+          title: "rollup-plugin-analyzer usage in trpc scripts",
+          href: "/blog/rollup-plugin-analyzer-usage",
+          items: [],
+        },
+        {
+          title: "analyzeSizeChange script in tRPC source code",
+          href: "/blog/analyzeSizeChange-script-in-tRPC",
+          items: [],
+        },
+        {
+          title: "kodiak.toml in tRPC source code",
+          href: "/blog/kodiak-toml-in-tRPC",
+          items: [],
+        },
+        {
+          title: "codecov.yml in Lobechat source code",
+          href: "/blog/codecov-yml-in-Lobechat",
+          items: [],
+        },
+        {
           title: "Dosu bot usage in lobechat",
           href: "/blog/dosu-bot-usage-in-lobechat",
+          items: [],
+        },
+        {
+          title: "Create a unique array using Set() in JavaScript",
+          href: "/blog/Create-a-unique-array",
           items: [],
         },
         {
@@ -52,7 +132,7 @@ export const docsConfig: DocsConfig = {
         },
         {
           title: "TypeDoc usage in @vercel/edge",
-          href: "/blog/typedoc-usage-in-vercel-edge",
+          href: "/blog/TypeDoc-usage-in-vercel-edge",
           items: [],
         },
         {
@@ -70,297 +150,173 @@ export const docsConfig: DocsConfig = {
           href: "/blog/build-design-system-in-tailwind",
           items: [],
         },
+        {
+          title: "withAlpha utility in Tailwind CSS source code",
+          href: "/blog/withAlpha-utility-in-Tailwind",
+          items: [],
+        },
+        {
+          title: "DefaultMap class in TailwindCSS source code",
+          href: "/blog/DefaultMap-class-in-TailwindCSS",
+          items: [],
+        },
+        {
+          title: "How Tailwind CSS detects circular dependancy",
+          href: "/blog/How-Tailwind-CSS-detects",
+          items: [],
+        },
+        {
+          title: "String.raw in Tailwind CSS source code",
+          href: "/blog/Stringraw-in-Tailwind",
+          items: [],
+        },
+        {
+          title: "Bypass bundlers detection of the require statement",
+          href: "/blog/Bypass-bundlers-detection",
+          items: [],
+        },
+        {
+          title: "MessageChannel usage in React source code",
+          href: "/blog/MessageChannel-usage-in-React",
+          items: [],
+        },
+        {
+          title: "queueMacroTask in React source code",
+          href: "/blog/queueMacroTask-in-React-source",
+          items: [],
+        },
+        {
+          title: "queueMicroTask in JavaScript",
+          href: "/blog/queueMicroTask-in-JavaScript",
+          items: [],
+        },
       ],
     },
-    // {
-    //   title: "Installation",
-    //   items: [
-    //     {
-    //       title: "Next.js",
-    //       href: "/docs/installation/next",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Vite",
-    //       href: "/docs/installation/vite",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Remix",
-    //       href: "/docs/installation/remix",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Astro",
-    //       href: "/docs/installation/astro",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Laravel",
-    //       href: "/docs/installation/laravel",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Gatsby",
-    //       href: "/docs/installation/gatsby",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Manual",
-    //       href: "/docs/installation/manual",
-    //       items: [],
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: "Components",
-    //   items: [
-    //     {
-    //       title: "Accordion",
-    //       href: "/docs/components/accordion",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Alert",
-    //       href: "/docs/components/alert",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Alert Dialog",
-    //       href: "/docs/components/alert-dialog",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Aspect Ratio",
-    //       href: "/docs/components/aspect-ratio",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Avatar",
-    //       href: "/docs/components/avatar",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Badge",
-    //       href: "/docs/components/badge",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Breadcrumb",
-    //       href: "/docs/components/breadcrumb",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Button",
-    //       href: "/docs/components/button",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Calendar",
-    //       href: "/docs/components/calendar",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Card",
-    //       href: "/docs/components/card",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Carousel",
-    //       href: "/docs/components/carousel",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Chart",
-    //       href: "/docs/components/chart",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Checkbox",
-    //       href: "/docs/components/checkbox",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Collapsible",
-    //       href: "/docs/components/collapsible",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Combobox",
-    //       href: "/docs/components/combobox",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Command",
-    //       href: "/docs/components/command",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Context Menu",
-    //       href: "/docs/components/context-menu",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Data Table",
-    //       href: "/docs/components/data-table",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Date Picker",
-    //       href: "/docs/components/date-picker",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Dialog",
-    //       href: "/docs/components/dialog",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Drawer",
-    //       href: "/docs/components/drawer",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Dropdown Menu",
-    //       href: "/docs/components/dropdown-menu",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Form",
-    //       href: "/docs/components/form",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Hover Card",
-    //       href: "/docs/components/hover-card",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Input",
-    //       href: "/docs/components/input",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Input OTP",
-    //       href: "/docs/components/input-otp",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Label",
-    //       href: "/docs/components/label",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Menubar",
-    //       href: "/docs/components/menubar",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Navigation Menu",
-    //       href: "/docs/components/navigation-menu",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Pagination",
-    //       href: "/docs/components/pagination",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Popover",
-    //       href: "/docs/components/popover",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Progress",
-    //       href: "/docs/components/progress",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Radio Group",
-    //       href: "/docs/components/radio-group",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Resizable",
-    //       href: "/docs/components/resizable",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Scroll Area",
-    //       href: "/docs/components/scroll-area",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Select",
-    //       href: "/docs/components/select",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Separator",
-    //       href: "/docs/components/separator",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Sheet",
-    //       href: "/docs/components/sheet",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Skeleton",
-    //       href: "/docs/components/skeleton",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Slider",
-    //       href: "/docs/components/slider",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Sonner",
-    //       href: "/docs/components/sonner",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Switch",
-    //       href: "/docs/components/switch",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Table",
-    //       href: "/docs/components/table",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Tabs",
-    //       href: "/docs/components/tabs",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Textarea",
-    //       href: "/docs/components/textarea",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Toast",
-    //       href: "/docs/components/toast",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Toggle",
-    //       href: "/docs/components/toggle",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Toggle Group",
-    //       href: "/docs/components/toggle-group",
-    //       items: [],
-    //     },
-    //     {
-    //       title: "Tooltip",
-    //       href: "/docs/components/tooltip",
-    //       items: [],
-    //     },
-    //   ],
-    // },
+    {
+      title: "September, 2024",
+      items: [
+        {
+          title: "Object.preventExtensions in JavaScript",
+          href: "/blog/ObjectpreventExtensions-in-JavaScript",
+          items: [],
+        },
+        {
+          title: "BadMapPolyfill in React Source Code",
+          href: "/blog/BadMapPolyfill-in-React-Source",
+          items: [],
+        },
+        {
+          title: "FlowFixMe in React source code",
+          href: "/blog/FlowFixMe-in-React-source",
+          items: [],
+        },
+        {
+          title: "text=auto in .gitattributes file",
+          href: "/blog/text-auto-in-gitattributes",
+          items: [],
+        },
+        {
+          title: ".git-blame-ignore-revs to ignore bulk formatting changes",
+          href: "/blog/git-blame-ignore-revs",
+          items: [],
+        },
+        {
+          title: "Stop saying - you forgot to - in code review",
+          href: "/blog/Stop-saying-you-forgot-to",
+          items: [],
+        },
+        {
+          title: "Add a test case when your open-source project issue is fixed",
+          href: "/blog/add-a-test-case",
+          items: [],
+        },
+        {
+          title: "useLayoutEffect in Zustand test-case explained",
+          href: "/blog/useLayoutEffect-in-zustand-test",
+          items: [],
+        },
+        {
+          title: "How to override your Zustand state",
+          href: "/blog/how-to-override-zustand",
+          items: [],
+        },
+        {
+          title: "Here is how test-case in Zustand uses ErrorBoundary",
+          href: "/blog/Here-how-zustand-test",
+          items: [],
+        },
+        {
+          title: "ReactDOM.unstable_batchedUpdates in Zustand testcase",
+          href: "/blog/ReactDOMunstablebatchedUpdates-in-zustand",
+          items: [],
+        },
+        {
+          title: "createWithEqualityFn test case in Zustand explained",
+          href: "/blog/createWithEqualityFn-test-case",
+          items: [],
+        },
+        {
+          title: "createWithEqualityFnImpl in Zustand source code explained",
+          href: "/blog/createWithEqualityFnImpl-in-zustand",
+          items: [],
+        },
+        {
+          title: "useDebugValue usage in Zustand source code explained",
+          href: "/blog/useDebugValue-usage-in-zustand",
+          items: [],
+        },
+        {
+          title: "useBoundStoreWithEqualityFn in Zustand source code explained",
+          href: "/blog/useBoundStoreWithEqualityFn-in-zustand",
+          items: [],
+        },
+        {
+          title: "useSyncExternalStoreExports in Zustand source code explained",
+          href: "/blog/useSyncExternalStoreExports-in-Zustand",
+          items: [],
+        },
+        {
+          title: "createStore in Zustand source code explained",
+          href: "/blog/createstore-in-zustand-source",
+          items: [],
+        },
+        {
+          title: "setState in Zustand source code",
+          href: "/blog/setState-in-zustand",
+          items: [],
+        },
+        {
+          title: "Object.assign() usage in Zustand source code",
+          href: "/blog/objectassign-usage-in-Zustand",
+          items: [],
+        },
+        {
+          title: "Set() usage in Zustand source code",
+          href: "/blog/set-usage-in-zustand",
+          items: [],
+        },
+        {
+          title: "Object.is() usage in Zustand source code",
+          href: "/blog/object-usage-in-zustand",
+          items: [],
+        },
+      ],
+    },
+    {
+      title: "August, 2024",
+      items: [
+        {
+          title: "Generating a JSDoc comment for your function using OpenAI",
+          href: "/blog/generating-a-jsdoc-comment",
+          items: [],
+        },
+        {
+          title: "Organize your components and layouts in your pages-based Next.js application this way",
+          href: "/blog/organize-your-components",
+          items: [],
+        },
+      ],
+    },
+    
   ],
 }
