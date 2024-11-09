@@ -46,6 +46,11 @@ export const docsConfig: DocsConfig = {
           items: []
         },
         {
+          title: "ExtendableError usage in changesets errors package",
+          href: "/blog/extendable-error-changesets",
+          items: []
+        },
+        {
           title: "Scan for CLI flags and arguments using MRI package",
           href: "/blog/mri-scan-cli-flags",
           items: []
