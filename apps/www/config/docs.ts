@@ -41,6 +41,26 @@ export const docsConfig: DocsConfig = {
       title: "November, 2024",
       items: [
         {
+          title: "ClientOptions interface in T3 Env source code explained",
+          href: "/blog/client-options-interface",
+          items: []
+        },
+        {
+          title: "Scan for CLI flags and arguments using MRI package",
+          href: "/blog/mri-scan-cli-flags",
+          items: []
+        },
+        {
+          title: "EnvOptions type in T3 Env source code explained",
+          href: "/blog/envoptions-type",
+          items: []
+        },
+        {
+          title: "A comparison of metadata configurations between Lobechat and Shadcn/ui",
+          href: "/blog/lobechat-vs-shadcn-metadata",
+          items: [],
+        },
+        {
           title: "Biome.js, a toolchain to format and lint your web project",
           href: "/blog/biome-tool-chain",
           items: [],

@@ -52,6 +52,17 @@ export function MainNav() {
         >
           Codebase Architecture
         </Link>
+        <Link
+          href="/codebase-architecture"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/architecture")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
+          Open Source
+        </Link>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -97,14 +108,28 @@ export function MainNav() {
                   <NavigationMenuLink
                     className={navigationMenuTriggerStyle()}
                   >
-                    CRM Application
+                    Invoice
                   </NavigationMenuLink>
                 </Link>
                 <Link href="/web-development" legacyBehavior passHref>
                   <NavigationMenuLink
                     className={navigationMenuTriggerStyle()}
                   >
-                    Invoice Application
+                    CRM
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/web-development" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    Next Post
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/web-development" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    Animate Code
                   </NavigationMenuLink>
                 </Link>
                 <Link href="/web-development" legacyBehavior passHref>
@@ -118,7 +143,7 @@ export function MainNav() {
                   <NavigationMenuLink
                     className={navigationMenuTriggerStyle()}
                   >
-                    Email Marketing
+                    Email Builder
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuContent>
