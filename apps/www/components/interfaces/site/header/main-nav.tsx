@@ -150,48 +150,6 @@ export function MainNav() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger
-                className={cn(
-                  "transition-colors hover:text-foreground/80 text-foreground/60 font-normal bg-transparent"
-                )}
-              >
-                Courses
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="px-4 py-2 ">
-                <Link
-                  href="https://app.thinkthroo.com/best-practices"
-                  legacyBehavior
-                  passHref
-                >
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Best Practices
-                  </NavigationMenuLink>
-                </Link>
-                <Link
-                  href="https://app.thinkthroo.com/production-grade-projects"
-                  legacyBehavior
-                  passHref
-                >
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Production-Grade Projects
-                  </NavigationMenuLink>
-                </Link>
-                <Link
-                  href="https://app.thinkthroo.com/build-from-scratch"
-                  legacyBehavior
-                  passHref
-                >
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Build From Scratch
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
         <Link
           href="/blog"
           className={cn(

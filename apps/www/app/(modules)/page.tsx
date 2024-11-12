@@ -32,16 +32,10 @@ export default function RootPage() {
 
       <div className="bg-white py-2">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="text-center text-lg font-semibold leading-8 text-gray-900">
+          <h2 className="text-center text-lg font-semibold leading-8 text-gray-900 pb-6 lg:pb-8">
             Our Tech Stack
           </h2>
-          {/* <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-            <div>Next.js</div>
-            <div>React</div>
-            <div>Node.js</div>
-            <div>Supabase</div>
-          </div> */}
-          <div className="relative">
+          <div className="relative pb-6 lg:pb-8">
             <div
               dir="ltr"
               className="relative overflow-hidden max-w-[600px] lg:max-w-none"
@@ -52,7 +46,7 @@ export default function RootPage() {
                 style={{"overflow": "scroll;"}}
               >
                 <div style={{"minWidth": "100%", "display": "table"}}>
-                  <div className="mb-4 flex gap-4 items-center">
+                  <div className="mb-4 flex gap-4 items-center justify-center">
                     <a
                       className="flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary bg-muted font-medium text-primary"
                       href="/"
@@ -82,6 +76,12 @@ export default function RootPage() {
                       href="/examples/cards"
                     >
                       Tailwind CSS
+                    </a>
+                    <a
+                      className="flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary bg-muted font-medium text-primary"
+                      href="/examples/cards"
+                    >
+                      Shadcn/ui
                     </a>
                   </div>
                 </div>
