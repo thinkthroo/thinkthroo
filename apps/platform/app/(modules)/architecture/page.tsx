@@ -300,7 +300,6 @@ export default function ArchitecturePage() {
         <div className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 lg:grid-cols-3">
           <Item courses={architectureCourses} />
         </div>
-        <Separator />
       </div>
     </div>
   );

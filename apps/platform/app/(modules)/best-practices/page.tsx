@@ -131,53 +131,30 @@ export default function BestPracticesPage() {
       <PageHeader>
         <PageHeaderHeading>Best Practices</PageHeaderHeading>
         <PageHeaderDescription>
-          Practice the architectural concepts inspired by open source.
+          An analysis of best practices found in Open Source projects is provided in the below guides.
+          
         </PageHeaderDescription>
         <PageActions>
-          {/* <Button asChild size="sm">
-            <Link href="/docs">Get Started</Link>
-          </Button>
-          <Button asChild size="sm" variant="ghost">
-            <Link
-              target="_blank"
-              rel="noreferrer"
-              href={siteConfig.links.github}
-            >
-              GitHub
-            </Link>
-          </Button> */}
-          <Select defaultValue="Next.js">
+          {/* <Select defaultValue="Next.js">
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a fruit" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                {/* <SelectLabel>Technology</SelectLabel> */}
                 <SelectItem value="Next.js">Next.js</SelectItem>
               </SelectGroup>
             </SelectContent>
-          </Select>
+          </Select> */}
         </PageActions>
       </PageHeader>
 
-      <NavTabs className="[&>a:first-child]:text-primary" />
-
       <div className="grid flex-1 gap-12">
-          {
-            getKeys()
-              .map((course) => (
-                <>
-                  <div 
-                    id={course}
-                    className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10">
-                    <Item 
-                      courses={bestPracticesCourses[course]}
-                    />
-                  </div>
-                  <Separator />
-                </>
-              ))
-          }
+        <div 
+          className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10">
+          <Item 
+            courses={bestPracticesCourses}
+          />
+        </div>
       </div>
 
       {/* <div className="grid flex-1 gap-12">

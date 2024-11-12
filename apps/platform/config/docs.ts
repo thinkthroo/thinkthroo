@@ -9,6 +9,9 @@ import { shadcnCaBaseUrl, shadcnCaNav } from "./codebase-architecture/shadcn-ui"
 // [BP]:[CRM]:[Contacts Page]:[Components Structure]
 import { baseUrl as crmContactsPageCsShadcnBaseUrl, crmContactsPageComponentsStructureByShadcnNav } from "./best-practices/crm-contacts-page/components-structure/shadcn"
 import { baseUrl as crmContactsPageCsSupabaseBaseUrl, crmContactsPageComponentsStructureBySupabaseNav } from "./best-practices/crm-contacts-page/components-structure/supabase"
+import { supabaseCaBaseUrl, supabaseCaNav } from "./codebase-architecture/supabase";
+import { calcomCaBaseUrl, calcomCaNav } from "./codebase-architecture/cal-com";
+import { lobechatCaBaseUrl, lobechatCaNav } from "./codebase-architecture/lobechat";
 
 export interface NavItem {
     title: string
@@ -82,6 +85,15 @@ let sidebarNav = new Map();
 
 // CA: Shadcn/ui codebase architecture
 sidebarNav.set(shadcnCaBaseUrl, shadcnCaNav);
+
+// CA: Supabase codebase architecture
+sidebarNav.set(supabaseCaBaseUrl, supabaseCaNav);
+
+// CA: Cal.com codebase architecture
+sidebarNav.set(calcomCaBaseUrl, calcomCaNav);
+
+// CA: Lobechat codebase architecture
+sidebarNav.set(lobechatCaBaseUrl, lobechatCaNav);
 
 // Best practices
 

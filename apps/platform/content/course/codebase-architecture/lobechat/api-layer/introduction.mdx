@@ -1,0 +1,293 @@
+[Architecture: API Layer in LobeChat]
+[C: Introduction]
+
+In this guide, you will learn the API layer used in [Lobe Chat](https://github.com/lobehub/lobe-chat/tree/main). 
+
+🤯 Lobe Chat is an open-source, modern-design AI chat framework. Supports 
+  Multi AI Providers( OpenAI / Claude 3 / Gemini / Ollama / Azure / DeepSeek), 
+Knowledge Base (file upload / knowledge management / RAG ), Multi-Modals (Vision/TTS) and plugin system. 
+  One-click FREE deployment of your private ChatGPT/ Claude application. 
+
+# What's API Layer?
+In the context of web applications, API layer means communicating with your server to get/mutate data.
+Inspired by [Bulletproof React's API Layer](https://github.com/alan2207/bulletproof-react/blob/master/docs/api-layer.md)
+We analyze the API Layer in the [Lobechat](https://github.com/lobehub/lobe-chat/tree/main). 
+
+# Lobe Chat API Layer
+To study the API Layer, we pick a page on https://chat-preview.lobehub.com/ and look at the source code except we are
+narrowing down our expedition to focus on the API Layer.
+
+# Concepts you will learn:
+You will be learning the API layer used in the Lobe Chat. 
+Read through this guide to understand how Lobe Chat's API layer works.
+
+## Data fetched in Discover Home Page
+1. [Discover Home Page]
+(https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/page.tsx)
+2. [DiscoverService](https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L27)
+
+In this guide, we will find out how the API layer is implemented in Discover page. You will learn how the data is fetched
+in the Discover page.
+
+[Insert a screenshot of Discover page - https://lobechat.com/discover]
+
+Discover page has Home, Assistants, Plugins etc., tabs. For this guide, let's pick assistants tab and 
+find out how the data is fetched.
+
+In the [Discover page.tsx](https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/page.tsx),
+You will find the below code snippet.
+
+```
+const discoverService = new DiscoverService();
+const assistantList = await discoverService.getAssistantList(locale);
+const pluginList = await discoverService.getPluginList(locale);
+const modelList = await discoverService.getModelList(locale);
+```
+### DiscoverService
+
+[DiscoverService](https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L52) is class that is
+instantiated using `new DiscoverService()`. You could also just export the functions from a service file but using a class
+in a service helps you organize your functions better as your functions are encapsulated in a class. This approach also make it
+easy to mock your service for testing purposes. 
+
+### discoverService.getAssistantList(locale)
+
+```
+getAssistantList = async (locale: Locales): Promise<DiscoverAssistantItem[]> => {
+    let res = await fetch(this.assistantStore.getAgentIndexUrl(locale), {
+      next: { revalidate },
+    });
+
+    if (!res.ok) {
+      res = await fetch(this.assistantStore.getAgentIndexUrl(DEFAULT_LANG), {
+        next: { revalidate },
+      });
+    }
+
+    if (!res.ok) return [];
+
+    const json = await res.json();
+
+    return json.agents;
+};
+```
+This above code snippet is picked from [getAssistantList](https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L52)
+
+This function uses [fetch](https://nextjs.org/docs/app/api-reference/functions/fetch). Next.js extends the native Web 
+fetch() API to allow each request on the server to set its own persistent caching semantics.
+
+Let's understand what this second param in the above fetch does.
+```
+{
+  next: { revalidate },
+}
+```
+[options.next.revalidate](https://nextjs.org/docs/app/api-reference/functions/fetch#optionsnextrevalidate) from the 
+Next.js documentation.
+
+Set the cache lifetime of a resource (in seconds).
+1. false - Cache the resource indefinitely. Semantically equivalent to revalidate: Infinity. The HTTP cache may evict older resources over time.
+2. 0 - Prevent the resource from being cached.
+3. number - (in seconds) Specify the resource should have a cache lifetime of at most n seconds.
+
+so where's revalidate value coming from in [Discover service](https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L25)?
+revalidate is initialized at L25:
+
+```
+const revalidate: number = 3600;
+```
+This 3600 is in seconds which is 1 hour. getAssistantList has a cache lifetime of at most 1 hour.
+
+`assistantStore.getAgentIndexUrl` returns the URL used in the fetch API.
+
+[Insert a screenshot of https://github.com/lobehub/lobe-chat/blob/main/src/server/modules/AssistantStore/index.ts#L14]
+
+## References:
+1. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/page.tsx
+2. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/Client.tsx
+3. https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/discover/(list)/(home)/features/AssistantList.tsx
+4. https://github.com/lobehub/lobe-chat/blob/main/src/server/services/discover/index.ts#L28
+5. https://github.com/lobehub/lobe-chat/blob/main/src/server/modules/AssistantStore/index.ts
+
+## Data fetched in Chat Page
+
+Data fetched in the Chat page is different to what you have seen in getAssistantList in discover service. 
+getAssistantList uses fetch, where as Chat uses `useSWR`. Let's find out how this is done.
+
+[insert screenshot of lobechat chat session page]
+
+You will find useFetchSessions hook in [SessionListContent/DefaultMode.tsx](https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/chat/%40session/features/SessionListContent/DefaultMode.tsx#L29)
+useFetchSession is in useSessionStore. API layer is tightly coupled with state management in Lobechat. We want to focus
+only on API layer, check out the [state management in lobechat](link to lobechat state management).
+
+[Insert screenshot of https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/chat/%40session/features/SessionListContent/DefaultMode.tsx#L29]
+
+## useFetchSessions in session store:
+You will find the below code for the useFetchSessions in [session/action.ts](https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L200)
+
+```
+useFetchSessions: (isLogin) =>
+    useClientDataSWR<ChatSessionList>(
+      [FETCH_SESSIONS_KEY, isLogin],
+      () => sessionService.getGroupedSessions(),
+      {
+        fallbackData: {
+          sessionGroups: [],
+          sessions: [],
+        },
+        onSuccess: (data) => {
+          if (
+            get().isSessionsFirstFetchFinished &&
+            isEqual(get().sessions, data.sessions) &&
+            isEqual(get().sessionGroups, data.sessionGroups)
+          )
+            return;
+
+          get().internal_processSessions(
+            data.sessions,
+            data.sessionGroups,
+            n('useFetchSessions/updateData') as any,
+          );
+          set({ isSessionsFirstFetchFinished: true }, false, n('useFetchSessions/onSuccess', data));
+        },
+        suspense: true,
+      },
+    ),
+```
+
+Looks compicated, let's break it down. It uses:
+
+1. useClientDataSWR
+
+useClientDataSWR is imported from [libs/swr/index.ts](https://github.com/lobehub/lobe-chat/blob/main/src/libs/swr/index.ts#L22C14-L22C30)
+
+```
+export const useClientDataSWR: SWRHook = (key, fetch, config) =>
+  useSWR(key, fetch, {
+    // default is 2000ms ,it makes the user's quick switch don't work correctly.
+    // Cause issue like this: https://github.com/lobehub/lobe-chat/issues/532
+    // we need to set it to 0.
+    dedupingInterval: 0,
+    focusThrottleInterval: 5 * 60 * 1000,
+    refreshWhenOffline: false,
+    revalidateOnFocus: true,
+    revalidateOnReconnect: true,
+    ...config,
+  });
+```
+
+useSWR is a React hook for data fetching provided by [Vercel's SWR API](https://swr.vercel.app/).
+The name “SWR” is derived from stale-while-revalidate, a HTTP cache invalidation strategy popularized by 
+HTTP RFC 5861(opens in a new tab). SWR is a strategy to first return the data from cache (stale), then send 
+the fetch request (revalidate), and finally come with the up-to-date data.   
+
+Let's now understand what each of these options do by referring to the documentation:
+a. dedupingInterval
+
+[SWR Docs](https://swr.vercel.app/docs/api#parameters) mentions this - dedupingInterval = 2000: dedupe requests with the same key in this time span in milliseconds 
+
+but Lobechat has this configured to 0 and it explains why with a nice comment.
+
+```
+// default is 2000ms ,it makes the user's quick switch don't work correctly.
+// Cause issue like this: https://github.com/lobehub/lobe-chat/issues/532
+// we need to set it to 0.
+dedupingInterval: 0,
+```
+just in case, if you were wondering what dedupe means, it is about removing duplicates.
+
+b. focusThrottleInterval:
+
+[SWR docs](https://swr.vercel.app/docs/api#parameters) provides this information about focusThrottleInterval - 
+focusThrottleInterval = 5000: only revalidate once during a time span in milliseconds
+
+In the context of useSWR, the focusThrottleInterval option controls how frequently the data revalidation 
+happens when the window or tab regains focus.
+
+### ChatGPT's explanation:
+
+Explanation in the useSWR context:
+SWR's behavior with focus: By default, SWR will revalidate (i.e., refetch) the data whenever the user 
+switches back to the app or tab (when the window or tab regains focus). This is useful because it ensures that 
+the data displayed is up-to-date when the user returns to the app.
+
+focusThrottleInterval = 5000: This option tells SWR to throttle the revalidation when focus changes. 
+Specifically, it will revalidate data at most once every 5000 milliseconds (or 5 seconds).
+
+If a user quickly switches between tabs or focuses on the app multiple times in rapid succession, 
+SWR will ensure that revalidation only happens once within that 5-second window, preventing excessive 
+or redundant requests.
+
+What's the value that lobechat uses?
+```
+focusThrottleInterval: 5 * 60 * 1000
+```
+Converting 5 * 60 * 1000 milliseconds, it is 5 minutes. What this means is that when you focus by revisiting lobechat
+application, data is not refreshed until 5 minutes but by then you would visit different pages, differen chats 
+and latest data might load already but that depends on the actions that you perform.
+
+c. refreshWhenOffline:
+
+### SWR documentation explanation:
+refreshWhenOffline = false: polling when the browser is offline 
+(determined by navigator.onLine), Read more about [refreshWhenOffline](https://swr.vercel.app/docs/api#parameters)
+
+### ChatGPT explanation:
+SWR offers an option to periodically refetch data in the background (polling), but when the browser 
+goes offline, trying to fetch data may be pointless. To prevent unnecessary requests, setting 
+`refreshWhenOffline = false` ensures polling is paused when the browser is offline, 
+saving resources and avoiding failed fetch attempts.
+
+### What's the value that lobechat uses?
+
+```
+refreshWhenOffline: false
+```
+
+d. revalidateOnFocus:
+
+### SWR documentation explanation:
+revalidateOnFocus = true: automatically revalidate when window gets focused ([details](https://swr.vercel.app/docs/revalidation))
+
+### ChatGPT explanation:
+- Revalidate: In SWR, "revalidate" refers to refetching data from the source (e.g., an API) 
+to ensure the data is still up-to-date.
+- Focus events: In web applications, a "focus" event occurs when the user returns to the browser window or tab, 
+either after switching tabs, windows, or after minimizing and reopening the app.
+- revalidateOnFocus = true: This setting enables the app to automatically revalidate (refetch data) every time
+the user switches back to the tab. By default, this is set to true in SWR, meaning the data will be refreshed every time the tab regains focus.
+
+### What's the value that lobechat uses?
+
+```
+revalidateOnFocus: true,
+```
+
+d. revalidateOnReconnect:
+
+### SWR documentation explanation:
+revalidateOnReconnect = true: automatically revalidate when the browser regains a network connection (via navigator.onLine) ([details](https://swr.vercel.app/docs/revalidation))
+
+### ChatGPT explanation:
+
+- Revalidate: In SWR, revalidation refers to refetching data from the server to ensure it's up-to-date.
+- Reconnect: This event happens when the browser loses and then regains internet connectivity. The browser 
+detects this change using the navigator.onLine property:
+true: Browser is online (connected to the internet).
+false: Browser is offline (disconnected from the internet).
+- revalidateOnReconnect = true: This setting ensures that whenever the browser switches from an offline state back to an 
+online state, SWR will automatically refetch the data.
+
+### What's the value that lobechat uses?
+
+```
+revalidateOnReconnect: true
+```
+
+## Key:
+Now that we understand useClientDataSWR and its options, let's look at the params used.
+
+# References:
+1. [Session List](https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/chat/%40session/features/SessionListContent/DefaultMode.tsx#L29)
+2. [useFetchSessions](https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L200)
+3. [useClientDataSWR](https://github.com/lobehub/lobe-chat/blob/main/src/libs/swr/index.ts#L22C14-L22C30)
