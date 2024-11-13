@@ -69,6 +69,12 @@ export default function RootPage() {
                       className="flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary bg-muted font-medium text-primary"
                       href="/examples/cards"
                     >
+                      Drizzle
+                    </a>
+                    <a
+                      className="flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary bg-muted font-medium text-primary"
+                      href="/examples/cards"
+                    >
                       Supabase
                     </a>
                     <a
@@ -691,97 +697,43 @@ export default function RootPage() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-y-12 gap-x-6 lg:gap-x-16 mt-12">
             <div>
               <h3 className="text-gray-900 font-semibold text-sm leading-5">
-                Free Architectural Guides
+                Codebase Architecture
               </h3>
               <ul role="list" className="mt-6 space-y-4">
                 <li>
                   <a
-                    href="https://app.thinkthroo.com/architecture"
+                    href="https://app.thinkthroo.com/course/codebase-architecture/shadcn-ui/tooling/introduction"
                     target="_blank"
                     className="text-gray-600 text-sm leading-5"
                   >
-                    Tooling
+                    Shadcn/ui codebase architecture
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://app.thinkthroo.com/architecture"
+                    href="https://app.thinkthroo.com/course/codebase-architecture/supabase/tooling/introduction"
                     target="_blank"
                     className="text-gray-600 text-sm leading-5"
                   >
-                    Project Structure
+                    Supabase codebase architecture
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://app.thinkthroo.com/architecture"
+                    href="https://app.thinkthroo.com/course/codebase-architecture/cal-com/tooling/introduction"
                     target="_blank"
                     className="text-gray-600 text-sm leading-5"
                   >
-                    Components Structure
+                    Cal.com codebase architecture
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://app.thinkthroo.com/architecture"
+                    href="https://app.thinkthroo.com/course/codebase-architecture/lobechat/tooling/introduction"
                     target="_blank"
                     className="text-gray-600 text-sm leading-5"
                   >
-                    API Layer
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://app.thinkthroo.com/architecture"
-                    target="_blank"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    State Management
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://app.thinkthroo.com/architecture"
-                    target="_blank"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    Error Handling
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://app.thinkthroo.com/architecture"
-                    target="_blank"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    Testing
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://app.thinkthroo.com/architecture"
-                    target="_blank"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    Performance
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://app.thinkthroo.com/architecture"
-                    target="_blank"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    Security
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://app.thinkthroo.com/architecture"
-                    target="_blank"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    Deployment
+                    Lobechat codebase architecture
                   </a>
                 </li>
               </ul>
@@ -789,7 +741,7 @@ export default function RootPage() {
 
             <div>
               <h3 className="text-gray-900 font-semibold text-sm leading-5">
-                Courses
+                Research & Development
               </h3>
               <ul role="list" className="mt-6 space-y-4">
                 <li>
@@ -828,8 +780,33 @@ export default function RootPage() {
               </h3>
               <ul role="list" className="mt-6 space-y-4">
                 <li>
-                  <a href="#" className="text-gray-600 text-sm leading-5">
+                  <a href="https://discord.gg/zQhPByWy" className="text-gray-600 text-sm leading-5">
                     Discord
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.youtube.com/@thinkthroo" className="text-gray-600 text-sm leading-5">
+                    Youtube
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com/thinkthroo" className="text-gray-600 text-sm leading-5">
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/profile.php?id=61554871892197" className="text-gray-600 text-sm leading-5">
+                    Facebook
+                  </a>
+                </li>
+                <li>
+                  <a href="https://x.com/thinkthroo" className="text-gray-600 text-sm leading-5">
+                    X.com
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/thinkthroo" className="text-gray-600 text-sm leading-5">
+                    Github
                   </a>
                 </li>
               </ul>
@@ -853,54 +830,6 @@ export default function RootPage() {
               </ul>
             </div>
 
-            <div>
-              <h3 className="text-gray-900 font-semibold text-sm leading-5">
-                Contact Us
-              </h3>
-              <ul role="list" className="mt-6 space-y-4">
-                <li>
-                  <a
-                    href="mailto:hello@thinkthroo.com"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    hello@thinkthroo.com
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://x.com/thinkthroo"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    Twitter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/thinkthroo"
-                    target="_blank"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.instagram.com/thinkthroo/"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    Instagram
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.youtube.com/@thinkthroo"
-                    className="text-gray-600 text-sm leading-5"
-                  >
-                    Youtube
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </footer>
       </div>
