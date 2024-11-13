@@ -1,47 +1,69 @@
 export function getProductionGradeProjectsCourses() {
     return [{
-        title: "Build A CRM Application Using Shadcn-ui/ui Architecture",
-        description: "Apply the Shadcn-ui/ui architecture and build a CRM application",
+        title: "Build an Invoice System",
+        description: "Scalable, maintainable canopy codebase architecture",
         slug: "/course/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
-            label: "Shadcn-ui/ui Architecture",
-            slug: "shadcn-ui-architecture"
+            label: "Canopy Architecture",
+            slug: "canopy-architecture"
         },
-        tags: ["next.js", "shadcn-ui/ui"]
+        tags: ["next.js", "canopy", "architecture"]
     }, {
-        title: "Build A CRM Application Using Supabase Architecture",
-        description: "Apply the Supabase architecture and build a CRM application",
+        title: "Build a CRM System",
+        description: "Scalable, maintainable canopy codebase architecture",
         slug: "/course/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
-            label: "Supabase Architecture",
-            slug: "supabase-architecture"
+            label: "Canopy Architecture",
+            slug: "canopy-architecture"
         },
-        tags: ["next.js", "supabase"]
+        tags: ["next.js", "canopy", "architecture"]
     }, {
-        title: "Build A CRM Application Using Cal.com Architecture",
-        description: "Apply the Cal.com architecture and build a CRM application",
+        title: "Build a Social Media Management Tool",
+        description: "Scalable, maintainable canopy codebase architecture",
         slug: "/course/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
-            label: "Cal.com Architecture",
-            slug: "cal-com-architecture"
+            label: "Canopy Architecture",
+            slug: "canopy-architecture"
         },
-        tags: ["next.js", "cal.com"]
+        tags: ["next.js", "canopy", "architecture"]
     }, {
-        title: "Build A CRM Application Using Lobechat Architecture",
-        description: "Apply the Lobechat architecture and build a CRM application",
+        title: "Build a Code Animation Tool",
+        description: "Scalable, maintainable canopy codebase architecture",
         slug: "/course/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
-            label: "Lobechat Architecture",
-            slug: "lobechat-architecture"
+            label: "Canopy Architecture",
+            slug: "canopy-architecture"
         },
-        tags: ["next.js", "lobechat"]
+        tags: ["next.js", "canopy", "architecture"]
+    }, {
+        title: "Build a Digital Signature Tool",
+        description: "Scalable, maintainable canopy codebase architecture",
+        slug: "/course/components-structure-in-shadcn-ui/introduction",
+        chapters: 1,
+        lessons: 4,
+        concept: {
+            label: "Canopy Architecture",
+            slug: "canopy-architecture"
+        },
+        tags: ["next.js", "canopy", "architecture"]
+    }, {
+        title: "Build an Email Builder",
+        description: "Scalable, maintainable canopy codebase architecture",
+        slug: "/course/components-structure-in-shadcn-ui/introduction",
+        chapters: 1,
+        lessons: 4,
+        concept: {
+            label: "Canopy Architecture",
+            slug: "canopy-architecture"
+        },
+        tags: ["next.js", "canopy", "architecture"]
     }]
 }
