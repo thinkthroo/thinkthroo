@@ -13,9 +13,13 @@ export default function RootPage() {
   return (
     <div className="container relative">
       <PageHeader>
-        <PageHeaderHeading>Next.js Development Services.</PageHeaderHeading>
+        <PageHeaderHeading>Design. Build. Ship.</PageHeaderHeading>
         <PageHeaderDescription>
-          We build digital products with quality and speed.
+          We are experts at Next.js, React and Node.js. Whether you are starting from scratch and want to test your idea or 
+          need a bespoke web system for your business, we bring experience and apply best practices to ship digital products with quality and speed.   
+        </PageHeaderDescription>
+        <PageHeaderDescription>
+          We analyse large open-source projects and provide free codebase architecture and are committed to open-source and innovation.
         </PageHeaderDescription>
         <PageActions>
           <Button asChild size="sm">
