@@ -45,17 +45,6 @@ export default function ArchitecturePage() {
               GitHub
             </Link>
           </Button> */}
-          <Select defaultValue="Next.js">
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a fruit" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {/* <SelectLabel>Technology</SelectLabel> */}
-                <SelectItem value="Next.js">Next.js</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
         </PageActions>
       </PageHeader>
 

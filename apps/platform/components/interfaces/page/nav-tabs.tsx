@@ -9,45 +9,13 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const architecture = [
   {
-    name: "Tooling",
-    href: "#tooling"
+    name: "Open Source Projects",
+    href: "#open-source-projects"
   },
   {
-    name: "Components Structure",
-    href: "#componentsStructure"
-  },
-  {
-    name: "API Layer",
-    href: "#apiLayer"
-  },
-  {
-    name: "State Management",
-    href: "#stateManagement"
-  },
-  {
-    name: "Error Handling",
-    href: "#errorHandling"
-  },
-  {
-    name: "Testing",
-    href: "#testing"
-  },
-  {
-    name: "Performance",
-    href: "#performance"
-  },
-  {
-    name: "Security",
-    href: "#security"
-  },
-  {
-    name: "Project Structure",
-    href: "#projectStructure"
-  },
-  {
-    name: "Deployment",
-    href: "#deployment"
-  },
+    name: "Internal Codebase Architecture",
+    href: "#internal-codebase-architecture"
+  }
 ];
 
 interface NavTabsProps extends React.HTMLAttributes<HTMLDivElement> {}

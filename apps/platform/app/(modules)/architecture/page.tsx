@@ -24,6 +24,7 @@ import { Icons } from "@/components/icons";
 import { getArchitectureCourses } from "@/lib/data/get-architecture-courses";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
+import { getInternalArchitectureCourses } from "@/lib/data/get-internal-architecture-courses";
 
 type Course = {
   title: string;
@@ -190,6 +191,7 @@ type ItemProps = {
 
 export default function ArchitecturePage() {
   const architectureCourses = getArchitectureCourses();
+  const internalArchitectureCourses = getInternalArchitectureCourses();
   const [selectedFramework, setSelectedFramework] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<string>("All");
 
@@ -267,38 +269,33 @@ export default function ArchitecturePage() {
         <PageHeaderDescription>
           Learn the architectural concepts, build your confidence and 10x your coding skills.
         </PageHeaderDescription>
-        <PageActions>
-          <Select defaultValue="All" onValueChange={handleFrameworkChange}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a framework" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="All">All</SelectItem>
-                <SelectItem value="next.js">Next.js</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          <Select defaultValue="All" onValueChange={handleProjectChange}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a project" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="All">All</SelectItem>
-                <SelectItem value="shadcn-ui/ui">Shadcn-ui/ui</SelectItem>
-                <SelectItem value="supabase">Supabase</SelectItem>
-                <SelectItem value="cal.com">Cal.com</SelectItem>
-                <SelectItem value="lobechat">Lobechat</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </PageActions>
+        {/* <PageActions>
+          
+        </PageActions> */}
       </PageHeader>
 
+      <NavTabs className="[&>a:first-child]:text-primary" />
+
       <div className="grid flex-1 gap-12">
-        <div className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <div 
+          id="open-source-projects"
+          className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 lg:grid-cols-3">
           <Item courses={architectureCourses} />
+        </div>
+        <Separator />
+        <div>
+          <h1
+            className="text-lg font-bold leading-tight tracking-tighter md:text-xl lg:leading-[1.1]"
+          >
+            Our Internal Codebase Architecture
+          </h1>
+          <p>We use these internal codebase architecture guides to provide client services with quality and speed and also use these best practices in building our internal products to streamline our business.</p>
+        </div>
+        <div 
+          id="internal-codebase-architecture"
+          className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 lg:grid-cols-3">
+          
+            <Item courses={internalArchitectureCourses} />
         </div>
       </div>
     </div>
