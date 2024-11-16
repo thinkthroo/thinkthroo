@@ -1,0 +1,215 @@
+---
+title: How to temporarily silence logs in tests
+toc: true
+---
+
+Logger package in [Changesets source code](https://github.com/changesets/changesets/tree/main/packages/logger) provides a [documentation about silencing log message in tests](https://github.com/changesets/changesets/tree/main/packages/logger#silencing-messages-in-tests). This got me wonder how Changesets do it and made me look into its source code.
+
+### Changesets repository search for silencing logs
+
+I searched for [temporarilySilenceLogs across the Changesets repo](https://github.com/search?q=repo%3Achangesets%2Fchangesets%20temporarilySilenceLogs%20&type=code) using Github search.
+
+![](https://cdn-images-1.medium.com/max/1600/1*_ZqcNXp45rTSIn686o9O8Q.png)
+
+What made me choose to search for temporarilySilenceLogs is the fact that it is mentioned in the Logger  
+package Readme.
+
+```plaintext
+import { temporarilySilenceLogs } from "@changesets/test-utils";
+import { log } from "@changesets/logger";
+temporarilySilenceLogs();
+// Now the logs in this test file are not actually logged to std out
+log("I am not logged");
+// Use console.log to log messages in tests if required
+console.log("Yay, I am logged");
+```
+
+When you are trying to understand the source code, you can use documentation as your starting point and search for variables and functions to set the direction for your exploration when you are dealing with large projects like [Changesets](https://github.com/changesets/changesets/tree/main/packages/logger).
+
+### temporarilySilenceLogs
+
+The below code is picked from [Changesets source code](https://github.com/changesets/changesets/blob/baf56448606e005577dbe2fb1e78ff457dcaaefd/scripts/test-utils/src/index.ts#L79C1-L88C5).
+
+![](https://cdn-images-1.medium.com/max/1600/1*O4YHcCSYRlcX3XanwNn9cQ.png)
+
+This function accepts a function as argument and then silences the logs using a function named [createLogSilencer](https://github.com/changesets/changesets/blob/baf56448606e005577dbe2fb1e78ff457dcaaefd/scripts/test-utils/src/index.ts#L16).
+
+Pay attention to the setup function here:
+
+```plaintext
+const dispose = silencer.setup();
+try {
+ await testFn();
+} finally {
+ dispose();
+}
+```
+
+### createLogSilencer
+
+Below code is picked from [Changesets](https://github.com/changesets/changesets/blob/baf56448606e005577dbe2fb1e78ff457dcaaefd/scripts/test-utils/src/index.ts#L16)
+
+```plaintext
+const createLogSilencer = () => {
+  const originalLoggerError = logger.error;
+  const originalLoggerInfo = logger.info;
+  const originalLoggerLog = logger.log;
+  const originalLoggerWarn = logger.warn;
+  const originalLoggerSuccess = logger.success;
+
+  const originalConsoleError = console.error;
+  const originalConsoleInfo = console.info;
+  const originalConsoleLog = console.log;
+  const originalConsoleWarn = console.warn;
+
+  const originalStdoutWrite = process.stdout.write;
+  const originalStderrWrite = process.stderr.write;
+
+  return {
+    setup() {
+      logger.error = jest.fn();
+      logger.info = jest.fn();
+      logger.log = jest.fn();
+      logger.warn = jest.fn();
+      logger.success = jest.fn();
+
+      console.error = jest.fn();
+      console.info = jest.fn();
+      console.log = jest.fn();
+      console.warn = jest.fn();
+
+      process.stdout.write = jest.fn();
+      process.stderr.write = jest.fn();
+
+      return () => {
+        logger.error = originalLoggerError;
+        logger.info = originalLoggerInfo;
+        logger.log = originalLoggerLog;
+        logger.warn = originalLoggerWarn;
+        logger.success = originalLoggerSuccess;
+
+        console.error = originalConsoleError;
+        console.info = originalConsoleInfo;
+        console.log = originalConsoleLog;
+        console.warn = originalConsoleWarn;
+
+        process.stdout.write = originalStdoutWrite;
+        process.stderr.write = originalStderrWrite;
+      };
+    },
+  };
+};
+```
+
+What is happening here?
+
+1. The assignment
+    
+
+```plaintext
+const originalLoggerError = logger.error;
+const originalLoggerInfo = logger.info;
+const originalLoggerLog = logger.log;
+const originalLoggerWarn = logger.warn;
+const originalLoggerSuccess = logger.success;
+const originalConsoleError = console.error;
+const originalConsoleInfo = console.info;
+const originalConsoleLog = console.log;
+const originalConsoleWarn = console.warn;
+const originalStdoutWrite = process.stdout.write;
+const originalStderrWrite = process.stderr.write;
+```
+
+2\. Returns setup
+
+If you noticed above, setup is called inside temporarilySilenceLogs, this is returned by `createLogSilencer`
+
+```plaintext
+return {
+    setup() {
+      logger.error = jest.fn();
+      logger.info = jest.fn();
+      logger.log = jest.fn();
+      logger.warn = jest.fn();
+      logger.success = jest.fn();
+
+      console.error = jest.fn();
+      console.info = jest.fn();
+      console.log = jest.fn();
+      console.warn = jest.fn();
+
+      process.stdout.write = jest.fn();
+      process.stderr.write = jest.fn();
+
+      return () => {
+        logger.error = originalLoggerError;
+        logger.info = originalLoggerInfo;
+        logger.log = originalLoggerLog;
+        logger.warn = originalLoggerWarn;
+        logger.success = originalLoggerSuccess;
+
+        console.error = originalConsoleError;
+        console.info = originalConsoleInfo;
+        console.log = originalConsoleLog;
+        console.warn = originalConsoleWarn;
+
+        process.stdout.write = originalStdoutWrite;
+        process.stderr.write = originalStderrWrite;
+      };
+    },
+  };
+```
+
+What is happening in the setup function?
+
+2.1 Loggers and console API are initialised to jest.fn()
+
+```plaintext
+logger.error = jest.fn();
+logger.info = jest.fn();
+logger.log = jest.fn();
+logger.warn = jest.fn();
+logger.success = jest.fn();
+console.error = jest.fn();
+console.info = jest.fn();
+console.log = jest.fn();
+console.warn = jest.fn();
+process.stdout.write = jest.fn();
+process.stderr.write = jest.fn();
+```
+
+This pretty much silences the logs since jest.fn() gets called when you use any logger, hence this is considerd as setup, an important step to silence your logs.
+
+2.2 setUp returns original loggers
+
+If you have noticed, the sequence of function calls are
+
+a. const silencer = createLogSilencer();  
+b. const dispose = silencer.setup();  
+c. In the finally block.
+
+```plaintext
+try {
+ await testFn();
+} finally {
+ dispose();
+}
+```
+
+dispose is returned by setup function that is returned by createLogSilencer. This step restores the logging mechanism after executing your test function.
+
+### About us:
+
+At [Thinkthroo](https://thinkthroo.com/), we study large open source projects and [provide architectural guides](https://app.thinkthroo.com/architecture). We have developed reusable [Components, built with tailwind, that you can use in your project](https://thinkthroo.com/components). We offer [Next.js, React and Node development services.](https://thinkthroo.com/components)
+
+[Book a meeting](https://cal.com/team-thinkthroo-dxiovj/consultation?date=2024-10-19&month=2024-10) with us to discuss your project.
+
+![](https://cdn-images-1.medium.com/max/1600/0*NxFtbdT-jz_GGi2N.png)
+
+### References:
+
+1. [https://github.com/changesets/changesets/tree/main/packages/logger#silencing-messages-in-tests](https://github.com/changesets/changesets/tree/main/packages/logger#silencing-messages-in-tests)
+    
+2. [https://github.com/search?q=repo%3Achangesets%2Fchangesets%20temporarilySilenceLogs%20&type=code](https://github.com/search?q=repo%3Achangesets%2Fchangesets%20temporarilySilenceLogs%20&type=code)
+    
+3. [https://github.com/changesets/changesets/blob/baf56448606e005577dbe2fb1e78ff457dcaaefd/scripts/test-utils/src/index.ts#L16](https://github.com/changesets/changesets/blob/baf56448606e005577dbe2fb1e78ff457dcaaefd/scripts/test-utils/src/index.ts#L16)

@@ -41,6 +41,31 @@ export const docsConfig: DocsConfig = {
       title: "November, 2024",
       items: [
         {
+          title: "How Changsets reads config.json internally",
+          href: "/blog/changesets-reads-config",
+          items: []
+        },
+        {
+          title: "@manypkg/get-packages usage in Changesets",
+          href: "/blog/get-packages-usage-changesets",
+          items: []
+        },
+        {
+          title: "Node.js util module usage in Changesets",
+          href: "/blog/nodejs-util-module",
+          items: []
+        },
+        {
+          title: "How to temporarily silence logs in tests",
+          href: "/blog/silence-logs-in-test",
+          items: []
+        },
+        {
+          title: "Logger package in changesets monorepo",
+          href: "/blog/logger-package-in-changesets",
+          items: []
+        },
+        {
           title: "ClientOptions interface in T3 Env source code explained",
           href: "/blog/client-options-interface",
           items: []

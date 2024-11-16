@@ -1,0 +1,82 @@
+---
+title: Logger package in changesets monorepo
+toc: true
+---
+
+[Changesets CLI package](https://github.com/changesets/changesets/blob/main/packages/cli/src/index.ts#L3) has an import as shown below at line 3 in [packages/cli/src/index.ts#L3](https://github.com/changesets/changesets/blob/main/packages/cli/src/index.ts#L3)
+
+```plaintext
+import { error } from "@changesets/logger";
+```
+
+I have seen this before, a dedicated package just for logger, [in docusaurus-logger](https://github.com/facebook/docusaurus/blob/2b8ddb9260c54b7fdba4398bfdce64553a1356b0/packages/docusaurus-logger/src/index.ts). At this point, I believe it is a common standard/best practice across the OSS to have a dedicated package to have a consistent logger to be used across the codebase.
+
+### Why a dedicated package for logger?
+
+Since changesets is a monorepo (so is Docusaurus), you will find yourself reusing packages across the codebase but imagine a scenario where you logged an error on to the CLI using a color. Why is this color in picture now? you might be wondering. When you use a CLI package of any Open Source project such as Next.js or Docusaurus or Changesets, the feedback you get from interacting with CLI often times is colored, for example, to show an error or warning or info.
+
+![](https://cdn-images-1.medium.com/max/1600/1*EiOWVzae6Qoc_uBe74v3fw.png)
+
+I picked few functions from [Changesets packages/cli/src/index.ts](https://github.com/changesets/changesets/blob/main/packages/cli/src/index.ts#L3)
+
+```plaintext
+export function error(…args: Array<any>) {
+ console.error(format(args, pc.red("error")));
+}
+export function info(…args: Array<any>) {
+ console.info(format(args, pc.cyan("info")));
+}
+export function success(…args: Array<any>) {
+ console.log(format(args, pc.green("success")));
+}
+```
+
+So what’s pc? It is picocolors package imported at the top of the file.
+
+```plaintext
+import pc from "picocolors";
+```
+
+### Benefits of using a logger package 
+
+You will greatly benefit from consistent logging capabilities across your codebase since you will define the common logs with color encoding if required.
+
+Below is a code snippet picked from Docusuarus.
+
+```plaintext
+function warn(msg: unknown, …values: InterpolatableValue[]): void {
+ console.warn(
+ chalk.yellow(
+ `${chalk.bold('[WARNING]')} ${
+ values.length === 0
+ ? stringify(msg)
+ : interpolate(msg as TemplateStringsArray, …values)
+ }`,
+ ),
+ );
+}
+```
+
+Docusaurus uses chalk to color the CLI output strings. I mentioned Docusaurus and shown the example to demonstrate how a package is used purely for logging purposes.
+
+### About us:
+
+At [Thinkthroo](https://thinkthroo.com/), we study large open source projects and [provide architectural guides](https://app.thinkthroo.com/architecture). We have developed reusable [Components, built with tailwind, that you can use in your project](https://thinkthroo.com/components). We offer [Next.js, React and Node development services.](https://thinkthroo.com/components)
+
+[Book a meeting](https://cal.com/team-thinkthroo-dxiovj/consultation?date=2024-10-19&month=2024-10) with us to discuss your project.
+
+![](https://cdn-images-1.medium.com/max/1600/0*NxFtbdT-jz_GGi2N.png)
+
+### References:
+
+1. [https://github.com/changesets/changesets/blob/main/packages/logger/src/index.ts#L18](https://github.com/changesets/changesets/blob/main/packages/logger/src/index.ts#L18)
+    
+2. [https://github.com/changesets/changesets/blob/main/packages/cli/src/index.ts#L3](https://github.com/changesets/changesets/blob/main/packages/cli/src/index.ts#L3)
+    
+3. [https://github.com/changesets/changesets/tree/main/packages/logger](https://github.com/changesets/changesets/tree/main/packages/logger)
+    
+4. [https://github.com/facebook/docusaurus/blob/2b8ddb9260c54b7fdba4398bfdce64553a1356b0/packages/docusaurus-logger/src/index.ts](https://github.com/facebook/docusaurus/blob/2b8ddb9260c54b7fdba4398bfdce64553a1356b0/packages/docusaurus-logger/src/index.ts)
+    
+5. [https://www.npmjs.com/package/picocolors](https://www.npmjs.com/package/picocolors)
+    
+6. [https://www.npmjs.com/package/chalk](https://www.npmjs.com/package/chalk)

@@ -16,7 +16,7 @@ export default function RootPage() {
         <PageHeaderHeading>Design. Build. Ship.</PageHeaderHeading>
         <PageHeaderDescription>
           We are experts at Next.js, React and Node.js. Whether you are starting from scratch and want to test your idea or 
-          need a bespoke web system for your business, we bring experience and apply best practices to ship digital products with quality and speed.   
+          need a bespoke web system for your business, we bring experience and best practices to ship digital products with quality and speed.   
         </PageHeaderDescription>
         <PageHeaderDescription>
           We analyse large open-source projects and provide free codebase architecture and are committed to open-source and innovation.
