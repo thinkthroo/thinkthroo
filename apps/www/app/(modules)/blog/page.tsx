@@ -9,13 +9,15 @@ import { allDocs } from "@/.contentlayer/generated"
 // TODO: add the metadata info
 export default async function Blog() {
 
-  const allCategories = ["All", "Next.js", "React", "Supabase", "Cal.com", "Shadcn/ui", "TypeDoc"]
+  const allCategories = ["All", "Zustand", "React", "Changesets", "Monorepo", "T3 Env"]
 
   return (
     <div className="container relative">
-        <h1 className="sr-only">Supabase blog</h1>
+        <h1 className="sr-only">Think Throo blog</h1>
         <div className="md:container mx-auto py-4 lg:py-10 px-4 sm:px-12 xl:px-16">
-            <FeaturedThumb />
+            <FeaturedThumb 
+              doc={allDocs.filter(doc => doc.slug.startsWith("/blog"))[0]}
+            />
         </div>
 
         <div className="border-default border-t">

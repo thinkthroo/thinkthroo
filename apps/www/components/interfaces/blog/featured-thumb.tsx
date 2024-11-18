@@ -1,11 +1,12 @@
+import { Doc } from "@/.contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function FeaturedThumb() {
+export default function FeaturedThumb(props: {doc: Doc}) {
     return (
         <div key={"string-raw"} className="w-full">
             <Link
-                href={`/blog`}
+                href={`${props.doc.slug}`}
                 className="grid gap-4 lg:grid-cols-7 lg:gap-8 xl:gap-12 hover:bg-surface-200 dark:hover:bg-surface-75 p-2 sm:p-4 rounded-xl"
             >
             <div className="relative w-full aspect-[2/1] lg:col-span-3 lg:aspect-[3/2] overflow-auto rounded-lg border">
@@ -26,11 +27,11 @@ export default function FeaturedThumb() {
                 </div>
 
                 <div>
-                    <h2 className="h2 lg:!text-2xl xl:!text-3xl !mb-2">String.raw in Tailwind CSS source code</h2>
-                    <p className="p xl:text-lg">In this article, we analyze how String.raw is used in Tailwind CSS source code.</p>
+                    <h2 className="h2 lg:!text-2xl xl:!text-3xl !mb-2">{props?.doc?.title}</h2>
+                    <p className="p xl:text-lg">{props.doc.description}</p>
                 </div>
 
-                <div className="flex flex-col w-max gap-2">
+                {/* <div className="flex flex-col w-max gap-2">
                     <div className="flex items-center space-x-2">
                         <div className="relative h-6 w-6 overflow-auto">
                             <Image
@@ -45,7 +46,7 @@ export default function FeaturedThumb() {
                             <span className="text-foreground m-0 text-sm">Ram</span>
                         </div>    
                     </div>
-                </div>
+                </div> */}
             </div>
             </Link>
         </div>

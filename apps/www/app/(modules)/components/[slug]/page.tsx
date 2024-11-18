@@ -15,6 +15,7 @@ import {
 import { siteConfig } from "@/config/site";
 import Image from "next/image";
 import Link from "next/link";
+import HeroOne from "./components/hero/hero-one";
 
 export default function Page() {
   return (
@@ -107,6 +108,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+      <HeroOne />
     </div>
   );
 }
