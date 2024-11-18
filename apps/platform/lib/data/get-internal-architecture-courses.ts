@@ -1,6 +1,6 @@
 export function getInternalArchitectureCourses() {
     return [{
-        title: "Caopy codebase architecture",
+        title: "Canopy codebase architecture",
         description: "Inspired by Lobechat codebase",
         slug: "/course/codebase-architecture/lobechat/tooling/introduction",
         chapters: 1,

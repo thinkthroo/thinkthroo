@@ -9,6 +9,7 @@ import { useMounted } from "@/hooks/use-mounted"
 import { NewsLetterForm } from "./newsletter-form"
 import ShareArticleActions from "./share-article-actions"
 import { usePathname } from "next/navigation"
+import ServicesPromo from "./services-promo"
 
 interface TocProps {
   toc: TableOfContents
@@ -31,7 +32,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
   const pathname = usePathname()
 
   if (!toc?.items || !mounted) {
-    return <div className="space-y-2"><NewsLetterForm /></div>
+    return <div className="space-y-2"><ServicesPromo /></div>
   }
 
   return (
@@ -42,7 +43,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
       <ShareArticleActions 
         slug={pathname}
       />
-      <NewsLetterForm />
+      <ServicesPromo />
     </div>
   )
 }
