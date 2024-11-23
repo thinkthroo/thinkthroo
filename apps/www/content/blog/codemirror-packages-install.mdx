@@ -1,0 +1,140 @@
+---
+title: How CodeMirror v6 dev setup installs packages without a monorepo
+toc: true
+---
+
+In the previous articles, we looked at:  
+1\. How CodeMirror v6 setup command processes CLI arguments?  
+2\. How CodeMirror v6 dev setup retrieves packages without a monorepo
+
+This leads to the next question how are packages installed as part development environment setup without using a monorepo. [install function](https://github.com/codemirror/dev/blob/main/bin/cm.js#L81) is called using apply as explained in the previous articles mentioned above.
+
+![](https://cdn-images-1.medium.com/max/1600/1*7UrMKzkOrYNADpIGIuFf-Q.png)
+
+```plaintext
+let base = arg == " - ssh" ? "git@github.com:codemirror/" : "https://github.com/codemirror/"
+if (arg && arg != " - ssh") help(1)
+```
+
+In case you are wondeirng what these 2 lines are for, Github lets you clone a repository via the ssh, hence this scenaria is handled to set the correct base url.
+
+```plaintext
+for (let pkg of packages) {
+ if (fs.existsSync(pkg.dir)) {
+   console.warn(`Skipping cloning of ${pkg.name} (directory exists)`)
+ } else {
+   let origin = base + (pkg.name == "codemirror" ? "basic-setup" : pkg.name) + ".git"
+   run("git", ["clone", origin, pkg.dir])
+ }
+}
+```
+
+If a package already exists, it is checked via existsSync and console.warn is shown about it being skipped otherwise, origin is assigned a value using base with a .git extension, since this is a URL there is no point in using API such as join as that is applicable to file system and the run function is called.
+
+### run function
+
+```plaintext
+function run(cmd, args, wd = root, { shell = false } = {}) {
+ return child.execFileSync(cmd, args, {shell, cwd: wd, encoding: "utf8", stdio: ["ignore", "pipe", process.stderr]})
+}
+```
+
+run functions seems to be using execFileSync API provided by `child`. `child` is initialized at the top of the file.
+
+```plaintext
+const child = require("child_process")
+```
+
+We need to understand what child\_process and execFileSync API are.
+
+#### child\_process
+
+The node:child\_process module provides the ability to spawn subprocesses in a manner that is similar, but not identical, to popen. This capability is primarily provided by the child\_process.spawn() function:
+
+```plaintext
+const { spawn } = require('node:child_process');
+const ls = spawn('ls', ['-lh', '/usr']);
+ls.stdout.on('data', (data) => {
+ console.log(`stdout: ${data}`);
+});
+ls.stderr.on('data', (data) => {
+ console.error(`stderr: ${data}`);
+});
+ls.on('close', (code) => {
+ console.log(`child process exited with code ${code}`);
+});
+```
+
+This above information is picked from [Node.js documentation](https://nodejs.org/api/child_process.html#child-process)
+
+#### execFileSync
+
+The child\_process.execFileSync() method is generally identical to child\_process.execFile() with theexception that the method will not return until the child process has fully closed. When a timeout has been encountered and killSignal is sent, the method won’t return until the process has completely exited.
+
+If the child process intercepts and handles the SIGTERM signal and does not exit, the parent process will still wait until the child process has exited.
+
+If the process times out or has a non-zero exit code, this method will throw an Error that will include the full result of the underlying child\_process.spawnSync().
+
+If the shell option is enabled, do not pass unsanitized user input to this function. Any input containing shell metacharacters may be used to trigger arbitrary command execution.
+
+```plaintext
+const { execFileSync } = require('node:child_process');
+try {
+ const stdout = execFileSync('my-script.sh', ['my-arg'], {
+ // Capture stdout and stderr from child process. Overrides the
+ // default behavior of streaming child stderr to the parent stderr
+ stdio: 'pipe',
+// Use utf8 encoding for stdio pipes
+ encoding: 'utf8',
+ });
+console.log(stdout);
+} catch (err) {
+ if (err.code) {
+ // Spawning child process failed
+ console.error(err.code);
+ } else {
+ // Child was spawned but exited with non-zero exit code
+ // Error contains any stdout and stderr from the child
+ const { stdout, stderr } = err;
+console.error({ stdout, stderr });
+ }
+}
+```
+
+This above information is picked from [Node.js documentation](https://nodejs.org/api/child_process.html#child_processexecfilesyncfile-args-options)
+
+Now that we understand what this API is used for, we can now look at the run function from CodeMirror.
+
+```plaintext
+function run(cmd, args, wd = root, { shell = false } = {}) {
+ return child.execFileSync(cmd, args, {shell, cwd: wd, encoding: "utf8", stdio: ["ignore", "pipe", process.stderr]})
+}
+```
+
+execFileSync executes the cmd (command) passed in as the first parameter. Install function calls run using the below variables.
+
+```plaintext
+run("git", ["clone", origin, pkg.dir])
+```
+
+Here the command is git and args is an array — \[“clone”, origin, pkg.dir\]. Install function basically clones the packages that are public repositories in the CodeMirror organization. Executing the commands programattically reminds me of two related concepts:  
+1\. \[Execa\]([https://www.npmjs.com/package/execa](https://www.npmjs.com/package/execa))  
+2\. \[Degit\]([https://github.com/Rich-Harris/degit](https://github.com/Rich-Harris/degit))
+
+### About us:
+
+At [Thinkthroo](https://thinkthroo.com/), we study large open source projects and [provide architectural guides](https://app.thinkthroo.com/architecture). We have developed reusable [Components, built with tailwind, that you can use in your project](https://thinkthroo.com/components). We offer [Next.js, React and Node development services.](https://thinkthroo.com/components)
+
+[Book a meeting](https://cal.com/team-thinkthroo-dxiovj/consultation?date=2024-10-19&month=2024-10) with us to discuss your project.
+
+![](https://cdn-images-1.medium.com/max/1600/0*NxFtbdT-jz_GGi2N.png)
+
+### References
+
+1. [https://github.com/codemirror/dev/blob/main/bin/cm.js#L64C1-L66C2](https://github.com/codemirror/dev/blob/main/bin/cm.js#L64C1-L66C2)
+    
+2. [https://github.com/codemirror/dev/blob/main/bin/cm.js#L81](https://github.com/codemirror/dev/blob/main/bin/cm.js#L81)
+    
+3. [https://nodejs.org/api/child\_process.html#child\_processexecfilesyncfile-args-options](https://nodejs.org/api/child_process.html#child_processexecfilesyncfile-args-options)
+    
+4. [https://nodejs.org/api/child\_process.html#child\_processexecfilefile-args-options-callback](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)

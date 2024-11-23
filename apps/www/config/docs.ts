@@ -41,6 +41,31 @@ export const docsConfig: DocsConfig = {
       title: "November, 2024",
       items: [
         {
+          title: "What if CodeMirror v6 dev setup uses Degit internally to clone packages?",
+          href:"/blog/codemirror-degit",
+          items: []
+        },
+        {
+          title: "Execa vs using child_process to execute CLI commands programmatically.",
+          href:"/blog/execa-child-process-examples",
+          items: []
+        },
+        {
+          title: "How CodeMirror v6 dev setup installs packages without a monorepo",
+          href:"/blog/codemirror-packages-install",
+          items: []
+        },
+        {
+          title: "How CodeMirror v6 dev setup retrieves packages without a monorepo",
+          href: "/blog/codemirror-packages-retrieve",
+          items: []
+        },
+        {
+          title: "How CodeMirror v6 setup command handles CLI arguments?",
+          href: "/blog/codemirror-cli-parse",
+          items: []
+        },
+        {
           title: "How Changsets reads config.json internally",
           href: "/blog/changesets-reads-config",
           items: []

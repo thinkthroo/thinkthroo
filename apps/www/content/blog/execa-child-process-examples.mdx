@@ -1,0 +1,68 @@
+---
+title: Execa vs using child_process to execute CLI commands programmatically.
+toc: true
+---
+
+In this article, we analyse two ways to execute CLI commands programmatically found in Shadcn/ui and CodeMirror.
+
+Have you ever wondered if it is possible to run CLI commands programmatically? We are going to look at how Shadcn/ui uses execa and how CodeMirror uses child\_process to execute CLI programmaticaly.
+
+### child\_process usage in CodeMirror
+
+CodeMirror is found to be using a Node.js API called `child_process.execFileSync`. [Read more](https://nodejs.org/api/child_process.html#child_processexecfilesyncfile-args-options)
+
+```plaintext
+function run(cmd, args, wd = root, { shell = false } = {}) {
+  return child.execFileSync(cmd, args, {shell, cwd: wd, encoding: "utf8", stdio: ["ignore", "pipe", process.stderr]})
+}
+```
+
+Just to provide a bit more context, this run gets called inside a function called install in CodeMirror source code.
+
+![](https://cdn-images-1.medium.com/max/1600/1*Zzj1E6r43pSxrXPWoEYF-Q.png)
+
+Check the [CodeMirror v6 Readme](https://github.com/codemirror/dev?tab=readme-ov-file#codemirror) to understand what this install is for.
+
+One of the first steps to set up the development environment for CodeMirror is to execute the below command, this is mentioned in [CodeMirror’s Readme.md](https://github.com/codemirror/dev?tab=readme-ov-file#codemirror).
+
+```plaintext
+node bin/cm.js install
+```
+
+install is parsed using process.argv
+
+![](https://cdn-images-1.medium.com/max/1600/1*VReYQmOQka77UpfXduP2HQ.png)
+
+### Execa usage in Shadcn/ui
+
+Execa runs commands in your script, application or library. Unlike shells, it is [optimized](https://github.com/sindresorhus/execa/blob/HEAD/docs/bash.md) for programmatic usage. Built on top of the [`child_process`](https://nodejs.org/api/child_process.html) core module.
+
+Shadcn/ui’s add command is found to be execa to install packages
+
+![](https://cdn-images-1.medium.com/max/1600/1*PGqlCr-IK3rC_aVkfZWGJQ.png)
+
+Check out these search results for [Execa usage in Shadcn/ui repository](https://github.com/search?q=repo%3Ashadcn-ui%2Fui%20execa&type=code)
+
+![](https://cdn-images-1.medium.com/max/1600/1*Ayrs1obk2c1P95suZeybSg.png)
+
+### About us:
+
+At [Thinkthroo](https://thinkthroo.com/), we study large open source projects and [provide architectural guides](https://app.thinkthroo.com/architecture). We have developed reusable [Components, built with tailwind, that you can use in your project](https://thinkthroo.com/components). We offer [Next.js, React and Node development services.](https://thinkthroo.com/components)
+
+[Book a meeting](https://cal.com/team-thinkthroo-dxiovj/consultation?date=2024-10-19&month=2024-10) with us to discuss your project.
+
+![](https://cdn-images-1.medium.com/max/1600/0*NxFtbdT-jz_GGi2N.png)
+
+### References
+
+1. [https://www.npmjs.com/package/execa](https://www.npmjs.com/package/execa)
+    
+2. [https://nodejs.org/api/child\_process.html#child\_processexecfilesyncfile-args-options](https://nodejs.org/api/child_process.html#child_processexecfilesyncfile-args-options)
+    
+3. [https://nodejs.org/api/child\_process.html#child\_processexecfilefile-args-options-callback](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback)
+    
+4. [https://github.com/codemirror/dev/blob/main/bin/cm.js#L14](https://github.com/codemirror/dev/blob/main/bin/cm.js#L14)
+    
+5. [https://github.com/codemirror/dev?tab=readme-ov-file#codemirror](https://github.com/codemirror/dev?tab=readme-ov-file#codemirror)
+    
+6. [https://github.com/search?q=repo%3Ashadcn-ui%2Fui%20execa&type=code](https://github.com/search?q=repo%3Ashadcn-ui%2Fui%20execa&type=code)

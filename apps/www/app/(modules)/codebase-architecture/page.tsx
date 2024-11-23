@@ -18,7 +18,7 @@ export default function RootPage() {
         </PageHeaderHeading>
         <PageHeaderDescription>
           We study large open-source projects and provide free architectural
-          guides. Take our courses to learn the best practices.
+          guides. Study our guides to learn the best practices.
         </PageHeaderDescription>
         <PageActions>
           <Button asChild size="sm">
