@@ -18,6 +18,23 @@ export async function SiteHeader() {
           <div className="w-full flex-1 md:w-auto md:flex-none">
           </div>
           <nav className="flex items-center">
+          <Link
+              href={siteConfig.links.youtube}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div
+                className={cn(
+                  buttonVariants({
+                    variant: "ghost",
+                  }),
+                  "h-8 w-8 px-0"
+                )}
+              >
+                <Icons.youtube className="h-4 w-4" />
+                <span className="sr-only">Youtube</span>
+              </div>
+            </Link>
             <Link
               href={siteConfig.links.github}
               target="_blank"

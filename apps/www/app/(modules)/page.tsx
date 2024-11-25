@@ -621,7 +621,7 @@ export default function RootPage() {
               </h3>
               <ul role="list" className="mt-6 space-y-4">
                 <li>
-                  <a href="https://discord.gg/zQhPByWy" className="text-gray-600 text-sm leading-5">
+                  <a href="https://discord.gg/3kwruUXW4g" className="text-gray-600 text-sm leading-5">
                     Discord
                   </a>
                 </li>
