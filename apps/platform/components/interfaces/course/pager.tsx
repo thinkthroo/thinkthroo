@@ -3,16 +3,17 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
 import { Doc } from "@/.contentlayer/generated"
 import { NavItem, NavItemWithChildren } from "@/types/nav"
 
-import { docsConfig } from "@/config/docs"
+import { docsConfig, getSidenavConfig } from "@/config/docs"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 
 interface DocsPagerProps {
-  doc: Doc
+  doc: Doc;
+  pathname: string;
 }
 
-export function DocsPager({ doc }: DocsPagerProps) {
-  const pager = getPagerForDoc(doc)
+export function DocsPager({ doc, pathname }: DocsPagerProps) {
+  const pager = getPagerForDoc(doc, pathname)
 
   if (!pager) {
     return null
@@ -42,8 +43,11 @@ export function DocsPager({ doc }: DocsPagerProps) {
   )
 }
 
-export function getPagerForDoc(doc: Doc) {
-  const nav = docsConfig.sidebarNav
+export function getPagerForDoc(doc: Doc, pathname: string) {
+  // since this is used in Page.tsx which is a server component, params are without "course" prefix
+  // hence "course" prefix is needed, Need to make sure to update "guides" in the future releases.
+  const nav = getSidenavConfig("/course/"+pathname)
+  console.log("nav", nav, "pathname", pathname);
   const flattenedLinks = [null, ...flatten(nav), null]
   const activeIndex = flattenedLinks.findIndex(
     (link) => doc.slug === link?.href

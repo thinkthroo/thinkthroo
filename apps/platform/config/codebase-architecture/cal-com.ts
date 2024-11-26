@@ -34,6 +34,15 @@ export const calcomCaNav = [
       ],
     },
     {
+      title: "State management in Cal.com",
+      href: `${calcomCaBaseUrl}/state-management/introduction`,
+      items: [{
+        title: "Introduction",
+        href: `${calcomCaBaseUrl}/state-management/introduction`,
+        items: [],
+      }]
+    },
+    {
       title: "Error handling in Cal.com",
       href: `${calcomCaBaseUrl}/error-handling/introduction`,
       items: [

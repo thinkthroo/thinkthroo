@@ -23,6 +23,9 @@ interface DocPageProps {
 }
 
 async function getDocFromParams({ params }: DocPageProps) {
+
+  console.log("params in getDocFromParams", params);
+
   const slug = params.slug?.join("/") || ""
   const doc = allDocs.find((doc) => doc.slugAsParams === slug)
 
@@ -134,7 +137,7 @@ export default async function DocPage({ params }: DocPageProps) {
         <div className="pb-12 pt-8">
           <Mdx code={doc.body.code} />
         </div>
-        <DocsPager doc={doc} />
+        <DocsPager doc={doc} pathname={params.slug?.join("/")} />
       </div>
       {doc.toc && (
         <div className="hidden text-sm xl:block">
