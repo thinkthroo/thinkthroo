@@ -1,4 +1,4 @@
-export const baseUrl = `/course/best-practices/crm-contacts-page/components-structure/supabase`
+export const baseUrl = `/guide/best-practices/crm-contacts-page/components-structure/supabase`
 export const introUrl = `${baseUrl}/introduction`
 // FIXME: Can be named better.
 export const crmContactsPageComponentsStructureBySupabaseNav = [

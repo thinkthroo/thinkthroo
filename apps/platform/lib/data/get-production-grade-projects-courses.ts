@@ -2,7 +2,7 @@ export function getProductionGradeProjectsCourses() {
     return [{
         title: "Build an Invoice System",
         description: "Scalable, maintainable canopy codebase architecture",
-        slug: "/course/components-structure-in-shadcn-ui/introduction",
+        slug: "/guide/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -13,7 +13,7 @@ export function getProductionGradeProjectsCourses() {
     }, {
         title: "Build a CRM System",
         description: "Scalable, maintainable canopy codebase architecture",
-        slug: "/course/components-structure-in-shadcn-ui/introduction",
+        slug: "/guide/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -24,7 +24,7 @@ export function getProductionGradeProjectsCourses() {
     }, {
         title: "Build a Social Media Management Tool",
         description: "Scalable, maintainable canopy codebase architecture",
-        slug: "/course/components-structure-in-shadcn-ui/introduction",
+        slug: "/guide/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -35,7 +35,7 @@ export function getProductionGradeProjectsCourses() {
     }, {
         title: "Build a Code Animation Tool",
         description: "Scalable, maintainable canopy codebase architecture",
-        slug: "/course/components-structure-in-shadcn-ui/introduction",
+        slug: "/guide/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -46,7 +46,7 @@ export function getProductionGradeProjectsCourses() {
     }, {
         title: "Build a Digital Signature Tool",
         description: "Scalable, maintainable canopy codebase architecture",
-        slug: "/course/components-structure-in-shadcn-ui/introduction",
+        slug: "/guide/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -57,7 +57,7 @@ export function getProductionGradeProjectsCourses() {
     }, {
         title: "Build an Email Builder",
         description: "Scalable, maintainable canopy codebase architecture",
-        slug: "/course/components-structure-in-shadcn-ui/introduction",
+        slug: "/guide/components-structure-in-shadcn-ui/introduction",
         chapters: 1,
         lessons: 4,
         concept: {

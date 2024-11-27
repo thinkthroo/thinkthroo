@@ -2,7 +2,7 @@ export function getArchitectureCourses() {
     return [{
         title: "Shadcn-ui/ui codebase architecture",
         description: "Learn the Shadcn-ui/ui codebase architecture",
-        slug: "/course/codebase-architecture/shadcn-ui/tooling/introduction",
+        slug: "/guide/codebase-architecture/shadcn-ui/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -13,7 +13,7 @@ export function getArchitectureCourses() {
     }, {
         title: "Supabase codebase architecture",
         description: "Learn the Supabase codebase architecture",
-        slug: "/course/codebase-architecture/supabase/tooling/introduction",
+        slug: "/guide/codebase-architecture/supabase/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -24,7 +24,7 @@ export function getArchitectureCourses() {
     }, {
         title: "Cal.com codebase architecture",
         description: "Learn the Cal.com codebase architecture",
-        slug: "/course/codebase-architecture/cal-com/tooling/introduction",
+        slug: "/guide/codebase-architecture/cal-com/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -35,7 +35,7 @@ export function getArchitectureCourses() {
     }, {
         title: "Lobechat codebase architecture",
         description: "Learn the Lobechat codebase architecture",
-        slug: "/course/codebase-architecture/lobechat/tooling/introduction",
+        slug: "/guide/codebase-architecture/lobechat/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {

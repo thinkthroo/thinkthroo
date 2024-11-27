@@ -1,4 +1,4 @@
-export const shadcnCaBaseUrl = `/course/codebase-architecture/shadcn-ui`
+export const shadcnCaBaseUrl = `/guide/codebase-architecture/shadcn-ui`
 export const shadcnCaNav = [
     {
       title: "Tooling in Shadcn-ui/ui",

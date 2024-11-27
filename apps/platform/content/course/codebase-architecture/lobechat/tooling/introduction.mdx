@@ -1,3 +1,0 @@
-# Introduction
-
-Work in progress

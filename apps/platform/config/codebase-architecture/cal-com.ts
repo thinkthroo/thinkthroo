@@ -1,4 +1,4 @@
-export const calcomCaBaseUrl = `/course/codebase-architecture/cal-com`
+export const calcomCaBaseUrl = `/guide/codebase-architecture/cal-com`
 export const calcomCaNav = [
     {
       title: "Tooling in Cal.com",

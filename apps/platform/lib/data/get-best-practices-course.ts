@@ -2,7 +2,7 @@ export function getBestPracticesCourses() {
     return [{
         title: "Supabase Auth",
         description: "An analysis of Supabase Auth implementation found in Open Source Next.js projects",
-        slug: "/course/codebase-architecture/shadcn-ui/tooling/introduction",
+        slug: "/guide/codebase-architecture/shadcn-ui/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -13,7 +13,7 @@ export function getBestPracticesCourses() {
     }, {
         title: "Stripe",
         description: "An analysis of Stripe implementation found in Open Source Next.js projects",
-        slug: "/course/codebase-architecture/supabase/tooling/introduction",
+        slug: "/guide/codebase-architecture/supabase/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -24,7 +24,7 @@ export function getBestPracticesCourses() {
     }, {
         title: "Blog implementation",
         description: "An analysis of blog implementation found in Open Source Next.js projects",
-        slug: "/course/codebase-architecture/cal-com/tooling/introduction",
+        slug: "/guide/codebase-architecture/cal-com/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -35,7 +35,7 @@ export function getBestPracticesCourses() {
     }, {
         title: "Documentation implementation",
         description: "An analysis of documentation implementation found in Open Source Next.js projects",
-        slug: "/course/codebase-architecture/lobechat/tooling/introduction",
+        slug: "/guide/codebase-architecture/lobechat/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -46,7 +46,7 @@ export function getBestPracticesCourses() {
     }, {
         title: "Changesets configuration",
         description: "An analysis of Changesets configuration found in Open Source Next.js projects",
-        slug: "/course/codebase-architecture/lobechat/tooling/introduction",
+        slug: "/guide/codebase-architecture/lobechat/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -57,7 +57,7 @@ export function getBestPracticesCourses() {
     }, {
         title: "Husky configuration",
         description: "An analysis of Husky configuration found in Open Source Next.js projects",
-        slug: "/course/codebase-architecture/lobechat/tooling/introduction",
+        slug: "/guide/codebase-architecture/lobechat/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -68,7 +68,7 @@ export function getBestPracticesCourses() {
     }, {
         title: "Open Telemetry configuration",
         description: "An analysis of Open Telemetry configuration found in Open Source Next.js projects",
-        slug: "/course/codebase-architecture/lobechat/tooling/introduction",
+        slug: "/guide/codebase-architecture/lobechat/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -79,7 +79,7 @@ export function getBestPracticesCourses() {
     }, {
         title: "Sentry configuration",
         description: "An analysis of Open Telemetry configuration found in Open Source Next.js projects",
-        slug: "/course/codebase-architecture/lobechat/tooling/introduction",
+        slug: "/guide/codebase-architecture/lobechat/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {
@@ -90,7 +90,7 @@ export function getBestPracticesCourses() {
     }, {
         title: "Internationalization in Next.js",
         description: "An analysis of Internationalization found in Open Source Next.js projects",
-        slug: "/course/codebase-architecture/lobechat/tooling/introduction",
+        slug: "/guide/codebase-architecture/lobechat/tooling/introduction",
         chapters: 1,
         lessons: 4,
         concept: {

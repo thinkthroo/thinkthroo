@@ -1,4 +1,4 @@
-export const lobechatCaBaseUrl = `/course/codebase-architecture/lobechat`
+export const lobechatCaBaseUrl = `/guide/codebase-architecture/lobechat`
 export const lobechatCaNav = [
     {
       title: "Tooling in Lobechat",

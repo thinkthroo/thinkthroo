@@ -1,4 +1,4 @@
-export const supabaseCaBaseUrl = `/course/codebase-architecture/supabase`
+export const supabaseCaBaseUrl = `/guide/codebase-architecture/supabase`
 export const supabaseCaNav = [
     {
       title: "Tooling in Supabase",

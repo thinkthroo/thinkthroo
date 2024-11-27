@@ -1,4 +1,4 @@
-export const baseUrl = `/course/codebase-architecture/error-handling/cal-com`
+export const baseUrl = `/guide/codebase-architecture/error-handling/cal-com`
 export const introUrl = `${baseUrl}/introduction`
 export const calcomErrorHandlingNav = [
     {

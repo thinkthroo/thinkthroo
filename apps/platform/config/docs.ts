@@ -52,26 +52,26 @@ export const docsConfig: DocsConfig = {
   sidebarNav: [
     {
       title: "Components Structure In Shadcn-ui/ui",
-      href: `/course/codebase-architecture/components-structure/shadcn-ui`,
+      href: `/guide/codebase-architecture/components-structure/shadcn-ui`,
       items: [
         {
           title: "Introduction",
-          href: `/course/codebase-architecture/components-structure/shadcn-ui/introduction`,
+          href: `/guide/codebase-architecture/components-structure/shadcn-ui/introduction`,
           items: [],
         },
         {
           title: "Home Page",
-          href: `/course/codebase-architecture/components-structure/shadcn-ui/home-page`,
+          href: `/guide/codebase-architecture/components-structure/shadcn-ui/home-page`,
           items: [],
         },
         {
           title: "Mail Example Page",
-          href: `/course/codebase-architecture/components-structure/shadcn-ui/mail-example-page`,
+          href: `/guide/codebase-architecture/components-structure/shadcn-ui/mail-example-page`,
           items: [],
         },
         {
           title: "Charts Page",
-          href: `/course/codebase-architecture/components-structure/shadcn-ui/charts-page`,
+          href: `/guide/codebase-architecture/components-structure/shadcn-ui/charts-page`,
           items: [],
         },
       ],
@@ -103,8 +103,8 @@ sidebarNav.set(crmContactsPageCsSupabaseBaseUrl, crmContactsPageComponentsStruct
 
 
 export function getSidenavConfig(pathname: String): SidebarNavItem[] {
-  // example pathname: "/course/codebase-architecture/shadcn-ui/components-structure/introduction";
-  // after split, join and slice, output: /course/codebase-architecture/shadcn-ui
+  // example pathname: "/guide/codebase-architecture/shadcn-ui/components-structure/introduction";
+  // after split, join and slice, output: /guide/codebase-architecture/shadcn-ui
   // output is the key in sidebarNav map.
   return sidebarNav.get(pathname.split('/').slice(0, 4).join('/'));
 

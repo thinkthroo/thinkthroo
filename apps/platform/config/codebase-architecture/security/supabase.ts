@@ -1,4 +1,4 @@
-export const baseUrl = `/course/codebase-architecture/security/supabase`
+export const baseUrl = `/guide/codebase-architecture/security/supabase`
 export const introUrl = `${baseUrl}/introduction`
 export const supabaseSecurityNav = [
     {

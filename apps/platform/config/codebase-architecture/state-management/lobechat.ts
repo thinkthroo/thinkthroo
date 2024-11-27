@@ -1,4 +1,4 @@
-export const baseUrl = `/course/codebase-architecture/state-management/lobechat`
+export const baseUrl = `/guide/codebase-architecture/state-management/lobechat`
 export const introUrl = `${baseUrl}/introduction`
 export const lobechatStateManagementNav = [
     {

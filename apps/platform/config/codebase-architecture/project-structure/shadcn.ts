@@ -1,4 +1,4 @@
-export const baseUrl = `/course/codebase-architecture/project-structure/shadcn`
+export const baseUrl = `/guide/codebase-architecture/project-structure/shadcn`
 export const introUrl = `${baseUrl}/introduction`
 export const shadcnProjectStructureNav = [
     {

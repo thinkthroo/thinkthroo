@@ -1,4 +1,4 @@
-export const baseUrl = `/course/codebase-architecture/project-structure/supabase`
+export const baseUrl = `/guide/codebase-architecture/project-structure/supabase`
 export const introUrl = `${baseUrl}/introduction`
 export const supabaseProjectStructureNav = [
     {
