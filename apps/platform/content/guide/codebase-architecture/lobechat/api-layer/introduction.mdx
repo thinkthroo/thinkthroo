@@ -289,10 +289,384 @@ online state, SWR will automatically refetch the data.
 revalidateOnReconnect: true
 ```
 
-## Key:
-Now that we understand useClientDataSWR and its options, let's look at the params used.
+## Params:
+Now that we understand useClientDataSWR and its options, let's look at the params used. The first param is the key
+
+```
+useClientDataSWR<ChatSessionList>(
+      [FETCH_SESSIONS_KEY, isLogin],
+```
+
+The second param is the fetch function written in [sessionService.getGroupedSessions()](https://github.com/lobehub/lobe-chat/blob/main/src/services/session/server.ts#L49)
+
+Third params is the additional config passed to useClientDataSWR function.
+
+At this point, we are introduced to the new unknown `sessionService`. Let's analyze sessionService.
+
 
 # References:
 1. [Session List](https://github.com/lobehub/lobe-chat/blob/main/src/app/(main)/chat/%40session/features/SessionListContent/DefaultMode.tsx#L29)
 2. [useFetchSessions](https://github.com/lobehub/lobe-chat/blob/main/src/store/session/slices/session/action.ts#L200)
 3. [useClientDataSWR](https://github.com/lobehub/lobe-chat/blob/main/src/libs/swr/index.ts#L22C14-L22C30)
+
+[C: sessionService]
+
+In this guide, we analyze the [sessionService](https://github.com/lobehub/lobe-chat/blob/main/src/services/session/server.ts#L49),
+that gets called in a store. 
+
+The way we approach this is that we pick a function, understand it and see where it leads us.
+
+# getGroupedSessions()
+
+[getGroupedSessions()](https://github.com/lobehub/lobe-chat/blob/main/src/services/session/server.ts#L49) has the below
+code:
+
+```
+getGroupedSessions(): Promise<ChatSessionList> {
+  return lambdaClient.session.getGroupedSessions.query();
+}
+```
+
+The unknown here is lambdaClient. What could this be about? to find that out, you have to see where 
+lambdaClient is imported from.
+
+```
+import { lambdaClient } from '@/libs/trpc/client';
+```
+
+lambdaClient is imported from `@libs/trpc/client`. This tells us that Lobechat uses tRPC. What's TRPC?
+
+# tRPC
+Move fast and break nothing. tRPC provides end-to-end typesafe APIs for your fullstack application.
+
+Since Lobechat uses app router, you may want to read this [set up with React components guide](https://trpc.io/docs/client/react/server-components)
+to understand how the tRPC is configured in Lobechat codebase.
+
+We refer to the steps provided in [tRPC Setup with React Components](https://trpc.io/docs/client/react/server-components) 
+and find out how Lobechat configured tRPC.
+
+Useful links:
+1. [tRPC](https://trpc.io/)
+2. [tRPC quick start](https://trpc.io/docs/quickstart)
+3. [Next.js, pages router + tRPC setup](https://trpc.io/docs/client/nextjs/setup)
+4. [Next.js, app router + tRPC setup](https://trpc.io/docs/client/react/server-components)
+
+## Dependencies required
+
+[tRPC docs](https://trpc.io/docs/client/react/server-components#1-install-deps) tells us to install the 
+following dependencies in your project:
+
+- @trpc/server@next
+- @trpc/client@next
+- @trpc/react-query@next
+- @tanstack/react-query@latest
+- zod
+- client-only
+- server-only
+
+Lobechat has the following packages installed, available in [package.json](https://github.com/lobehub/lobe-chat/blob/main/package.json)
+
+```
+"@tanstack/react-query": "^5.59.15",
+"@trpc/client": "next",
+"@trpc/next": "next",
+"@trpc/react-query": "next",
+"@trpc/server": "next",
+"zod": "^3.23.8",
+```
+
+There is no 'client-only', 'server-only' packages in Lobechat package.json and has a package named `@trpc/next` installed.
+
+## Create a tRPC router
+
+### tRPC Documentation summary
+You would need create a tRPC router as explained in [tRPC docs](https://trpc.io/docs/client/react/server-components#2-create-a-trpc-router)
+
+You create the following files:
+
+- trpc/init.ts
+- trpc/routers/_app.ts
+- app/api/trpc/[trpc]/route.ts
+
+### Lobechat implementation:
+
+#### init.ts 
+You will find init.ts in [src/libs/trpc/init.ts](https://github.com/lobehub/lobe-chat/blob/main/src/libs/trpc/init.ts)
+```
+export const trpc = initTRPC.context<Context>().create({
+  /**
+   * @link https://trpc.io/docs/v11/error-formatting
+   */
+  errorFormatter({ shape }) {
+    return shape;
+  },
+  /**
+   * @link https://trpc.io/docs/v11/data-transformers
+   */
+  transformer: superjson,
+});
+```
+
+Only tRPC is exported, but if you were to look at init.ts provided in documentation, it has the below code:
+
+```
+const t = initTRPC.create({
+  /**
+   * @see https://trpc.io/docs/server/data-transformers
+   */
+  // transformer: superjson,
+});
+// Base router and procedure helpers
+export const createTRPCRouter = t.router;
+export const baseProcedure = t.procedure;
+```
+
+Examples provided in documentation exports router and procedure but Lobechat only exports `trpc` which is `t` in tRPC
+documentation example.
+
+#### routers
+In the tRPC documentation, routers are defined in `trpc/routers/_app.ts`.
+
+```
+import { z } from 'zod';
+import { baseProcedure, createTRPCRouter } from '../init';
+export const appRouter = createTRPCRouter({
+  hello: baseProcedure
+    .input(
+      z.object({
+        text: z.string(),
+      }),
+    )
+    .query((opts) => {
+      return {
+        greeting: `hello ${opts.input.text}`,
+      };
+    }),
+});
+// export type definition of API
+export type AppRouter = typeof appRouter;
+```
+
+Lobechat has a folder named routers in [server folder](https://github.com/lobehub/lobe-chat/tree/main/src/server/routers),
+We chose [lambda/session.ts](https://github.com/lobehub/lobe-chat/blob/main/src/server/routers/lambda/session.ts) inside 
+server folder for explanation in this guide.
+
+For you to register a route, you need trpc.router. This is imported from `@/lib/trpc`.
+
+```
+import { authedProcedure, publicProcedure, router } from '@/libs/trpc';
+```
+
+For example, [getSessions](https://github.com/lobehub/lobe-chat/blob/main/src/server/routers/lambda/session.ts#L92) 
+is registered with the router as shown below:
+
+```
+getSessions: sessionProcedure
+    .input(
+      z.object({
+        current: z.number().optional(),
+        pageSize: z.number().optional(),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      const { current, pageSize } = input;
+
+      return ctx.sessionModel.query({ current, pageSize });
+    }),
+```
+
+we have now been introduced to sessionModel that makes the database calls, we will learn more about sessionModel in the 
+next article.
+
+[sessionProcedure](https://github.com/lobehub/lobe-chat/blob/main/src/server/routers/lambda/session.ts#L13) is defined 
+after the imports in lambda/session.ts as shown below:
+
+```
+const sessionProcedure = authedProcedure.use(async (opts) => {
+  const { ctx } = opts;
+
+  return opts.next({
+    ctx: {
+      sessionGroupModel: new SessionGroupModel(ctx.userId),
+      sessionModel: new SessionModel(ctx.userId),
+    },
+  });
+});
+```
+
+authedProcedure is from `@libs/trpc`.
+
+```
+// procedure that asserts that the user is logged in
+export const authedProcedure = trpc.procedure.use(userAuth);
+```
+
+[C: SessionModel]
+
+Based on the example, getSessions, we picked in the previous article, `sessionModel.query` is used. `query` function in
+sessionModel has the below code:
+
+```
+async query({ current = 0, pageSize = 9999 } = {}) {
+    const offset = current * pageSize;
+
+    return serverDB.query.sessions.findMany({
+      limit: pageSize,
+      offset,
+      orderBy: [desc(sessions.updatedAt)],
+      where: and(eq(sessions.userId, this.userId), not(eq(sessions.slug, INBOX_SESSION_ID))),
+      with: { agentsToSessions: { columns: {}, with: { agent: true } }, group: true },
+    });
+}
+```
+
+Unknown here is serverDB. serverDB is imported from [database/server/core/db](https://github.com/lobehub/lobe-chat/blob/main/src/database/server/core/db.ts);
+
+```
+import { serverDB } from '@/database/server/core/db';
+```
+
+In Lobechat's tRPC procedures, models are used as an abstraction instead of directly dealing with database calls. 
+
+[C: Database Core API]
+
+In the previous chapter, we learnt that model uses serverDB imported from `@/database/server/core/db`. In this chapter, we 
+analyze the Lobechat's database core API.
+
+The below imports are picked from [database/server/core/db.ts](https://github.com/lobehub/lobe-chat/blob/main/src/database/server/core/db.ts)
+
+```
+import { Pool as NeonPool, neonConfig } from '@neondatabase/serverless';
+import { NeonDatabase, drizzle as neonDrizzle } from 'drizzle-orm/neon-serverless';
+import { drizzle as nodeDrizzle } from 'drizzle-orm/node-postgres';
+import { Pool as NodePool } from 'pg';
+import ws from 'ws';
+
+import { serverDBEnv } from '@/config/db';
+import { isServerMode } from '@/const/version';
+
+import * as schema from '../schemas/lobechat';
+```
+
+You can tell from the imports that Lobechat uses [Drizzle ORM](https://orm.drizzle.team/) and [Neon database](https://neon.tech/).
+Check out this [Drizzle with Neon tutorial](https://orm.drizzle.team/docs/tutorials/drizzle-with-neon) to find out more.
+This tutorial shows how to connect to Neon database using Drizzle.
+
+```
+import { drizzle } from "drizzle-orm/neon-http";
+import { neon } from "@neondatabase/serverless";
+import { config } from "dotenv";
+config({ path: ".env" }); // or .env.local
+const sql = neon(process.env.DATABASE_URL!);
+export const db = drizzle({ client: sql });
+```
+
+Lobechat has additional checks as to which drizzle ORM is used. For example, in the below code:
+
+```
+if (serverDBEnv.DATABASE_DRIVER === 'node') {
+    const client = new NodePool({ connectionString });
+    return nodeDrizzle(client, { schema });
+}
+```
+
+nodeDrizzle here is imported from `drizzle-orm/node-postgres`.
+
+serverDBenv is imported from config/db.ts
+
+```
+import { createEnv } from '@t3-oss/env-nextjs';
+import { z } from 'zod';
+
+export const getServerDBConfig = () => {
+  return createEnv({
+    client: {
+      NEXT_PUBLIC_ENABLED_SERVER_SERVICE: z.boolean(),
+    },
+    runtimeEnv: {
+      DATABASE_DRIVER: process.env.DATABASE_DRIVER || 'neon',
+      DATABASE_TEST_URL: process.env.DATABASE_TEST_URL,
+      DATABASE_URL: process.env.DATABASE_URL,
+
+      DISABLE_REMOVE_GLOBAL_FILE: process.env.DISABLE_REMOVE_GLOBAL_FILE === '1',
+
+      KEY_VAULTS_SECRET: process.env.KEY_VAULTS_SECRET,
+
+      NEXT_PUBLIC_ENABLED_SERVER_SERVICE: process.env.NEXT_PUBLIC_SERVICE_MODE === 'server',
+    },
+    server: {
+      DATABASE_DRIVER: z.enum(['neon', 'node']),
+      DATABASE_TEST_URL: z.string().optional(),
+      DATABASE_URL: z.string().optional(),
+
+      DISABLE_REMOVE_GLOBAL_FILE: z.boolean().optional(),
+
+      KEY_VAULTS_SECRET: z.string().optional(),
+    },
+  });
+};
+
+export const serverDBEnv = getServerDBConfig();
+```
+
+getServerDBConfig uses createEnv from [@t3-oss/env-nextjs](https://github.com/t3-oss/t3-env).
+
+Finally, neonDrizzle is returned from this function - getDBInstance().
+
+```
+const client = new NeonPool({ connectionString });
+return neonDrizzle(client, { schema });
+```
+
+schema in the above code snippet is imported from `schemas/lobechat` file.
+
+# session.ts Schema
+
+Since Lobechat uses Drizzle, we picked [schema/lobechat/session.ts](https://github.com/lobehub/lobe-chat/blob/main/src/database/server/schemas/lobechat/session.ts)
+as an example.
+
+imports used are:
+
+```
+import { boolean, integer, pgTable, text, unique, uniqueIndex, varchar } from 'drizzle-orm/pg-core';
+import { createInsertSchema } from 'drizzle-zod';
+```
+
+Session table defined:
+
+```
+export const sessions = pgTable(
+  'sessions',
+  {
+    id: text('id')
+      .$defaultFn(() => idGenerator('sessions'))
+      .primaryKey(),
+    slug: varchar('slug', { length: 100 })
+      .notNull()
+      .$defaultFn(() => randomSlug()),
+    title: text('title'),
+    description: text('description'),
+    avatar: text('avatar'),
+    backgroundColor: text('background_color'),
+
+    type: text('type', { enum: ['agent', 'group'] }).default('agent'),
+
+    userId: text('user_id')
+      .references(() => users.id, { onDelete: 'cascade' })
+      .notNull(),
+    groupId: text('group_id').references(() => sessionGroups.id, { onDelete: 'set null' }),
+    clientId: text('client_id'),
+    pinned: boolean('pinned').default(false),
+
+    createdAt: createdAt(),
+    updatedAt: updatedAt(),
+  },
+  (t) => ({
+    slugUserIdUnique: uniqueIndex('slug_user_id_unique').on(t.slug, t.userId),
+
+    clientIdUnique: unique('sessions_client_id_user_id_unique').on(t.clientId, t.userId),
+  }),
+);
+```
+
+You also want to make sure to define your schema path in the [drizzle.config.ts](https://github.com/lobehub/lobe-chat/blob/main/drizzle.config.ts)

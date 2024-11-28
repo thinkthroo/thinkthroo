@@ -23,6 +23,17 @@ export const supabaseCaNav = [
       ],
     },
     {
+      title: "State management in Supabase",
+      href: `${supabaseCaBaseUrl}/state-management/introduction`,
+      items: [
+        {
+          title: "Introduction",
+          href: `${supabaseCaBaseUrl}/state-management/introduction`,
+          items: [],
+        }
+      ],
+    },
+    {
       title: "Security in Supabase",
       href: `${supabaseCaBaseUrl}/security/introduction`,
       items: [

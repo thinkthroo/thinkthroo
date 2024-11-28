@@ -12,6 +12,17 @@ export const lobechatCaNav = [
       ],
     },
     {
+      title: "Component structure in Lobechat",
+      href: `${lobechatCaBaseUrl}/component-structure/introduction`,
+      items: [
+        {
+          title: "Introduction",
+          href: `${lobechatCaBaseUrl}/component-structure/introduction`,
+          items: [],
+        }
+      ],
+    },
+    {
         title: "State management in Lobechat",
         href: `${lobechatCaBaseUrl}/state-management/introduction`,
         items: [
