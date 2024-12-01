@@ -38,6 +38,36 @@ export const docsConfig: DocsConfig = {
   ],
   sidebarNav: [
     {
+      title: "December, 2024",
+      items: [
+        {
+          title: "How Supabase implemented micro-frontends using Multi Zones in Next.js",
+          href:"/blog/micro-frontend-in-supabase",
+          items: []
+        },
+        {
+          title: "What's the `ee` folder in open-source projects?",
+          href:"/blog/ee-folder-in-oss",
+          items: []
+        },
+        {
+          title: "useMemo usage in Documenso, an open-source Docusign alternative.",
+          href:"/blog/usememo-usage-in-documenso",
+          items: []
+        },
+        {
+          title: "Here's how AI-powered autocompletion is implemented in Novel, an open-source text editor",
+          href:"/blog/novel-ai-powered",
+          items: []
+        },
+        {
+          title: "Copilotkit usage in Postiz",
+          href:"/blog/copilotkit-usage-in-postiz",
+          items: []
+        },
+      ]
+    },
+    {
       title: "November, 2024",
       items: [
         {
