@@ -16,7 +16,7 @@ export default async function Blog() {
         <h1 className="sr-only">Think Throo blog</h1>
         <div className="md:container mx-auto py-4 lg:py-10 px-4 sm:px-12 xl:px-16">
             <FeaturedThumb 
-              doc={allDocs.filter(doc => doc.slug.startsWith("/blog"))[3]}
+              doc={allDocs.filter(doc => doc.slug.startsWith("/blog"))[6]}
             />
         </div>
 
