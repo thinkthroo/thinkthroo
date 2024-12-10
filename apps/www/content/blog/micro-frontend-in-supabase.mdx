@@ -29,7 +29,7 @@ Navigating from a page in one zone to a page in another zone, such as from / to 
 
 You can use assetPrefix to avoid conflicts with pages and static files in other zones. Below is an example showing the assetPrefix example:
 
-```plaintext
+```js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
  assetPrefix: '/blog-static',
@@ -40,7 +40,7 @@ This way, a project in one zone has its static assets such as JavaScript and CSS
 
 Docs also mentions that in versions older than 15 (&lt; 15, say 14.x, 13.x), there’s additional rewrited that need to be configured but this is no longer needed in version 15. Below is an example showing the rewrites
 
-```plaintext
+```js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
  assetPrefix: '/blog-static',
@@ -84,7 +84,7 @@ For this article, we are only focusing on two workspaces, www and studio as www 
 
 This is all fine but how is this configured? based on basics that we discussed at the top of this article, the trick to define your rewrites correctly. That’s where you should be looking too, rewrites are defined in next.config.js. Let’s dig up the www next.config.js
 
-```plaintext
+```js
 //In https://github.com/supabase/supabase/blob/master/apps/www/next.config.mjs
 
 async rewrites() {
@@ -96,7 +96,7 @@ redirects are different from rewrites, for the Multi Zones, you should be focusi
 
 `rewrites` are found to be imported from [lib/rewrites.ts](https://github.com/supabase/supabase/blob/master/apps/www/lib/rewrites.js#L42)
 
-```plaintext
+```js
 module.exports = [
   {
     source: '/:path*',
@@ -114,7 +114,7 @@ module.exports = [
 
 Now then, finally we are able to understand how the www project redirects to dashboard. So, based on the above image, as you can see, when you navigate to /dashboard, destination has a value pointing to process.env.NEXT\_PUBLIC\_STUDIO\_URL that you would define in your .env file. www workspace has a sample .env provided.
 
-![](https://cdn-images-1.medium.com/max/1600/1*tlfzBt7KhwrZNYkXIK6Uzg.png align="left")
+![](https://cdn-images-1.medium.com/max/1600/1*tlfzBt7KhwrZNYkXIK6Uzg.png)
 
 As you can see from the above image, process.env.NEXT\_PUBLIC\_STUDIO\_URL points to a server running on a   
 different port. So when you visit /dashboard, a hard navigation to destination happens.
@@ -127,7 +127,7 @@ We offer [Next.js, React and Node development services.](https://thinkthroo.com/
 
 [Book a meeting](https://cal.com/team-thinkthroo-dxiovj/consultation?date=2024-10-19&month=2024-10) with us to discuss your project.
 
-![](https://cdn-images-1.medium.com/max/1600/0*NxFtbdT-jz_GGi2N.png align="left")
+![](https://cdn-images-1.medium.com/max/1600/0*NxFtbdT-jz_GGi2N.png)
 
 ### References:
 

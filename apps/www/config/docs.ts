@@ -41,6 +41,31 @@ export const docsConfig: DocsConfig = {
       title: "December, 2024",
       items: [
         {
+          title: "ts-pattern usage in Documenso...",
+          href: "/blog/ts-pattern-in-documenso",
+          items: []
+        },
+        {
+          title: "How Documenso, an open-source...",
+          href: "/blog/pdf-file-upload-in-documenso",
+          items: []
+        },
+        {
+          title: "Comparison of the middleware implementation...",
+          href: "/blog/middleware-in-supabase-auth-example",
+          items: []
+        },
+        {
+          title: "How the userId is added...",
+          href: "/blog/user-id-in-trpc-context",
+          items: []
+        },
+        {
+          title: "Dynamic form in LobeChat source code.",
+          href: "/blog/dynamic-form-in-lobechat",
+          items: []
+        },
+        {
           title: "How Supabase implemented micro-frontends using Multi Zones in Next.js",
           href:"/blog/micro-frontend-in-supabase",
           items: []
