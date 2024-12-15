@@ -6,6 +6,9 @@ import * as React from "react"
 import { TableOfContents } from "@/lib/toc"
 import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
+import ServicesPromo from "./services-promo"
+import ShareArticleActions from "./share-article-actions"
+import { usePathname } from "next/navigation"
 
 interface TocProps {
   toc: TableOfContents
@@ -25,13 +28,19 @@ export function DashboardTableOfContents({ toc }: TocProps) {
   )
   const activeHeading = useActiveItem(itemIds)
   const mounted = useMounted()
+  const pathname = usePathname()
 
   if (!toc?.items || !mounted) {
-    return null
+    return <div className="space-y-2"><ServicesPromo /></div>
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
+      <ServicesPromo />
+      <p className="font-small">Share this article</p>
+      <ShareArticleActions 
+        slug={pathname}
+      />
       <p className="font-medium">On This Page</p>
       <Tree tree={toc} activeItem={activeHeading} />
     </div>

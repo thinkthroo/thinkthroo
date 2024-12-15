@@ -41,6 +41,31 @@ export const docsConfig: DocsConfig = {
       title: "December, 2024",
       items: [
         {
+          title: "LobeChat uses Namespace for action...",
+          href: "/blog/lobechat-uses-namespaces-actions",
+          items: []
+        },
+        {
+          title: "How to configure DevTools...",
+          href: "/blog/configure-devtools-for-zustand",
+          items: []
+        },
+        {
+          title: "next-runtime-env usage in Documenso",
+          href: "/blog/nextruntimeenv-in-documenso",
+          items: []
+        },
+        {
+          title: "Is it possible to upload...",
+          href: "/blog/upload-file-to-db-in-nextjs",
+          items: []
+        },
+        {
+          title: "Comparison of S3 upload feature...",
+          href: "/blog/comparing-s3-upload-feature",
+          items: []
+        },
+        {
           title: "ts-pattern usage in Documenso...",
           href: "/blog/ts-pattern-in-documenso",
           items: []
