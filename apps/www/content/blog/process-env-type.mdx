@@ -1,0 +1,89 @@
+---
+title: ProcessEnv type in next-runtime-env source code
+toc: true
+---
+
+In this article, we analyse the ProcessEnv type found in [next-runtime-env source code](https://github.com/expatfile/next-runtime-env/blob/development/src/typings/process-env.ts#L3) and review the [StackOverflow answe](https://stackoverflow.com/questions/45194598/using-process-env-in-typescript)r and also [Matt Pocock’s article](https://www.totaltypescript.com/how-to-strongly-type-process-env).
+
+### ProcessEnv type
+
+ProcessEnv is imported as shown below
+
+```ts
+import { ProcessEnv } from '../typings/process-env';
+```
+
+In the [typings/process-env](https://github.com/expatfile/next-runtime-env/blob/development/src/typings/process-env.ts#L3), you will find the below code:
+
+```ts
+import { type Dict } from './dict';
+export type ProcessEnv = Dict<string>;
+```
+
+It is a Dict of type string, but Dict type is imported from `/dict` and has the below code
+
+```ts
+export type Dict<T> = {
+ [key: string]: T | undefined;
+};
+```
+
+### Matt Pococok’s article
+
+In the Total TypeScript article — [How to strongly type process.env](https://www.totaltypescript.com/how-to-strongly-type-process-env),  
+it is stated that “a common problem in TypeScript is that process.env doesn’t give you autocomplete for the environment variables that actually exist in your system” and Matt suggests two solutions:
+
+\- [Augment the global type](https://www.totaltypescript.com/how-to-strongly-type-process-env#solution-1-augment-the-global-type)  
+\- [Validate at Runtime with t3-env](https://www.totaltypescript.com/how-to-strongly-type-process-env#solution-2-validate-it-at-runtime-with-t3-env)
+
+> These approaches do not mention anything about defining your ProcessEnv types, but you will see this suggestion/accepted answer on Stackoverflow. Read further to find out.
+
+### Stackoverflow Accepted Answer
+
+There was a [question titled — using process.env in TypeScript](https://stackoverflow.com/questions/45194598/using-process-env-in-typescript) on Stackverflow. It has 21 answers but I like the accepted answer more and you will similar approach in next-runtime-env source code.
+
+The [accepted answer](https://stackoverflow.com/a/45195359) tells you to define a ProcessEnv type with the below code:
+
+```ts
+export interface ProcessEnv {
+ [key: string]: string | undefined
+}
+```
+
+next-runtime-env has the same type, only difference is, the defined type is assigned to a variable named `Dict`.
+
+```ts
+import { type Dict } from './dict';
+export type ProcessEnv = Dict<string>;
+```
+
+Dict type:
+
+```ts
+export type Dict<T> = {
+ [key: string]: T | undefined;
+};
+```
+
+### About us:
+
+1. We study large open source projects and [provide free architectural guides](https://app.thinkthroo.com/architecture).
+    
+2. We have developed free, reusable [Components, built with tailwind, that you can use in your project](https://thinkthroo.com/components).
+    
+3. We analyse open-source code and provide [courses](https://app.thinkthroo.com/best-practices) so you can learn various advanced techniques and improve your skills. [Get our courses](https://app.thinkthroo.com/best-practices).
+    
+4. [Subscribe to our Youtube Channel](https://www.youtube.com/@thinkthroo) to get the insights from the open-source projects, where we review code snippets.
+    
+
+![](https://cdn-images-1.medium.com/max/1600/0*NxFtbdT-jz_GGi2N.png)
+
+### References:
+
+1. [https://github.com/expatfile/next-runtime-env/blob/development/src/typings/process-env.ts#L3](https://github.com/expatfile/next-runtime-env/blob/development/src/typings/process-env.ts#L3)
+    
+2. [https://www.totaltypescript.com/how-to-strongly-type-process-env](https://www.totaltypescript.com/how-to-strongly-type-process-env)
+    
+3. [https://stackoverflow.com/questions/45194598/using-process-env-in-typescript](https://stackoverflow.com/questions/45194598/using-process-env-in-typescript)
+    
+4. [https://stackoverflow.com/a/45195359](https://stackoverflow.com/a/45195359)

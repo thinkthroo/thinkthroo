@@ -41,6 +41,31 @@ export const docsConfig: DocsConfig = {
       title: "December, 2024",
       items: [
         {
+          title: "Here's how next-runtime- ...",
+          href: "/blog/next-runtime-env-regex-test",
+          items: []
+        },
+        {
+          title: "hCaptcha, a bot detect ...",
+          href: "/blog/hcaptcha-usage-in-oss-projects",
+          items: []
+        },
+        {
+          title: "Cache your function ...",
+          href: "/blog/react-cache-in-server-components",
+          items: []
+        },
+        {
+          title: "What does Supabase use for its Authentication?",
+          href: "/blog/supabase-authentication",
+          items: []
+        },
+        {
+          title: "ProcessEnv type in next-runtime-env source code",
+          href: "/blog/process-env-type",
+          items: []
+        },
+        {
           title: "LobeChat uses Namespace for action...",
           href: "/blog/lobechat-uses-namespaces-actions",
           items: []
