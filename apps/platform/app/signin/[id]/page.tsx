@@ -54,7 +54,7 @@ export default async function SignIn({
     return redirect(`/signin/${viewProp}`);
   }
 
-  // Check if the user is already logged in and redirect to the account page if so
+  // Check if the user is already logged in and redirect to the dashboard page if so
   const supabase = createClient();
 
   const {

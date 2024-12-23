@@ -131,7 +131,7 @@ export default function BestPracticesPage() {
       <PageHeader>
         <PageHeaderHeading>Best Practices</PageHeaderHeading>
         <PageHeaderDescription>
-          An analysis of best practices found in Open Source projects is provided in the below guides.
+          An analysis of best practices found in Open Source projects is provided in the below courses.
           
         </PageHeaderDescription>
         <PageActions>

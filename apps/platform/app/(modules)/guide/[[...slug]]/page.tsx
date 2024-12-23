@@ -15,6 +15,8 @@ import { DocsPager } from "@/components/interfaces/guide/pager"
 import { DashboardTableOfContents } from "@/components/interfaces/guide/toc"
 import { badgeVariants } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { createClient } from "@/utils/supabase/server"
+import RequestSignin from "@/components/interfaces/guide/request-signin"
 
 interface DocPageProps {
   params: {
@@ -23,8 +25,6 @@ interface DocPageProps {
 }
 
 async function getDocFromParams({ params }: DocPageProps) {
-
-  console.log("params in getDocFromParams", params);
 
   const slug = params.slug?.join("/") || ""
   const doc = allDocs.find((doc) => doc.slugAsParams === slug)
@@ -90,6 +90,12 @@ export default async function DocPage({ params }: DocPageProps) {
 
   const toc = await getTableOfContents(doc.body.raw)
 
+  const supabase = createClient();
+
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
+
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0">
@@ -135,7 +141,13 @@ export default async function DocPage({ params }: DocPageProps) {
           </div>
         ) : null}
         <div className="pb-12 pt-8">
-          <Mdx code={doc.body.code} />
+          {
+            user?.id ? 
+            <Mdx code={doc.body.code} /> :
+            <div className="text-center w-full mx-auto">
+              <RequestSignin />
+            </div>
+          }
         </div>
         <DocsPager doc={doc} pathname={params.slug?.join("/")} />
       </div>
